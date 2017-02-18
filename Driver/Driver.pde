@@ -59,35 +59,18 @@
     
     Toggle startTog = cp5.addToggle("Start")
      .setFont(cf)
-     .setPosition(1000,20)
+     .setPosition(1100,20)
      .setSize(100,50)
-     .setImage(startButton)
+     .setImages(loadImage("../StartButton.png"),loadImage("../PauseButton.png"))
      .onChange(new CallbackListener(){
        public void controlEvent(CallbackEvent event) {
-         if(event.getController().getValue() == 0 && !start){
+         if(event.getController().getValue() == 0){
+           start = false;
+         } else {
            start = true;
          }
-         control.setVisible(displayCode);
       }
      }); 
-
-     PImage pauseButton = loadImage("../PauseButton.png");
-
-     Toggle pauseTog = cp5.addToggle("Pause")
-     .setFont(cf)
-     .setPosition(1150,20)
-     .setSize(100,50)
-     .setImage(pauseButton)
-     .onChange(new CallbackListener(){
-       public void controlEvent(CallbackEvent event) {
-         if(event.getController().getValue() == 0 && start){
-           start = false;
-         }
-         control.setVisible(displayCode);
-      }
-     }); 
-  
-  
   }
 
 boolean brake = false;
