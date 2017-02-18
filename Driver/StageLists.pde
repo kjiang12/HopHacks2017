@@ -10,7 +10,6 @@ public class StageLists{
   public StageLists(PApplet app){
      this.app = app;
      generateObstacles(25);
-     this.driver = driver;
   }
   public ArrayList<Bullet> getBulletList(){
     return this.bullets;
