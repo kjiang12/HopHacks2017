@@ -1,11 +1,15 @@
+import controlP5.*;
+import sprites.Sprite;
+
 public class StageLists{
   private ArrayList<Bullet> bullets= new ArrayList<Bullet>();
   private ArrayList<Obstacle> obstacles= new ArrayList<Obstacle>();
   private ArrayList<Tank> tanks= new ArrayList<Tank>();
+  private Driver driver;
   
-  public StageLists(){
+  public StageLists(Driver driver){
      generateObstacles(25);
-    
+     this.driver = driver;
   }
   public ArrayList<Bullet> getBulletList(){
     return this.bullets;
@@ -61,7 +65,7 @@ public class StageLists{
     boolean overlap = false;
     int i = 0;
     while (i < numberOfObstacles / 2){
-      Crate crate = new Crate(((int) (Math.random() * (width - 50)) + 20),((int) (Math.random() * (height - 50)) + 20), new Sprite(this,"../Crate.png",0));
+      Crate crate = new Crate(((int) (Math.random() * (width - 50)) + 20),((int) (Math.random() * (height - 50)) + 20), new Sprite(driver,"../Crate.png",0));
       crate.getSprite().setX(crate.getX());
       crate.getSprite().setY(crate.getY());
       crate.getSprite().setCollisionRadius((crate.getSprite().getHeight()/2) + 2);
@@ -82,7 +86,7 @@ public class StageLists{
     overlap = false;
     i = 0;
     while (i < numberOfObstacles / 2){
-      Barrel barrel = new Barrel(((int) (Math.random() * (width - 50)) + 20),((int) (Math.random() * (height - 50)) + 20), new Sprite(this,"../Barrel.png",0));
+      Barrel barrel = new Barrel(((int) (Math.random() * (width - 50)) + 20),((int) (Math.random() * (height - 50)) + 20), new Sprite(driver,"../Barrel.png",0));
       barrel.getSprite().setX(barrel.getX());
       barrel.getSprite().setY(barrel.getY());
       barrel.getSprite().setCollisionRadius((barrel.getSprite().getHeight()/2) + 2);

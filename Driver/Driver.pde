@@ -1,6 +1,7 @@
   import java.util.LinkedList;
   import java.util.ListIterator;
   import controlP5.*;
+  import sprites.Sprite;
 
   ControlP5 cp5;
   ControlFont cf;
@@ -23,7 +24,7 @@
     cp5 = new ControlP5(this);
     cf = new ControlFont(createFont("Times",16));
   
-    stageLists = new StageLists();
+    stageLists = new StageLists(this);
 
     control = new CommandController();
     stageLists.addItem(new Tank(100, 50, 50, 60, 50, new Sprite(this,"../TankBase.png",0), new Sprite(this,"../TankHead5.png",0),60));
