@@ -13,7 +13,7 @@ public abstract class CommandBlock{
              .setBackgroundHeight(100)
              .setSize(300,75)
              .setBarHeight(40)
-             .setBackgroundColor(color(255,80))
+             .setBackgroundColor(color(80,0,180))
              .disableCollapse();
     count++;
     this.tank = tank;

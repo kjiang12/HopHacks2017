@@ -11,7 +11,7 @@
   CommandController control;
   
  void setup (){
-    size(1200, 700);
+    size(1260, 720);
     noStroke();
     rectMode(CENTER);
     cp5 = new ControlP5(this);
@@ -19,16 +19,10 @@
     control = new CommandController();
     tank = new Tank(100,50,50,60,50,new Sprite(this,"../TankBase.png",0),new Sprite(this,"../TankHead.png",0));
     control.add(new MoveBackward(cp5, cf, tank));
-    parse();
+    control.execute(); //replaces parse();
   }
 
 
-void parse(){
-    for (CommandBlock command: control.getList()) {
-      command.execute();
-    }
-}
-  
  void draw(){
     background(255.0);
      tank.getBaseSprite().setX(tank.getXPos());
