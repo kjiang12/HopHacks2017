@@ -33,10 +33,9 @@ void parse(){
 
 void draw(){
   background(0.0);
-  
-}
-void mousePressed(){
+ }
 
+void mousePressed(){
   if(cp5.getWindow().getMouseOverList().size() > 0){
     draggedObject = commandList.get(Integer.parseInt(cp5.getWindow().getMouseOverList().get(0).getName()));
     initX = mouseX;
