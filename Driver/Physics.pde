@@ -5,10 +5,10 @@ static class Physics {
   private static final float HP_TO_JPS = 746;
   private static final float FPS = 60;
   private static final float BRAKE = 1.55;
-  private static final float TANK_TURN = 150;
-  private static final float TANK_TURN_ACC = 40;
-  private static final float TURRET_TURN = 180;
-  private static final float TURRET_TURN_ACC = 60;
+  private static final float TANK_TURN = 37;
+  private static final float TANK_TURN_ACC = 1.5;
+  private static final float TURRET_TURN = 38;
+  private static final float TURRET_TURN_ACC = 2;
   private static final float LENGTH = 6;
   private static final float WIDTH = 3;
   private static final float I = 112500;

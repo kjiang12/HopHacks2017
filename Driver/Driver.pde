@@ -22,7 +22,7 @@
     obstacles = new ArrayList<Obstacles>();
     generateObstacles(10);
     control = new CommandController();
-    tank = new Tank(100,50,50,60,50,new Sprite(this,"../TankBase.png",0),new Sprite(this,"../TankHead.png",0));
+    tank = new Tank(100, 50, 50, 60, 50, new Sprite(this,"../TankBase.png",0), new Sprite(this,"../TankHead.png",0));
     control.add(new MoveBackward(cp5, cf, tank));
     control.add(new MoveForward(cp5, cf, tank));
     control.execute(); //replaces parse();
@@ -32,6 +32,7 @@
  void draw(){
     background(255.0);
     
+    tank.brake();
     tank.turnLeft();
     tank.turnTurretRight();
     tank.update();
