@@ -20,7 +20,9 @@ public class CommandController{
     return commandTable.get(id);
   }
   
-  LinkedList<CommandBlock> getList(){
-    return commandList;
+  void execute(){
+    for (CommandBlock command: commandList) {
+      command.execute();
+    }
   }
 }

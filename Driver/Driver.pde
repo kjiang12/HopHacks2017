@@ -10,14 +10,14 @@
   Tank tank;
   CommandController control;
   
-  void setup (){
+ void setup (){
     size(1200, 700);
     noStroke();
     rectMode(CENTER);
     cp5 = new ControlP5(this);
     cf = new ControlFont(createFont("Times",12));
     control = new CommandController();
-    tank = new Tank(100,50,50,60,50,10,10,new Sprite(this,"../TankBase.png",0),new Sprite(this,"../TankHead.png",0));
+    tank = new Tank(100,50,50,60,50,new Sprite(this,"../TankBase.png",0),new Sprite(this,"../TankHead.png",0));
     control.add(new MoveBackward(cp5, cf, tank));
     parse();
   }
