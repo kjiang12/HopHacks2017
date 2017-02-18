@@ -20,34 +20,12 @@ public class GetTankAngVel extends GetCommandBlock{
 
 /*** everything below needs to be written ***/
 
-public class GetDirection extends GetCommandBlock{
-  public GetTankAngVel(ControlP5 cp5, ControlFont cf, Tank tank){
-    super(cp5, cf, tank);
-  }
-
-  void execute() {
-  }
-
-}
-
 public class GetReloadingTime extends GetCommandBlock{
-  public GetTankAngVel(ControlP5 cp5, ControlFont cf, Tank tank){
+  public GetReloadingTime(ControlP5 cp5, ControlFont cf, Tank tank){
     super(cp5, cf, tank);
   }
 
   void execute() {
-  }
-
-}
-
-public class GetTankDirection extends GetCommandBlock{
-  public GetTankDirection(ControlP5 cp5, ControlFont cf, Tank tank){
-    super(cp5, cf, tank);
-    this.g.getCaptionLabel().set("Get Tank Direction").setFont(cf);
-  }
-
-  void execute() {
-      tank.getTankAngle();
   }
 
 }
@@ -64,24 +42,17 @@ public class GetTurrAngVel extends GetCommandBlock{
 
 }
 
-public class GetTurrDirection extends GetCommandBlock{
-  public GetTurrDirection(ControlP5 cp5, ControlFont cf, Tank tank){
-    super(cp5, cf, tank);
-    this.g.getCaptionLabel().set("Get Turret Direction").setFont(cf);
-  }
-
-  void execute() {
-      tank.getTurrAngle();
-  }
-
-}
-
 public class GetVel extends GetCommandBlock{
-  public GetTankAngVel(ControlP5 cp5, ControlFont cf, Tank tank){
+  boolean forward;
+  public GetVel(ControlP5 cp5, ControlFont cf, Tank tank){
     super(cp5, cf, tank);
+    this.g.getCaptionLabel().set("Get Velocity").setFont(cf);
   }
-
+  public void setFoward(boolean forward){
+    this.forward=forward;
+  }
   void execute() {
+    tank.getVel(forward, tank.getXPos(), tank.getYPos());
   }
 
 }
