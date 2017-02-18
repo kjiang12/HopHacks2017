@@ -15,7 +15,7 @@ public class GetTankAngVel extends GetCommandBlock{
   }
 
   void execute() {
-      tank.getAngVel();
+      tank.getTankAngVel();
   }
 
 }
@@ -43,7 +43,7 @@ public class GetTurrAngVel extends GetCommandBlock{
 
 }
 
-public class GetVel extends GetCommandBlock{
+/*public class GetVel extends GetCommandBlock{
   boolean forward;
   public GetVel(ControlP5 cp5, ControlFont cf, Tank tank){
     super(cp5, cf, tank);
@@ -57,5 +57,4 @@ public class GetVel extends GetCommandBlock{
     tank.getVel(forward, tank.getXPos(), tank.getYPos());
   }
 
-}
-*/
+}*/

@@ -13,8 +13,9 @@ public abstract class MovementBlock extends CommandBlock{
      .setFont(new ControlFont(createFont("Times",12)));     
   }
   
-  abstract void execute();
-
+  void execute(){
+    tank.setPower(currPow);
+  }   
 }
 
 public class MoveBackward extends MovementBlock{
@@ -26,9 +27,9 @@ public class MoveBackward extends MovementBlock{
   }
 
   void execute() {
-      tank.getPos(false);
+    super.execute();
+    tank.backward();
   }
-
 }
 
 public class MoveForward extends MovementBlock{
@@ -38,7 +39,8 @@ public class MoveForward extends MovementBlock{
   }
 
   void execute() {
-      tank.getPos(true);
+    super.execute();
+    tank.forward();
   }
 
 }

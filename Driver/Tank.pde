@@ -25,7 +25,7 @@ public class Tank {
     this.tankAngle = tankAngle;
     this.turrAngle = turrAngle;
     tankAngVel = 0;
-    turrAngVel;
+
     this.base_sprite = base_sprite;
     this.head_sprite = head_sprite;
   }

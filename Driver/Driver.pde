@@ -76,7 +76,7 @@ void generateObstacles(int numberOfObstacles){
     Crate crate = new Crate(((int) (Math.random() * 1000)),((int) (Math.random() * 700)),new Sprite(this,"../Crate.png",0));
     crate.getSprite().setX(crate.getX());
     crate.getSprite().setY(crate.getY());
-    for (Obstacle obstacle: obstacles){
+    for (Obstacles obstacle: obstacles){
      if(obstacle.getSprite().cc_collision(crate.getSprite())){
        i--;
        overlap = true;
