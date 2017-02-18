@@ -132,10 +132,10 @@
             oldSpeed[1]=ySpeed;
             float[] newSpeed=new float[2];
             if(forward) {
-              newSpeed=Physics.getNewForwardSpeed(getPower(), oldSpeed, getTankAngle());
+              newSpeed=Physics.getNewForwardVel(getPower(), oldSpeed, getTankAngle());
             }
             else {
-              newSpeed=Physics.getNewBackwardSpeed(getPower(), oldSpeed, getTankAngle());
+              newSpeed=Physics.getNewBackwardVel(getPower(), oldSpeed, getTankAngle());
             }
             setXSpeed(newSpeed[0]);
             setYSpeed(newSpeed[1]);
