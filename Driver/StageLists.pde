@@ -50,6 +50,14 @@ public class StageLists{
       tank.update();
       tank.draw();
     }
+    for(Tank tank: tanks){
+    if(tank.fired()){
+        float [] pos = tank.getPos();
+        Bullet b=new bullet(pos[0], pos[1]);
+        bullets.add(b);
+        tank.setFired(false);
+    }
+    }
     collisionCheck();
   }
   
