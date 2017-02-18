@@ -12,6 +12,7 @@ static class Physics {
   private static final float LENGTH = 6;
   private static final float WIDTH = 3;
   private static final float I = 112500;
+  private static final int SCALE = 10; //SCALE pixels = 1 m
   
   static float stopTurretTurn(float angularVelocity) {
     if (angularVelocity < 0) {
@@ -58,8 +59,8 @@ static class Physics {
   }
   
   static float[] brake(float[] currentVel, float currentAngle) {
-      currentVel[0] -= BRAKE * cos(degToRad(currentAngle));
-      currentVel[1] -= BRAKE * cos(degToRad(currentAngle));
+      currentVel[0] -= BRAKE * cos(degToRad(currentAngle)) * SCALE;
+      currentVel[1] -= BRAKE * cos(degToRad(currentAngle)) * SCALE;
       
       return currentVel;
   }
@@ -71,8 +72,8 @@ static class Physics {
     float newEnergyY = currentEnergyY + getComponent(hpToJps(-1 * power), currentAngle, false);
     
     float[] returnArr = new float[2];
-    returnArr[0] = max(getVel(newEnergyX), getComponent(MIN_VEL, currentAngle, true));
-    returnArr[1] = max(getVel(newEnergyY), getComponent(MIN_VEL, currentAngle, false));
+    returnArr[0] = max(getVel(newEnergyX), getComponent(MIN_VEL, currentAngle, true)) * SCALE;
+    returnArr[1] = max(getVel(newEnergyY), getComponent(MIN_VEL, currentAngle, false)) * SCALE;
     
     return returnArr;
   }
@@ -84,8 +85,8 @@ static class Physics {
     float newEnergyY = currentEnergyY + getComponent(hpToJps(power), currentAngle, false);
     
     float[] returnArr = new float[2];
-    returnArr[0] = min(getVel(newEnergyX), getComponent(MAX_VEL, currentAngle, true));
-    returnArr[1] = min(getVel(newEnergyY), getComponent(MAX_VEL, currentAngle, false));
+    returnArr[0] = min(getVel(newEnergyX), getComponent(MAX_VEL, currentAngle, true)) * SCALE;
+    returnArr[1] = min(getVel(newEnergyY), getComponent(MAX_VEL, currentAngle, false)) * SCALE;
     
     return returnArr;
   }

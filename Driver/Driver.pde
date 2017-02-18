@@ -4,15 +4,15 @@
 
   ControlP5 cp5;
   ControlFont cf;
-  LinkedList<CommandBlock> commandList;
   CommandBlock draggedObject;
   float initX;
   float initY;
   Tank tank;
   ArrayList<Obstacles> obstacles;
+  CommandController control;
   
-  void setup (){
-    size(1200, 700);
+ void setup (){
+    size(1260, 720);
     noStroke();
     rectMode(CENTER);
     cp5 = new ControlP5(this);
@@ -26,14 +26,13 @@
     
     obstacles = new ArrayList<Obstacles>();
     generateObstacles(10);
+    control = new CommandController();
+    tank = new Tank(100,50,50,60,50,new Sprite(this,"../TankBase.png",0),new Sprite(this,"../TankHead.png",0));
+    control.add(new MoveBackward(cp5, cf, tank));
+    control.execute(); //replaces parse();
   }
 
-void parse(){
-    for (CommandBlock command: commandList) {
-      command.execute();
-    }
-}
-  
+
  void draw(){
     background(255.0);
      tank.getBaseSprite().setX(tank.getXPos());
@@ -51,11 +50,14 @@ void parse(){
   
   void mousePressed(){
     if(cp5.getWindow().getMouseOverList().size() > 0){
-    draggedObject = commandList.get(Integer.parseInt(cp5.getWindow().getMouseOverList().get(0).getName()));
-    initX = mouseX;
-    initY = mouseY;
+      try{
+        draggedObject = control.getCommand(Integer.parseInt(cp5.getWindow().getMouseOverList().get(0).getStringValue()));
+        initX = mouseX;
+        initY = mouseY;
+      } catch(Exception e){
+      }
     }
-  }
+   }
 
 void mouseReleased(){
   draggedObject = null;
