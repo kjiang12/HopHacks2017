@@ -5,10 +5,10 @@ static class Physics {
   private static final float HP_TO_JPS = 746;
   private static final float FPS = 60;
   private static final float BRAKE = 1.55;
-  private static final float TANK_TURN = 37;
-  private static final float TANK_TURN_ACC = 2.5;
-  private static final float TURRET_TURN = 38.59;
-  private static final float TURRET_TURN_ACC = 5;
+  private static final float TANK_TURN = 150;
+  private static final float TANK_TURN_ACC = 40;
+  private static final float TURRET_TURN = 180;
+  private static final float TURRET_TURN_ACC = 60;
   private static final float LENGTH = 6;
   private static final float WIDTH = 3;
   private static final float I = 112500;
@@ -29,11 +29,11 @@ static class Physics {
   }
   
   static float turnTurretLeft(float angularVelocity) {
-    return max(angularVelocity - TURRET_TURN_ACC / FPS, -TURRET_TURN) / FPS;
+    return max(angularVelocity - TURRET_TURN_ACC, -TURRET_TURN) / FPS;
   }
   
   static float turnTurretRight(float angularVelocity) {
-    return min(angularVelocity + TURRET_TURN_ACC / FPS, TURRET_TURN) / FPS;
+    return min(angularVelocity + TURRET_TURN_ACC, TURRET_TURN) / FPS;
   }
   
   static float stopTurn(float angularVelocity) {
@@ -51,11 +51,11 @@ static class Physics {
   }
   
   static float turnLeft(float angularVelocity) {
-    return max(angularVelocity - TANK_TURN_ACC / FPS, -TANK_TURN);
+    return max(angularVelocity - TANK_TURN_ACC, -TANK_TURN) / FPS;
   }
   
   static float turnRight(float angularVelocity) {
-    return min(angularVelocity + TANK_TURN_ACC / FPS, TANK_TURN);
+    return min(angularVelocity + TANK_TURN_ACC, TANK_TURN) / FPS;
   }
   
   static float[] brake(float[] currentVel, float currentAngle) {

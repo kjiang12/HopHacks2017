@@ -31,6 +31,8 @@
  void draw(){
     background(255.0);
     
+    tank.turnLeft();
+    tank.turnTurretRight();
     tank.update();
     tank.draw();
     /*tank.getBaseSprite().setX(tank.getPos()[0]);
