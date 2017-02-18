@@ -20,6 +20,7 @@ public abstract class CommandBlock{
   }
   
   void setGroup(String s){
+    this.id = Integer.parseInt(s);
     this.g.setStringValue(s);
   }
   
