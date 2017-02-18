@@ -29,7 +29,6 @@ void parse(){
     for (CommandBlock command: commandList) {
       command.execute();
     }
-  
 }
 
 void draw(){
@@ -40,7 +39,7 @@ void draw(){
   tank.getHeadSprite().setY(tank.getTurrY());
   tank.getBaseSprite().draw();
   tank.getHeadSprite().draw();
-  
+
   void parse(){
       for (CommandBlock command: commandList) {
         command.execute();
@@ -60,13 +59,23 @@ void draw(){
       tank.getHeadSprite().draw();
       
     }
-  void mousePressed(){
-  
-    if(cp5.getWindow().getMouseOverList().size() > 0){
-      draggedObject = commandList.get(Integer.parseInt(cp5.getWindow().getMouseOverList().get(0).getName()));
-      initX = mouseX;
-      initY = mouseY;
-    }
+void mousePressed(){
+  if(cp5.getWindow().getMouseOverList().size() > 0){
+    draggedObject = commandList.get(Integer.parseInt(cp5.getWindow().getMouseOverList().get(0).getName()));
+    initX = mouseX;
+    initY = mouseY;
+  }
+}
+
+void mouseReleased(){
+  draggedObject = null;
+}
+
+void mouseDragged(){
+  if(draggedObject != null && mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height){
+    draggedObject.move(mouseX - initX, mouseY - initY);
+    initX = mouseX;
+    initY = mouseY;
   }
   
   void mouseReleased(){
