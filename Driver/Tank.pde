@@ -1,7 +1,6 @@
 import sprites.Sprite;
 
-  public class Tank
-  {
+  public class Tank {
       private float health;
       private float power;
       private float xSpeed;
@@ -11,8 +10,10 @@ import sprites.Sprite;
       private float angVel;
       private float turrX, turrY;
       private float tankAngle, turrAngle;
-      public Tank(float health, float xCor, float yCor, float turrX, float turrY, float tankAngle, float turrAngle, Sprite base_sprite, Sprite head_sprite)
-      {
+      private Sprite base_sprite;
+      private Sprite head_sprite;
+      
+      public Tank(float health, float xCor, float yCor, float turrX, float turrY, float tankAngle, float turrAngle, Sprite base_sprite, Sprite head_sprite) {
         angVel=0;
         xSpeed=0;
         ySpeed=0;
@@ -27,12 +28,10 @@ import sprites.Sprite;
         this.base_sprite = base_sprite;
         this.head_sprite = head_sprite;
       }
-      public float getAngVel()
-      {
+      public float getAngVel() {
           return angVel;
       }
-      public void setAngVel(float angVel)
-      {
+      public void setAngVel(float angVel){
           this.angVel=angVel;
       }
       public float getXPos()
@@ -175,7 +174,7 @@ import sprites.Sprite;
       
     }
     
-    }
+    
   //aiming methods
     //turning turret
     
