@@ -16,8 +16,8 @@ public class CommandController{
     count++;
   }
   
-  CommandBlock getCommand(int id){
-    return commandTable.get(id);
+  CommandBlock getCommand(ControlGroup group){
+    return commandTable.get(Integer.parseInt(group.getStringValue()));
   }
   
   void execute(){

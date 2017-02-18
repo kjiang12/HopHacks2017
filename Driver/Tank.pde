@@ -53,6 +53,7 @@ public class Tank {
     // update turret angle
     turrAngle=turrAngle + turrAngVel * (((float) 1)/60);
             
+<<<<<<< HEAD
     // update velocity
     if (moveState.equals("Forward") {
       vel = Physics.getNewForwardVel(getPower(), vel, tankAngle;
@@ -78,7 +79,7 @@ public class Tank {
   public float getTankAngVel() {          
     return tankAngVel;
   }
-            
+  
   public float getTurrAngVel(){
     return turrAngVel;
   }
