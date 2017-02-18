@@ -28,3 +28,21 @@ public abstract class Obstacles{
    this.sprite = sprite; 
   }
 }
+
+public class Barrel extends Obstacles{
+  int x;
+  int y;
+  Sprite sprite;
+  public Barrel(int x, int y, Sprite sprite){
+    super(x, y, sprite);
+  }
+}
+
+public class Crate extends Obstacles{
+  int x;
+  int y;
+  Sprite sprite;
+  public Crate(int x, int y, Sprite sprite){
+    super(x, y, sprite);
+  }
+}
