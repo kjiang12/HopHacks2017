@@ -43,13 +43,8 @@ public class Comparison2Var extends ConditionBlock{
                       .setOpen(false)
                       .setLabelVisible(false)
                       .setCaptionLabel("")
-                      .setFont(new ControlFont(createFont("Times", 30)))
-                      .onClick(new CallbackListener(){
-           public void controlEvent(CallbackEvent event) {
-             println(event.getController().getValue());
-           }
-     });;
-                       
+                      .setFont(new ControlFont(createFont("Times", 30)));
+
   }
   
   Boolean calculate(){
@@ -84,5 +79,81 @@ public class Comparison2Var extends ConditionBlock{
     super.move(x, y);
     this.var1.connectionUpdate();
     this.var2.connectionUpdate();
+  }
+}
+
+public class Comparison1Var extends ConditionBlock{
+  LogicBlock var1;
+  float value = 0;
+  DropdownList operatorList;
+  
+  String[] comparisionOperators = {"=", "<", "<=", ">", ">=", "!="};
+  
+  public Comparison1Var(ControlP5 cp5, ControlFont cf, Tank tank){
+    super(cp5, cf, tank);
+    this.h = 100;
+    this.g.getCaptionLabel().set("Comparision with 1 Variable").setFont(cf);
+    this.g.setSize(this.w , this.h);
+  
+    this.var1 = this.add(new LogicBlock(cp5, cf, tank, "Var1", 0, this.g));
+    
+    operatorList = cp5.addDropdownList("Operators " + this.id)
+                      .setPosition(50, 30)
+                      .setSize(60, 1200)
+                      .setBarHeight(50)
+                      .setItemHeight(50)
+                      .setGroup(this.g)
+                      .addItems(comparisionOperators)
+                      .setOpen(false)
+                      .setLabelVisible(false)
+                      .setCaptionLabel("")
+                      .setFont(new ControlFont(createFont("Times", 30)));
+     
+     cp5.addTextfield("input")
+     .setPosition(20,100)
+     .setSize(200,40)
+     .setFont(cf)
+     .setGroup(this.g)
+     .setFocus(true)
+     .setColor(color(255,0,0))
+     .onChange(new CallbackListener(){
+       public void controlEvent(CallbackEvent event) {
+         value = Float.parseFloat(event.getController().getStringValue());
+      }
+     });
+     ;
+                       
+  }
+  
+  Boolean calculate(){
+    if(var1.next != null){
+      int op = (int) operatorList.getValue();
+      
+      switch(op){
+        case 0:
+          return value == ((GetCommandBlock) var1.next).getValue();
+        case 1:
+          return value < ((GetCommandBlock) var1.next).getValue();
+        case 2:
+          return value <= ((GetCommandBlock) var1.next).getValue();
+        case 3:
+          return value > ((GetCommandBlock) var1.next).getValue();
+        case 4:
+          return value >= ((GetCommandBlock) var1.next).getValue();
+        case 5:
+          return value != ((GetCommandBlock) var1.next).getValue();
+      }
+    }
+    return false;
+  }
+  
+  void setVisible(Boolean bol){
+    super.setVisible(bol);
+    this.var1.setVisible(bol);
+  }
+  
+  void move(float x, float y){
+    super.move(x, y);
+    this.var1.connectionUpdate();
   }
 }
