@@ -74,15 +74,14 @@ public abstract class CommandBlock{
     }
   }
   void scrollMove(float val){
+    if(this instanceof LogicBlock){
+      this.connectionUpdate();
+      return;
+    }
     float newX = x - 20 * val;
     scrollScale = val;
     this.g.setPosition(newX, y);
-    if(connection != null){
-      this.connection.changeStart(this);
-    }
-    if(prev != null){
-      this.prev.connection.changeEnd(this);
-    }
+    this.connectionUpdate();
   }
   
   int getX(){
