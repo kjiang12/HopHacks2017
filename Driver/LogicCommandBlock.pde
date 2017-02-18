@@ -136,6 +136,7 @@ public class ForLoop extends LogicCommandBlock{
     }
   }
 }
+}
 
 public class IfStatement extends LogicCommandBlock{
   public IfStatement(ControlP5 cp5, ControlFont cf, Tank tank){
