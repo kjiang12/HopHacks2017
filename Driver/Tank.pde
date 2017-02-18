@@ -11,6 +11,7 @@ public class Tank {
   private String turnState; // "Stop Turn" "Turn Left" "Turn Right"
   private String turrState; // "Stop Turn Turret" "Turn Turret Left" "Turn Turret Right"
   private int reloadTime;
+  private int reloadDecrementer;
   private Sprite base_sprite;
   private Sprite head_sprite;
   private boolean fired;
@@ -28,6 +29,7 @@ public class Tank {
     this.base_sprite.setPos(new Vector2D(x, y));
     this.head_sprite.setPos(new Vector2D(x, y));
     this.reloadTime = reloadTime;
+    reloadDecrementer = reloadTime;
     fired = true;
   }
   
@@ -66,7 +68,7 @@ public class Tank {
     }
     
     // update reload time
-    reloadTime--;
+    reloadDecrementer--;
   }
   
   void draw(){
@@ -162,6 +164,11 @@ public class Tank {
   public int getReloadTime(){
     return reloadTime; 
   }
+  
+  public int getReloadDecrementer(){
+    return reloadDecrementer; 
+  }
+  
   public void lowerHealth(float damage) {
     this.health=this.health-damage;
   }
@@ -181,6 +188,10 @@ public class Tank {
   
   public void setReloadTime(int reloadTime){
     this.reloadTime = reloadTime; 
+  }
+
+  public void setReloadDecrementer(int reloadDecrementer){
+    this.reloadDecrementer = reloadDecrementer; 
   }
 
   public void detection(float xDist, float yDist) {
@@ -205,7 +216,7 @@ public class Tank {
   }
   
   public void fireBullet(){
-    if (reloadTime == 0) {
+    if (reloadDecrementer <= 0) {
       setFired(true);
     }  
   }

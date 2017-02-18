@@ -10,9 +10,8 @@ public class StageLists{
   
   public StageLists(PApplet app){
      this.app = app;
-     generateObstacles(50);
-     this.addItem(new Tank(100, 500, 500, PI / 3, 50, new Sprite(app,"../TankBase.png",0), new Sprite(app,"../TankHead5.png",0),60));
-     tanks.get(0).forward();
+     generateObstacles(150);
+     this.addItem(new Tank(100, 500, 500, PI / 3, 50, new Sprite(app,"../TankBase.png",0), new Sprite(app,"../TankHead5.png",0),20));
   }
   public ArrayList<Bullet> getBulletList(){
     return bullets;
@@ -72,6 +71,8 @@ public class StageLists{
     for(Tank tank: tanks){
       tank.turnLeft();
       tank.turnTurretRight();
+      tank.forward();
+      tank.fireBullet();
     //  println(tank.getTankAngle());
       tank.update();
       tank.draw();
@@ -84,15 +85,19 @@ public class StageLists{
   void collisionCheck(){
    for (int i = 0; i < obstacles.size(); i++){
      for (int j = 0; j < tanks.size(); j++){
-       if(obstacles.get(i).getSprite().cc_collision(tanks.get(j).getBaseSprite())){
+       if(obstacles.get(i).getSprite().bb_collision(tanks.get(j).getBaseSprite())){
+         tanks.get(j).stop();
+       }
+       if (tanks.get(j).getPos()[0] > width || tanks.get(j).getPos()[0] < 0 || tanks.get(j).getPos()[1] > height || tanks.get(j).getPos()[1] < 0){
          tanks.get(j).stop();
        }
      }
      for (int k = 0; k < bullets.size(); k++){
-       if(obstacles.get(i).getSprite().cc_collision(bullets.get(k).getSprite())){
+       if(obstacles.get(i).getSprite().bb_collision(bullets.get(k).getSprite())){
          bullets.remove(k);
          this.addItem(new Explosion(obstacles.get(i).getX(), obstacles.get(i).getY(), new Sprite(app,"../Explosion.png",0)));
          obstacles.remove(i);
+         k = 0;
        }
      }
    }
@@ -103,12 +108,10 @@ public class StageLists{
     for(Tank tank: tanks){
       if(tank.fired()){
           double [] pos = tank.getPos();
-          //NEED TO CREATE SPRITE
           Bullet bullet = new Bullet(((int) pos[0]), ((int) pos[1]), new Sprite(app,"../Bullet.png",0), tank.getTurrAngle());
-          println(bullet.getAngle());
           this.addItem(bullet);
           tank.setFired(false);
-          tank.setReloadTime(60);
+          tank.setReloadDecrementer(tank.getReloadTime());
       }
     }    
   }
@@ -119,9 +122,14 @@ public class StageLists{
       Crate crate = new Crate(((int) (Math.random() * (width - 50)) + 20),((int) (Math.random() * (height - 50)) + 20), new Sprite(app,"../Crate.png",0));
       crate.getSprite().setX(crate.getX());
       crate.getSprite().setY(crate.getY());
-      crate.getSprite().setCollisionRadius((crate.getSprite().getHeight()/2) + 2);
       for (Obstacle obstacle: obstacles){
-       if(obstacle.getSprite().cc_collision(crate.getSprite())){
+       if(obstacle.getSprite().pp_collision(crate.getSprite())){
+         overlap = true;
+         break;
+       }
+      }
+      for (Tank tank: tanks){
+       if(tank.getBaseSprite().pp_collision(crate.getSprite())){
          overlap = true;
          break;
        }
@@ -140,9 +148,14 @@ public class StageLists{
       Barrel barrel = new Barrel(((int) (Math.random() * (width - 50)) + 20),((int) (Math.random() * (height - 50)) + 20), new Sprite(app,"../Barrel.png",0));
       barrel.getSprite().setX(barrel.getX());
       barrel.getSprite().setY(barrel.getY());
-      barrel.getSprite().setCollisionRadius((barrel.getSprite().getHeight()/2) + 2);
       for (Obstacle obstacle: obstacles){
-       if(obstacle.getSprite().cc_collision(barrel.getSprite())){
+       if(obstacle.getSprite().pp_collision(barrel.getSprite())){
+         overlap = true;
+         break;
+       }
+      }
+      for (Tank tank: tanks){
+       if(tank.getBaseSprite().pp_collision(barrel.getSprite())){
          overlap = true;
          break;
        }
