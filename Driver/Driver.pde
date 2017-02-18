@@ -28,13 +28,12 @@
     control.execute(); //replaces parse();
   }
 
-
+boolean brake = false;
  void draw(){
     background(255.0);
     
-    tank.brake();
-    tank.turnLeft();
     tank.turnTurretRight();
+
     tank.update();
     tank.draw();
     /*tank.getBaseSprite().setX(tank.getPos()[0]);
@@ -52,6 +51,13 @@
   }
   
   void mousePressed(){
+    if (!brake) {
+      tank.brake();
+      brake = true;
+    } else {
+      tank.forward();
+      brake = false;
+    }
     if(cp5.getWindow().getMouseOverList().size() > 0){
       try{
         draggedObject = control.getCommand((ControlGroup) cp5.getWindow().getMouseOverList().get(0).bringToFront());

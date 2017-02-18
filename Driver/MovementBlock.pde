@@ -14,7 +14,6 @@ public abstract class MovementBlock extends CommandBlock{
   }
   
   void execute(){
-    tank.setPower(currPow);
   }   
 }
 

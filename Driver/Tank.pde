@@ -2,16 +2,15 @@ import sprites.Sprite;
 
 public class Tank {
   private float health;
-  private float power;
   private float[] vel;
   private float[] pos;
   private boolean detected;
   private float tankAngVel;
   private float turrAngVel;
   private float tankAngle, turrAngle;
-  private String moveState = "Brake"; // "Brake" "Forward" "Backward"
-  private String turnState = "Stop Turn"; // "Stop Turn" "Turn Left" "Turn Right"
-  private String turrState = "Stop Turret Turn"; // "Stop Turn Turret" "Turn Turret Left" "Turn Turret Right"
+  private String moveState; // "Brake" "Forward" "Backward"
+  private String turnState; // "Stop Turn" "Turn Left" "Turn Right"
+  private String turrState; // "Stop Turn Turret" "Turn Turret Left" "Turn Turret Right"
   private Sprite base_sprite;
   private Sprite head_sprite;
             
@@ -20,11 +19,13 @@ public class Tank {
     pos[0] = xCor;
     pos[1] = yCor;
     vel = new float[2];
-    power=0;
     this.health = health;
     this.tankAngle = tankAngle;
     this.turrAngle = turrAngle;
     tankAngVel = 0;
+    moveState = "Brake";
+    turnState = "Stop Turn";
+    turrState = "Stop Turret Turn";
 
     this.base_sprite = base_sprite;
     this.head_sprite = head_sprite;
@@ -50,23 +51,23 @@ public class Tank {
     }
               
     // update tank angle
-    tankAngle = tankAngle + tankAngVel * (((float) 1)/60);
+    tankAngle += tankAngVel;
               
     // update turret angle
-    turrAngle=turrAngle + turrAngVel * (((float) 1)/60);
-          
+    turrAngle += turrAngVel;
+
     // update velocity
     if (moveState.equals("Forward")) {
-      vel = Physics.getNewForwardVel(getPower(), vel, tankAngle);
+      vel = Physics.getNewForwardVel(vel, tankAngle);
     } else if (moveState.equals("Backward")) {
-      vel = Physics.getNewBackwardVel(getPower(), vel, tankAngle);
+      vel = Physics.getNewBackwardVel(vel, tankAngle);
     } else if (moveState.equals("Brake")) {
       vel = Physics.brake(vel, tankAngle); 
     }
     
     // update position
-    pos[0] += vel[0] / 60.0;
-    pos[1] += vel[1] / 60.0;
+    pos[0] += vel[0];
+    pos[1] += vel[1];
   }
   
   void draw(){
@@ -139,15 +140,7 @@ public class Tank {
   public void stopTurretTurn() {
     turrState = "Stop Turn Turret"; 
   }
-      
-  public float getPower() {
-    return power;
-  }
-              
-  public void setPower(float power) {
-    this.power=power;
-  }
-            
+          
   public Sprite getBaseSprite() {
     return base_sprite;
   }
