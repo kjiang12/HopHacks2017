@@ -23,7 +23,7 @@
     
     cp5 = new ControlP5(this);
     cf = new ControlFont(createFont("Times",16));
-  
+
     stageLists = new StageLists(this);
 
     control = new CommandController();
@@ -31,7 +31,7 @@
     control.add(new MoveBackward(cp5, cf, stageLists.getTankList().get(0)));
     control.add(new MoveForward(cp5, cf, stageLists.getTankList().get(0)));
     control.add(new MoveForward(cp5, cf, stageLists.getTankList().get(0)));
-
+    control.add(new StartBlock(cp5, cf, stageLists.getTankList().get(0)));
     control.execute(); //replaces parse();
     
     Toggle tog = cp5.addToggle("Show\nCode")

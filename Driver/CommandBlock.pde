@@ -74,6 +74,11 @@ public abstract class CommandBlock{
 public class StartBlock extends CommandBlock{
   public StartBlock(ControlP5 cp5, ControlFont cf, Tank tank){
     super(cp5, tank);
+    this.g.getCaptionLabel().set("Start")
+                            .setFont(cf)
+                            .setColorBackground(color(0,255,0));
+    this.g.setColorBackground(color(0,255,0))
+          ;
   }
   
   void execute(){
