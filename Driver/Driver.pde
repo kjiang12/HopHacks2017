@@ -11,7 +11,7 @@
   StageLists stageLists;
   CommandController control;
   boolean start;
-  
+  boolean firstRun = true;
   Boolean selected = false;
   CommandBlock selections;
   
@@ -156,12 +156,8 @@ class MyButton extends Controller<MyButton>{
 }
 boolean brake = false;
  void draw(){
-
-    if (start) {
-          background(255.0);
-
-      stageLists.drawObjects();
-    }
+      background(255.0);
+      stageLists.drawObjects(start);
     control.draw();
 
   }

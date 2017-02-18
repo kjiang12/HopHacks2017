@@ -45,13 +45,15 @@ public class StageLists{
     this.explosions.add(explosion);
   }
   
-  public void drawObjects(){
+  public void drawObjects(boolean doUpdate){
     for(int i = 0; i < bullets.size(); i++){
       if (bullets.get(i).getX() > width || bullets.get(i).getX() < 0 || bullets.get(i).getY() > height || bullets.get(i).getY() < 0){
        bullets.remove(i);
       }
       else{
-        bullets.get(i).update();
+        if (doUpdate) {
+          bullets.get(i).update();
+        }
         bullets.get(i).getSprite().draw();
       }
     }
@@ -63,9 +65,13 @@ public class StageLists{
         explosions.remove(i);
       }
       else{
-        explosions.get(i).getSprite().setScale(explosions.get(i).getTick() / 25);
+        if (doUpdate) {
+          explosions.get(i).getSprite().setScale(explosions.get(i).getTick() / 25);
+        }
         explosions.get(i).getSprite().draw();
-        explosions.get(i).setTick(explosions.get(i).getTick() + 1);
+        if (doUpdate) {
+          explosions.get(i).setTick(explosions.get(i).getTick() + 1);
+        }
       }
     }
     for(Tank tank: tanks){
@@ -74,7 +80,9 @@ public class StageLists{
       tank.forward();
       tank.fireBullet();
     //  println(tank.getTankAngle());
-      tank.update();
+      if (doUpdate) {
+        tank.update();
+      }
       tank.draw();
     }
 
