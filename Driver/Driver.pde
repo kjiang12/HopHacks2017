@@ -30,10 +30,9 @@
     stageLists = new StageLists(this);
 
     control = new CommandController(new StartBlock(cp5, cf, stageLists.getTankList().get(0)));
-    control.execute(); //replaces parse();
     
-    ddm = new DropDownMenu(cp5);
-    ddm.setVisible(false);
+    control.add
+    
     
     PImage code = loadImage("../Code.png");
     
@@ -50,7 +49,6 @@
            displayCode = true;
          }
          control.setVisible(displayCode);
-         ddm.setVisible(displayCode);
       }
      }); 
      
