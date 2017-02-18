@@ -13,11 +13,11 @@ public class StageLists{
      this.addItem(new Tank(100, 50, 50, 60, 50, new Sprite(app,"../TankBase.png",0), new Sprite(app,"../TankHead5.png",0),60));
   }
   public ArrayList<Bullet> getBulletList(){
-    return this.bullets;
+    return bullets;
   }
   
   public void addItem(Bullet bullet){
-    this.bullets.add(bullet);
+    bullets.add(bullet);
   }
   
   public ArrayList<Obstacle> getObstacleList(){
