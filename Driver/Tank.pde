@@ -11,10 +11,11 @@ public class Tank {
   private String moveState; // "Brake" "Forward" "Backward"
   private String turnState; // "Stop Turn" "Turn Left" "Turn Right"
   private String turrState; // "Stop Turn Turret" "Turn Turret Left" "Turn Turret Right"
+  private int reloadTime;
   private Sprite base_sprite;
   private Sprite head_sprite;
             
-  public Tank(float health, float xCor, float yCor, float tankAngle, float turrAngle, Sprite base_sprite, Sprite head_sprite) {
+  public Tank(float health, float xCor, float yCor, float tankAngle, float turrAngle, Sprite base_sprite, Sprite head_sprite, int reloadTime) {
     pos = new float[2];
     pos[0] = xCor;
     pos[1] = yCor;
@@ -29,6 +30,7 @@ public class Tank {
 
     this.base_sprite = base_sprite;
     this.head_sprite = head_sprite;
+    this.reloadTime = reloadTime;
   }
   
   public void update() {
@@ -68,6 +70,9 @@ public class Tank {
     // update position
     pos[0] += vel[0];
     pos[1] += vel[1];
+    
+    // update reload time
+    reloadTime--;
   }
   
   void draw(){
@@ -149,6 +154,10 @@ public class Tank {
     return head_sprite;
   }
             
+  public int getReloadTime(){
+    return reloadTime; 
+    
+  }
   public void lowerHealth(float damage) {
     this.health=this.health-damage;
   }
@@ -174,8 +183,15 @@ public class Tank {
   
   //TURNING STUFF (Both tank and turret)
   //AIMING/ FIRING (Also zooming)
-  private float getHealth() {
+  public float getHealth() {
     return health;
+  }
+  
+  public void fireBullet(){
+    if (reloadTime == 0) {
+      
+    }
+    
   }
 }
       

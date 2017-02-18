@@ -30,8 +30,7 @@ public abstract class MovementBlock extends CommandBlock{
 public class MoveBackward extends MovementBlock{
   public MoveBackward(ControlP5 cp5, ControlFont cf, Tank tank){
     super(cp5, cf, tank);
-    this.g.getCaptionLabel().set("Move Backwards")
-                            .setFont(cf);
+    this.g.getCaptionLabel().set("Move Backwards").setFont(cf);
      
   }
 

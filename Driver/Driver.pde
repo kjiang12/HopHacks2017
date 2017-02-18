@@ -7,8 +7,7 @@
   CommandBlock selectedObject;
   float initX;
   float initY;
-  Tank tank;
-  ArrayList<Obstacles> obstacles;
+  StageLists stageLists;
   CommandController control;
   
   Boolean selected = false;
@@ -21,13 +20,13 @@
     cp5 = new ControlP5(this);
     cf = new ControlFont(createFont("Times",16));
   
-    obstacles = new ArrayList<Obstacles>();
+    stageLists = new StageLists();
     generateObstacles(25);
     control = new CommandController();
-    tank = new Tank(100, 50, 50, 60, 50, new Sprite(this,"../TankBase.png",0), new Sprite(this,"../TankHead5.png",0));
-    control.add(new MoveBackward(cp5, cf, tank));
-    control.add(new MoveForward(cp5, cf, tank));
-    control.add(new MoveForward(cp5, cf, tank));
+    stageLists.addItem(new Tank(100, 50, 50, 60, 50, new Sprite(this,"../TankBase.png",0), new Sprite(this,"../TankHead5.png",0),60));
+    control.add(new MoveBackward(cp5, cf, stageLists.getTankList().get(0)));
+    control.add(new MoveForward(cp5, cf, stageLists.getTankList().get(0)));
+    control.add(new MoveForward(cp5, cf, stageLists.getTankList().get(0)));
     control.execute(); //replaces parse();
   }
 
@@ -35,24 +34,19 @@ boolean brake = false;
  void draw(){
     background(255.0);
     control.draw();
-    tank.turnLeft();
-    tank.turnTurretRight();
-    println(tank.getTankAngle());
-    tank.update();
-    tank.draw();
 
-    for(Obstacles obstacle: obstacles){
-      obstacle.getSprite().draw();
-    }
+    
+    stageLists.drawObjects();
+    
     collisionCheck();
   }
   
   void mousePressed(){
     if (!brake) {
-      tank.turnRight();
+      stageLists.getTankList().get(0).turnRight();
       brake = true;
     } else {
-      tank.stopTurn();
+      stageLists.getTankList().get(0).stopTurn();
       brake = false;
     }
     if(cp5.getWindow().getMouseOverList().size() > 0){
@@ -105,14 +99,14 @@ void generateObstacles(int numberOfObstacles){
     crate.getSprite().setX(crate.getX());
     crate.getSprite().setY(crate.getY());
     crate.getSprite().setCollisionRadius((crate.getSprite().getHeight()/2) + 2);
-    for (Obstacles obstacle: obstacles){
+    for (Obstacle obstacle: stageLists.getObstacleList()){
      if(obstacle.getSprite().cc_collision(crate.getSprite())){
        overlap = true;
        break;
      }
     }
     if (!overlap) {
-      obstacles.add(crate);
+      stageLists.addItem(crate);
       i++;
     }
     else {
@@ -126,14 +120,14 @@ void generateObstacles(int numberOfObstacles){
     barrel.getSprite().setX(barrel.getX());
     barrel.getSprite().setY(barrel.getY());
     barrel.getSprite().setCollisionRadius((barrel.getSprite().getHeight()/2) + 2);
-    for (Obstacles obstacle: obstacles){
+    for (Obstacle obstacle: stageLists.getObstacleList()){
      if(obstacle.getSprite().cc_collision(barrel.getSprite())){
        overlap = true;
        break;
      }
     }
     if (!overlap) {
-      obstacles.add(barrel);
+      stageLists.addItem(barrel);
       i++;
     }
     else {
@@ -143,8 +137,8 @@ void generateObstacles(int numberOfObstacles){
 }
 
 void collisionCheck(){
-   for (Obstacles obstacle: obstacles){
-     if(obstacle.getSprite().cc_collision(tank.getBaseSprite())){
+   for (Obstacle obstacle: stageLists.getObstacleList()){
+     if(obstacle.getSprite().cc_collision(stageLists.getTankList().get(0).getBaseSprite())){
        System.out.print("Collision!");
      }
    }
