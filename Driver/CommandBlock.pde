@@ -5,6 +5,7 @@ public abstract class CommandBlock{
   protected ControlGroup g;
   protected Tank tank;
   protected int id, h = 75, w = 300;
+  protected float scrollScale = 0, x = 100, y = 100;
   protected CommandBlock next, prev;
   protected Connector connection;
   
@@ -52,13 +53,27 @@ public abstract class CommandBlock{
     float newX = pos[0] + x;
     float newY = pos[1] + y;
     if(newX > 0 && newY - 20 > 0 && newX + w < width && newY + h < height){
-      this.g.setPosition(pos[0] + x, pos[1] + y);
+      this.g.setPosition(newX, newY);
+      this.x = newX;
+      this.y = newY;
       if(connection != null){
         this.connection.changeStart(this);
       }
       if(prev != null){
         this.prev.connection.changeEnd(this);
       }
+    }
+  }
+  
+  void scrollMove(float val){
+    float newX = x - 20 * val;
+    scrollScale = val;
+    this.g.setPosition(newX, y);
+    if(connection != null){
+      this.connection.changeStart(this);
+    }
+    if(prev != null){
+      this.prev.connection.changeEnd(this);
     }
   }
   
@@ -79,6 +94,7 @@ public class StartBlock extends CommandBlock{
                             .setColorBackground(color(0,255,0));
     this.g.setColorBackground(color(0,255,0));
     this.g.setColorActive(color(0,255,0));
+    this.g.setColorForeground(color(0,255,0));
     this.g.setOpen(false);
     this.g.setBarHeight(75);
   }

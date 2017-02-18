@@ -2,7 +2,6 @@ public class Bullet{
   int x;
   int y;
   Sprite sprite;
-  int 
   public Bullet(int x, int y, Sprite sprite){
     this.x = x;
     this.y = y;

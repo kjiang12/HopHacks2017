@@ -3,6 +3,7 @@ public class CommandController{
   HashMap<Integer, CommandBlock> commandTable;
   int count;
   CommandBlock start;
+  Range range;
   
   public CommandController(StartBlock start){
     this.commandList = new LinkedList<CommandBlock>();
@@ -10,6 +11,22 @@ public class CommandController{
     count = 0;
     this.start = start;
     this.add(start);
+    
+    range = cp5.addRange("rangeController")
+             .setPosition(50,600)
+             .setSize(1200,40)
+             .setHandleSize(10)
+             .setRange(0,255)
+             .setRangeValues(0,20)
+             .setColorForeground(color(20,120,0))
+             .setColorBackground(color(255,40,0))  
+             .setVisible(false)
+             .setLabelVisible(false)
+             .onChange(new CallbackListener(){
+               public void controlEvent(CallbackEvent event) {
+                 scroll(event.getController().getArrayValue(0));
+              }
+             }); 
   }
   
   void add(CommandBlock command){
@@ -24,9 +41,7 @@ public class CommandController{
   }
   
   void execute(){
-    for(CommandBlock command: commandList) {
-      command.execute();
-    }
+    start.execute();
   }
   
   void draw(){
@@ -44,6 +59,7 @@ public class CommandController{
     for(CommandBlock command: commandList) {
         command.setVisible(bol);
       }
+      range.setVisible(bol);
   }
   
   void connect(CommandBlock command1, CommandBlock command2){
@@ -52,6 +68,12 @@ public class CommandController{
     }
     command1.setNext(command2);
     command1.setConnection(new Connector(command1.getX(), command1.getY(), command2.getX(), command2.getY()));
+  }
+  
+  void scroll(float val){
+    for(CommandBlock command: commandList){
+        command.scrollMove(val);
+    }
   }
 }
 
