@@ -27,11 +27,11 @@ static class Physics {
   }
   
   static float turnLeft(float angularVelocity) {
-    return angularVelocity - TANK_TURN_ACC / FPS;
+    return max(angularVelocity - TANK_TURN_ACC / FPS, -TANK_TURN);
   }
   
   static float turnRight(float angularVelocity) {
-    return angularVelocity + TANK_TURN_ACC / FPS;
+    return min(angularVelocity + TANK_TURN_ACC / FPS, TANK_TURN);
   }
   
   static float[] brake(float[] currentSpeed, float currentAngle) {
