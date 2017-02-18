@@ -9,6 +9,7 @@
   float initX;
   float initY;
   Tank tank;
+  ArrayList<Obstacles> obstacles;
   
   void setup (){
     size(1200, 700);
@@ -22,6 +23,9 @@
     commandList.add(command);
 
     parse();
+    
+    obstacles = new ArrayList<Obstacles>();
+    generateObstacles(10);
   }
 
 void parse(){
@@ -40,6 +44,9 @@ void parse(){
      tank.getHeadSprite().setRot(tank.getTurrAngle());
      tank.getBaseSprite().draw();
      tank.getHeadSprite().draw();
+     for(Obstacles obstacle: obstacles){
+       obstacle.getSprite().draw();
+     }
   }
   
   void mousePressed(){
@@ -59,6 +66,15 @@ void mouseDragged(){
     draggedObject.move(mouseX - initX, mouseY - initY);
     initX = mouseX;
     initY = mouseY;
+  }
+}
+
+void generateObstacles(int numberOfObstacles){
+  for(int i = 0; i < numberOfObstacles; i++){
+    Crate crate = new Crate(((int) (Math.random() * 1000)),((int) (Math.random() * 700)),new Sprite(this,"../Crate.png",0));
+    crate.getSprite().setX(crate.getX());
+    crate.getSprite().setY(crate.getY());
+    obstacles.add(crate);
   }
 }
   
