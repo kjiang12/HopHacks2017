@@ -1,7 +1,7 @@
 static class Physics {
   private static final float MASS = 30000;
-  private static final float MAX_SPEED = 13.33;
-  private static final float MIN_SPEED = -5.0;
+  private static final float MAX_VEL= 13.33;
+  private static final float MIN_VEL= -5.0;
   private static final float HP_TO_JPS = 746;
   private static final float FPS = 60;
   private static final float BRAKE = 1.55;
@@ -57,47 +57,47 @@ static class Physics {
     return min(angularVelocity + TANK_TURN_ACC / FPS, TANK_TURN);
   }
   
-  static float[] brake(float[] currentSpeed, float currentAngle) {
-      currentSpeed[0] -= 1.55 * cos(degToRad(currentAngle));
-      currentSpeed[1] -= 1.55 * cos(degToRad(currentAngle));
+  static float[] brake(float[] currentVel, float currentAngle) {
+      currentVel[0] -= 1.55 * cos(degToRad(currentAngle));
+      currentVel[1] -= 1.55 * cos(degToRad(currentAngle));
       
-      return currentSpeed;
+      return currentVel;
   }
   
-  static float[] getNewBackwardSpeed(float power, float[] currentSpeed, float currentAngle) {
-    float currentEnergyX = getEnergy(currentSpeed[0]);
-    float currentEnergyY = getEnergy(currentSpeed[1]);
+  static float[] getNewBackwardVel(float power, float[] currentVel, float currentAngle) {
+    float currentEnergyX = getEnergy(currentVel[0]);
+    float currentEnergyY = getEnergy(currentVel[1]);
     float newEnergyX = currentEnergyX + getComponent(hpToJps(-1 * power), currentAngle, true);
     float newEnergyY = currentEnergyY + getComponent(hpToJps(-1 * power), currentAngle, false);
     
     float[] returnArr = new float[2];
-    returnArr[0] = max(getSpeed(newEnergyX), getComponent(MIN_SPEED, currentAngle, true));
-    returnArr[1] = max(getSpeed(newEnergyY), getComponent(MIN_SPEED, currentAngle, false));
+    returnArr[0] = max(getVel(newEnergyX), getComponent(MIN_VEL, currentAngle, true));
+    returnArr[1] = max(getVel(newEnergyY), getComponent(MIN_VEL, currentAngle, false));
     
     return returnArr;
   }
   
-  static float[] getNewForwardSpeed(float power, float[] currentSpeed, float currentAngle) {
-    float currentEnergyX = getEnergy(currentSpeed[0]);
-    float currentEnergyY = getEnergy(currentSpeed[1]);
+  static float[] getNewForwardVel(float power, float[] currentVel, float currentAngle) {
+    float currentEnergyX = getEnergy(currentVel[0]);
+    float currentEnergyY = getEnergy(currentVel[1]);
     float newEnergyX = currentEnergyX + getComponent(hpToJps(power), currentAngle, true);
     float newEnergyY = currentEnergyY + getComponent(hpToJps(power), currentAngle, false);
     
     float[] returnArr = new float[2];
-    returnArr[0] = min(getSpeed(newEnergyX), getComponent(MAX_SPEED, currentAngle, true));
-    returnArr[1] = min(getSpeed(newEnergyY), getComponent(MAX_SPEED, currentAngle, false));
+    returnArr[0] = min(getVel(newEnergyX), getComponent(MAX_VEL, currentAngle, true));
+    returnArr[1] = min(getVel(newEnergyY), getComponent(MAX_VEL, currentAngle, false));
     
     return returnArr;
   }
   
   // Allows for negative energy: negative = backwards
-  private static float getSpeed(float energy) {
+  private static float getVel(float energy) {
     return (energy / abs(energy)) * sqrt(2*abs(energy)/MASS);
   }
   
   // Allows for negative energy: negative = backwards
-  private static float getEnergy(float speed) {
-    return (speed / abs(speed)) * 0.5*MASS*pow(speed, 2.0);
+  private static float getEnergy(float vel) {
+    return (vel / abs(vel)) * 0.5*MASS*pow(vel, 2.0);
   }
   
   private static float hpToJps(float hp) {
