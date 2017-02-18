@@ -19,9 +19,7 @@ void setup (){
 }
 
 void parse(LinkedList commandList){
-    ListIterator<CommandBlock> listIterator = commandList.listIterator();
-    while (listIterator.hasNext()) {
-      CommandBlock command = listIterator.next();
+    for (CommandBlock command: commandList) {
       command.execute();
     }
   
