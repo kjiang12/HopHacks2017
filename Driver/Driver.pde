@@ -7,8 +7,7 @@
   CommandBlock selectedObject;
   float initX;
   float initY;
-  Tank tank;
-  ArrayList<Obstacles> obstacles;
+  StageLists stageLists;
   CommandController control;
   
   Boolean selected = false;
@@ -23,12 +22,11 @@
     
     cp5 = new ControlP5(this);
     cf = new ControlFont(createFont("Times",16));
-    obstacles = new ArrayList<Obstacles>();
-    
-    generateObstacles(25);
-    control = new CommandController();
-    tank = new Tank(100, 50, 50, 60, 50, new Sprite(this,"../TankBase.png",0), new Sprite(this,"../TankHead5.png",0));
+  
+    stageLists = new StageLists();
 
+    control = new CommandController();
+    stageLists.addItem(new Tank(100, 50, 50, 60, 50, new Sprite(this,"../TankBase.png",0), new Sprite(this,"../TankHead5.png",0),60));
     control.add(new MoveBackward(cp5, cf, tank));
     control.add(new MoveForward(cp5, cf, tank));
     control.add(new MoveForward(cp5, cf, tank));
@@ -58,29 +56,24 @@
 boolean brake = false;
  void draw(){
     background(255.0);
+
+    control.draw();
+    
+    stageLists.drawObjects();
+
     if(displayCode){
       fill(color(0,0,200),50);
       rect(0, 0, 1260, 720);
     }
-    tank.turnLeft();
-    tank.turnTurretRight();
-    println(tank.getTankAngle());
-    tank.update();
-    tank.draw();
 
-    for(Obstacles obstacle: obstacles){
-      obstacle.getSprite().draw();
-    }
-    control.draw();
-    collisionCheck();
   }
   
   void mousePressed(){
     if (!brake) {
-      tank.turnRight();
+      stageLists.getTankList().get(0).turnRight();
       brake = true;
     } else {
-      tank.stopTurn();
+      stageLists.getTankList().get(0).stopTurn();
       brake = false;
     }
     if(cp5.getWindow().getMouseOverList().size() > 0){
@@ -125,59 +118,6 @@ void keyReleased(){
   selections = null;
 }
 
-void generateObstacles(int numberOfObstacles){
-  boolean overlap = false;
-  int i = 0;
-  while (i < numberOfObstacles / 2){
-    Crate crate = new Crate(((int) (Math.random() * (width - 50)) + 20),((int) (Math.random() * (height - 50)) + 20), new Sprite(this,"../Crate.png",0));
-    crate.getSprite().setX(crate.getX());
-    crate.getSprite().setY(crate.getY());
-    crate.getSprite().setCollisionRadius((crate.getSprite().getHeight()/2) + 2);
-    for (Obstacles obstacle: obstacles){
-     if(obstacle.getSprite().cc_collision(crate.getSprite())){
-       overlap = true;
-       break;
-     }
-    }
-    if (!overlap) {
-      obstacles.add(crate);
-      i++;
-    }
-    else {
-       overlap = false; 
-    }
-  }
-  overlap = false;
-  i = 0;
-  while (i < numberOfObstacles / 2){
-    Barrel barrel = new Barrel(((int) (Math.random() * (width - 50)) + 20),((int) (Math.random() * (height - 50)) + 20), new Sprite(this,"../Barrel.png",0));
-    barrel.getSprite().setX(barrel.getX());
-    barrel.getSprite().setY(barrel.getY());
-    barrel.getSprite().setCollisionRadius((barrel.getSprite().getHeight()/2) + 2);
-    for (Obstacles obstacle: obstacles){
-     if(obstacle.getSprite().cc_collision(barrel.getSprite())){
-       overlap = true;
-       break;
-     }
-    }
-    if (!overlap) {
-      obstacles.add(barrel);
-      i++;
-    }
-    else {
-       overlap = false; 
-    }
-  }
-}
 
-void collisionCheck(){
-   for (Obstacles obstacle: obstacles){
-     if(obstacle.getSprite().cc_collision(tank.getBaseSprite())){
-       System.out.print("Collision!");
-     }
-   }
-  
-  
-  
-}
+
   
