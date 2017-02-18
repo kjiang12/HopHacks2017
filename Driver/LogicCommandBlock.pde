@@ -65,6 +65,14 @@ class LogicBlock extends CommandBlock{
        return (int) this.g.getAbsolutePosition()[1] - 10;
      }
      
+     void changeSize(int x, int y){
+       this.g.setSize(x, y);
+     }
+     
+     void changePosition(int x, int y){
+       this.g.setPosition(x, y);
+     }
+    
      void execute(){
      }
    }
@@ -85,17 +93,6 @@ public class IfStatement extends LogicCommandBlock{
   public IfStatement(ControlP5 cp5, ControlFont cf, Tank tank){
     super(cp5, cf, tank);
     this.g.getCaptionLabel().set("If").setFont(cf);
-  }
-
-  void execute() {
-
-  }
-}
-
-public class WhileLoop extends LogicCommandBlock{
-  public WhileLoop(ControlP5 cp5, ControlFont cf, Tank tank){
-    super(cp5, cf, tank);
-    this.g.getCaptionLabel().set("While").setFont(cf);
   }
 
   void execute() {
