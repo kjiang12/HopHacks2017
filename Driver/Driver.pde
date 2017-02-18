@@ -1,11 +1,12 @@
 import java.util.LinkedList;
 import java.util.ListIterator;
 import controlP5.*;
-import sprites.Sprite;
+
 
 ControlP5 cp5;
 ControlFont cf;
 LinkedList<CommandBlock> commandList;
+Tank tank;
 
 void setup (){
   size(1200, 700);
@@ -17,6 +18,7 @@ void setup (){
   MoveBackward command = new MoveBackward(cp5, cf);
   commandList.add(command);
   parse();
+  tank = new Tank(100,5,5,7,7,10,10,new Sprite(this,"../TankBase.png",0),new Sprite(this,"../TankHead.png",0));
 }
 
 void parse(){
