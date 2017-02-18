@@ -68,7 +68,6 @@
            start = true;
          }
          control.setVisible(displayCode);
-         ddm.setVisible(displayCode);
       }
      }); 
 
