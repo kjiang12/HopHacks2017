@@ -6,13 +6,14 @@ public class Tank {
   private boolean detected;
   private float tankAngVel;
   private float turrAngVel;
-  private float tankAngle, turrAngle; // STORE IN RADIANS
+  private float tankAngle, turrAngle;
   private String moveState; // "Brake" "Forward" "Backward"
   private String turnState; // "Stop Turn" "Turn Left" "Turn Right"
   private String turrState; // "Stop Turn Turret" "Turn Turret Left" "Turn Turret Right"
+  private int reloadTime;
   private Sprite base_sprite;
   private Sprite head_sprite;
-            
+
   public Tank(float health, double x, double y, float tankAngle, float turrAngle, Sprite base_sprite, Sprite head_sprite) {
     this.health = health;
     this.tankAngle = tankAngle;
@@ -25,6 +26,7 @@ public class Tank {
     this.head_sprite = head_sprite;
     this.base_sprite.setPos(new Vector2D(x, y));
     this.head_sprite.setPos(new Vector2D(x, y));
+    this.reloadTime = reloadTime;
   }
   
   public void update() {
@@ -60,6 +62,9 @@ public class Tank {
     } else if (moveState.equals("Brake")) {
       Physics.brake(base_sprite, head_sprite); 
     }
+    
+    // update reload time
+    reloadTime--;
   }
   
   void draw(){
@@ -146,6 +151,10 @@ public class Tank {
     return head_sprite;
   }
             
+  public int getReloadTime(){
+    return reloadTime; 
+    
+  }
   public void lowerHealth(float damage) {
     this.health=this.health-damage;
   }
@@ -171,8 +180,15 @@ public class Tank {
   
   //TURNING STUFF (Both tank and turret)
   //AIMING/ FIRING (Also zooming)
-  private float getHealth() {
+  public float getHealth() {
     return health;
+  }
+  
+  public void fireBullet(){
+    if (reloadTime == 0) {
+      
+    }
+    
   }
 }
       

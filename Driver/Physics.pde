@@ -73,7 +73,7 @@ static class Physics {
     base_sprite.update(.1);
     head_sprite.setPos(new Vector2D(base_sprite.getX(), base_sprite.getY()));
   }
-  
+
   static void forward(Sprite base_sprite, Sprite head_sprite) {
     base_sprite.setAcceleration(ACC);
     
@@ -86,6 +86,10 @@ static class Physics {
   }
   
   private static float getComponent(float val, float angle, boolean x) {
-    return x ? val * cos(angle) : val * sin(angle);
+    return x ? val * cos(degToRad(angle)) : val * sin(degToRad(angle));
+  }
+  
+  private static float degToRad(float angle) {
+     return (angle - 40) * PI / 180.0; 
   }
 }
