@@ -50,10 +50,102 @@
      }); 
      
      tog.getCaptionLabel().align(ControlP5.CENTER, ControlP5.TOP).setPaddingX(0);
+
+     new MyButton(cp5, "Start").setPosition(1210, 0).setSize(50, 50);
      
      
   }
+class MyButton extends Controller<MyButton>{
+  int current = 0xffff0000;
 
+  float a = 128;
+  
+  float na;
+  
+  int y;
+  
+  // use the convenience constructor of super class Controller
+  // MyButton will automatically registered and move to the 
+  // default controlP5 tab.
+  
+  MyButton(ControlP5 cp5, String theName) {
+    super(cp5, theName);
+    
+    // replace the default view with a custom view.
+    setView(new ControllerView() {
+      public void display(PGraphics p, Object b) {
+        // draw button background
+        na += (a-na) * 0.1; 
+        p.fill(current,na);
+        p.rect(0, 0, getWidth(), getHeight());
+        
+        // draw horizontal line which can be moved on the x-axis 
+        // using the scroll wheel. 
+        //p.fill(0,255,0);
+        //p.rect(0,y,width,10);
+        
+        // draw the custom label 
+        p.fill(128);
+        translate(0,getHeight()+14);
+        p.text(getName(),5,-34);
+        p.text(getName(),5,-34);
+        
+      }
+    }
+    );
+}
+// override various input methods for mouse input control
+  void onEnter() {
+    cursor(HAND);
+    println("enter");
+    a = 255;
+  }
+  
+  void onScroll(int n) {
+    println("scrolling");
+    y -= n;
+    y = constrain(y,0,getHeight()-10);
+  }
+  
+  void onPress() {
+    println("press");
+    current = 0xffffff00;
+  }
+  
+  void onClick() {
+    Pointer p1 = getPointer();
+    println("clicked at "+p1.x()+", "+p1.y());
+    current = 0xffffff00;
+    setValue(y);
+    control.execute();
+  }
+
+  void onRelease() {
+    println("release");
+    current = 0xffffffff;
+  }
+  
+  void onMove() {
+    println("moving "+this+" "+_myControlWindow.getMouseOverList());
+  }
+
+  void onDrag() {
+    current = 0xff0000ff;
+    Pointer p1 = getPointer();
+    float dif = dist(p1.px(),p1.py(),p1.x(),p1.y());
+    println("dragging at "+p1.x()+", "+p1.y()+" "+dif);
+  }
+  
+  void onReleaseOutside() {
+    onLeave();
+  }
+
+  void onLeave() {
+    println("leave");
+    cursor(ARROW);
+    a = 128;
+  }
+}
 boolean brake = false;
  void draw(){
     stageLists.getTankList().get(0).brake();
