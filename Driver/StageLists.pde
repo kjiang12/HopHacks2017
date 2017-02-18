@@ -10,7 +10,7 @@ public class StageLists{
   public StageLists(PApplet app){
      this.app = app;
      generateObstacles(25);
-     this.addItem(new Tank(100, 50, 50, 60, 50, new Sprite(app,"../TankBase.png",0), new Sprite(app,"../TankHead5.png",0),60));
+     this.addItem(new Tank(100, 500, 500, PI / 3, 50, new Sprite(app,"../TankBase.png",0), new Sprite(app,"../TankHead5.png",0),60));
   }
   public ArrayList<Bullet> getBulletList(){
     return bullets;

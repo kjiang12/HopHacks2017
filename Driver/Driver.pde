@@ -55,8 +55,9 @@
 
 boolean brake = false;
  void draw(){
+       stageLists.getTankList().get(0).brake();
     background(255.0);
-    
+
     stageLists.drawObjects();
     control.draw();
     if(displayCode){

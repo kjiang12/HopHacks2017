@@ -102,12 +102,11 @@ public class Tank {
   }
             
   public double getTankAngle() {
-    return base_sprite.getDirection();
+    return tankAngle;
   }
             
   public double getTurrAngle() {
-    print(head_sprite.getDirection());
-    return head_sprite.getDirection();
+    return turrAngle;
   }
   
   public void forward() {
