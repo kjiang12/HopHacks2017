@@ -1,10 +1,8 @@
-import sprites.Sprite;
-
-public abstract class Obstacles{
+public class Bullet{
   int x;
   int y;
   Sprite sprite;
-  public Obstacles(int x, int y, Sprite sprite){
+  public Bullet(int x, int y, Sprite sprite){
     this.x = x;
     this.y = y;
     this.sprite = sprite;
@@ -26,17 +24,5 @@ public abstract class Obstacles{
   }
   public void setX(Sprite sprite){
    this.sprite = sprite; 
-  }
-}
-
-public class Barrel extends Obstacles{
-  public Barrel(int x, int y, Sprite sprite){
-    super(x, y, sprite);
-  }
-}
-
-public class Crate extends Obstacles{
-  public Crate(int x, int y, Sprite sprite){
-    super(x, y, sprite);
   }
 }

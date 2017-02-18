@@ -8,9 +8,6 @@ public abstract class MovementBlock extends CommandBlock{
      
   }
   
-  void execute(){
-    tank.setPower(currPow);
-  }  
   
   void setGroup(String s){
     super.setGroup(s);
@@ -27,6 +24,7 @@ public abstract class MovementBlock extends CommandBlock{
       }
      }); 
   }
+  abstract void execute();
 }
 
 public class MoveBackward extends MovementBlock{
@@ -38,7 +36,6 @@ public class MoveBackward extends MovementBlock{
   }
 
   void execute() {
-    super.execute();
     tank.backward();
   }
 }
@@ -50,7 +47,6 @@ public class MoveForward extends MovementBlock{
   }
 
   void execute() {
-    super.execute();
     tank.forward();
   }
 

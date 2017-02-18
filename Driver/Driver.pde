@@ -22,21 +22,22 @@
     cf = new ControlFont(createFont("Times",16));
   
     obstacles = new ArrayList<Obstacles>();
-    generateObstacles(10);
+    generateObstacles(300);
     control = new CommandController();
-    tank = new Tank(100,50,50,60,50,new Sprite(this,"../TankBase.png",0),new Sprite(this,"../TankHead.png",0));
+    tank = new Tank(100, 50, 50, 60, 50, new Sprite(this,"../TankBase.png",0), new Sprite(this,"../TankHead4.png",0));
     control.add(new MoveBackward(cp5, cf, tank));
     control.add(new MoveForward(cp5, cf, tank));
     control.add(new MoveForward(cp5, cf, tank));
     control.execute(); //replaces parse();
   }
 
-
+boolean brake = false;
  void draw(){
     background(255.0);
     control.draw();
     tank.turnLeft();
     tank.turnTurretRight();
+
     tank.update();
     tank.draw();
 
@@ -46,6 +47,13 @@
   }
   
   void mousePressed(){
+    if (!brake) {
+      tank.brake();
+      brake = true;
+    } else {
+      tank.forward();
+      brake = false;
+    }
     if(cp5.getWindow().getMouseOverList().size() > 0){
       try{
         if(selected){
@@ -90,26 +98,46 @@ void keyReleased(){
 
 void generateObstacles(int numberOfObstacles){
   boolean overlap = false;
-  for(int i = 0; i < numberOfObstacles / 2; i++){
-    Crate crate = new Crate(((int) (Math.random() * 1000)),((int) (Math.random() * 700)),new Sprite(this,"../Crate.png",0));
+  int i = 0;
+  while (i < numberOfObstacles / 2){
+    Crate crate = new Crate(((int) (Math.random() * (width - 50)) + 20),((int) (Math.random() * (height - 50)) + 20), new Sprite(this,"../Crate.png",0));
     crate.getSprite().setX(crate.getX());
     crate.getSprite().setY(crate.getY());
+    crate.getSprite().setCollisionRadius((crate.getSprite().getHeight()/2) + 2);
     for (Obstacles obstacle: obstacles){
      if(obstacle.getSprite().cc_collision(crate.getSprite())){
-       i--;
        overlap = true;
        break;
      }
     }
     if (!overlap) {
       obstacles.add(crate);
+      i++;
+    }
+    else {
+       overlap = false; 
     }
   }
-  for(int i = 0; i < numberOfObstacles / 2; i++){
-    Barrel barrel = new Barrel(((int) (Math.random() * 1000)),((int) (Math.random() * 700)),new Sprite(this,"../Barrel.png",0));
+  overlap = false;
+  i = 0;
+  while (i < numberOfObstacles / 2){
+    Barrel barrel = new Barrel(((int) (Math.random() * (width - 50)) + 20),((int) (Math.random() * (height - 50)) + 20), new Sprite(this,"../Barrel.png",0));
     barrel.getSprite().setX(barrel.getX());
     barrel.getSprite().setY(barrel.getY());
-    obstacles.add(barrel);
+    barrel.getSprite().setCollisionRadius((barrel.getSprite().getHeight()/2) + 2);
+    for (Obstacles obstacle: obstacles){
+     if(obstacle.getSprite().cc_collision(barrel.getSprite())){
+       overlap = true;
+       break;
+     }
+    }
+    if (!overlap) {
+      obstacles.add(barrel);
+      i++;
+    }
+    else {
+       overlap = false; 
+    }
   }
 }
   
