@@ -11,11 +11,9 @@ public class StageLists{
   public StageLists(PApplet app){
      this.app = app;
      generateObstacles(2);
-     generateBots(200);
+     generateBots(100);
      this.addItem(new Tank(100, 500, 500, PI / 3, 50, new Sprite(app,"../TankBase.png",0), new Sprite(app,"../TankHead5.png",0),20));
-     for (int i = 0; i < 5; i++){
-     this.addItem(new Bot(100, 200+50*i, 200+50*i, PI / 3, 50, new Sprite(app,"../TankBase.png",0), new Sprite(app,"../TankHead5.png",0),50));
-     }
+
   }
   public ArrayList<Bullet> getBulletList(){
     return bullets;
@@ -90,13 +88,15 @@ public class StageLists{
       tank.draw();
     }
 
-    checkBullet();
-    collisionCheck();
+    if (doUpdate){
+      checkBullet();
+      collisionCheck();
+    }
   }
   
   void collisionCheck(){
    // println(bullets.size());
-   for (int i = 0; i < obstacles.size(); i++){
+   for (int i = obstacles.size() - 1; i > 0; i--){
      for (int j = 0; j < tanks.size(); j++){
        if(obstacles.get(i).getSprite().bb_collision(tanks.get(j).getBaseSprite())){
          tanks.get(j).stop();
@@ -106,17 +106,13 @@ public class StageLists{
        }
        
      }
-     for (int k = 0; k < bullets.size(); k++){
+     for (int k = bullets.size() - 1; k > 0; k--){
        if(obstacles.get(i).getSprite().bb_collision(bullets.get(k).getSprite())){
          bullets.remove(k);
+         k--;
          this.addItem(new Explosion(obstacles.get(i).getX(), obstacles.get(i).getY(), new Sprite(app,"../Explosion.png",0)));
          obstacles.remove(i);
-         k = 0;
-         i = 0;
-         break;
        }
-       
-
      }
    }
    for(int i = 0; i < tanks.size(); i++){
@@ -124,30 +120,33 @@ public class StageLists{
           if(i!=j && tanks.get(i).getBaseSprite().bb_collision(tanks.get(j).getBaseSprite()))
           {
               tanks.get(i).stop();
-              tanks.get(i).setHealth(tanks.get(i).getHealth()-20.0);
+              tanks.get(i).setHealth(tanks.get(i).getHealth() - 20);
               tanks.get(j).stop();
-              tanks.get(j).setHealth(tanks.get(j).getHealth()-20.0);
+              tanks.get(j).setHealth(tanks.get(j).getHealth() - 20);
           }
        }
    }
    
      for (int l = 0; l < tanks.size(); l++){
-       for (int k = 0; k < bullets.size(); k++){
-        if(bullets.get(k).getSprite().bb_collision(tanks.get(l).getBaseSprite())){
-          bullets.remove(k);
-          tanks.get(l).setHealth(tanks.get(l).getHealth() - 30);
-          if (tanks.get(l).getHealth() <= 0) {
-              this.addItem(new Explosion(tanks.get(l).getPos()[0], tanks.get(l).getPos()[1], new Sprite(app,"../Explosion.png",0)));
-              tanks.remove(l);
-              l = 0;
-              k = 0;
-              break;
-           }
+       for (int k = bullets.size() - 1; k >= 0; k--){
+          if(bullets.get(k).getSprite().bb_collision(tanks.get(l).getBaseSprite())){
+            bullets.remove(k);
+            tanks.get(l).setHealth(tanks.get(l).getHealth() - 30);
+
           }
         }
      }
-  
+      checkDeath();
   }
+  
+  public void checkDeath(){
+     for(int i = tanks.size() - 1; i > 0; i--){
+         if (tanks.get(i).getHealth() <= 0) {
+            tanks.remove(i);
+         }
+     }
+  }
+  
 public void generateBots(int numberOfBots){
     boolean overlap = false;
     int i = 0;
