@@ -50,15 +50,7 @@ public class StageLists{
       tank.update();
       tank.draw();
     }
-    for(Tank tank: tanks){
-    if(tank.fired()){
-        float [] pos = tank.getPos();
-        //NEED TO CREATE SPRITE
-        Bullet b=new Bullet(((int) pos[0]), ((int) pos[1]), new Sprite(app,"../TankBase.png",0));
-        bullets.add(b);
-        tank.setFired(false);
-    }
-    }
+
     collisionCheck();
   }
   
@@ -71,6 +63,17 @@ public class StageLists{
   
   }
   
+  void checkBullet(){
+    for(Tank tank: tanks){
+      if(tank.fired()){
+          float [] pos = tank.getPos();
+          //NEED TO CREATE SPRITE
+          Bullet bullet = new Bullet(((int) pos[0]), ((int) pos[1]), new Sprite(app,"../Bullet.png",0));
+          bullets.add(bullet);
+          tank.setFired(false);
+      }
+    }    
+  }
   void generateObstacles(int numberOfObstacles){
    boolean overlap = false;
     int i = 0;

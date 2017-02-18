@@ -158,7 +158,6 @@ public class Tank {
             
   public int getReloadTime(){
     return reloadTime; 
-    
   }
   public void lowerHealth(float damage) {
     this.health=this.health-damage;
@@ -174,6 +173,10 @@ public class Tank {
             
   public void setHeadSprite(Sprite head_sprite) {
     this.head_sprite=head_sprite;
+  }
+  
+  public void setReloadTime(int reloadTime){
+    this.reloadTime = reloadTime; 
   }
   
   public void detection(float xDist, float yDist) {
@@ -198,7 +201,7 @@ public class Tank {
     if (reloadTime == 0) {
         setFired(true);
     }
-    
+    s
   }
 }
       
