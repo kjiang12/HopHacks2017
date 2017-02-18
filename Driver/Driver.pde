@@ -31,7 +31,7 @@ void parse(){
 }
   
  void draw(){
-    background(0.0);
+    background(255.0);
      tank.getBaseSprite().setX(tank.getXPos());
      tank.getBaseSprite().setY(tank.getYPos());
      tank.getBaseSprite().setRot(tank.getTankAngle());
