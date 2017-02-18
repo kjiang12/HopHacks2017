@@ -122,7 +122,9 @@ public class StageLists{
           if(i!=j && tanks.get(i).getBaseSprite().bb_collision(tanks.get(j).getBaseSprite()))
           {
               tanks.get(i).stop();
+              tanks.get(i).setHealth(tanks.get(i).getHealth()-20.0);
               tanks.get(j).stop();
+              tanks.get(j).setHealth(tanks.get(j).getHealth()-20.0);
           }
        }
    }
