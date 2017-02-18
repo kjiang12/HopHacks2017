@@ -48,6 +48,7 @@ public class GetVel extends GetCommandBlock{
   public GetVel(ControlP5 cp5, ControlFont cf, Tank tank){
     super(cp5, cf, tank);
     this.g.getCaptionLabel().set("Get Velocity").setFont(cf);
+    forward=true;
   }
   public void setFoward(boolean forward){
     this.forward=forward;
