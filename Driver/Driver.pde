@@ -22,7 +22,7 @@
     cf = new ControlFont(createFont("Times",16));
   
     obstacles = new ArrayList<Obstacles>();
-    generateObstacles(300);
+    generateObstacles(25);
     control = new CommandController();
     tank = new Tank(100, 50, 50, 60, 50, new Sprite(this,"../TankBase.png",0), new Sprite(this,"../TankHead5.png",0));
     control.add(new MoveBackward(cp5, cf, tank));
@@ -44,6 +44,7 @@ boolean brake = false;
     for(Obstacles obstacle: obstacles){
       obstacle.getSprite().draw();
     }
+    collisionCheck();
   }
   
   void mousePressed(){
@@ -139,5 +140,16 @@ void generateObstacles(int numberOfObstacles){
        overlap = false; 
     }
   }
+}
+
+void collisionCheck(){
+   for (Obstacles obstacle: obstacles){
+     if(obstacle.getSprite().cc_collision(tank.getBaseSprite())){
+       System.out.print("Collision!");
+     }
+   }
+  
+  
+  
 }
   
