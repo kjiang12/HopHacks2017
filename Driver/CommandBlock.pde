@@ -59,7 +59,7 @@ public abstract class CommandBlock{
     float newY = pos[1] + y;
     if(newX > 0 && newY - 20 > 0 && newX + w < width && newY + h < height){
       this.g.setPosition(newX, newY);
-      this.x = newX;
+      this.x = newX + scrollScale * 20;
       this.y = newY;
       if(connection != null){
         this.connection.changeStart(this);
@@ -71,7 +71,7 @@ public abstract class CommandBlock{
   }
   
   void scrollMove(float val){
-    float newX = x - 10 * val;
+    float newX = x - 20 * val;
     scrollScale = val;
     this.g.setPosition(newX, y);
     if(connection != null){

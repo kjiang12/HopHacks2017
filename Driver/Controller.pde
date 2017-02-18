@@ -13,8 +13,8 @@ public class CommandController{
     this.add(start);
     
     range = cp5.addRange("rangeController")
-             .setPosition(20,650)
-             .setSize(1220,40)
+             .setPosition(20,height - 50)
+             .setSize(width - 40 ,40)
              .setHandleSize(10)
              .setRange(0,255)
              .setRangeValues(0,20)
@@ -46,6 +46,7 @@ public class CommandController{
   
   void draw(){
     if(displayCode){
+      noStroke();
       fill(color(0,0,150),100);
       rect(0, 0, width, height);
       

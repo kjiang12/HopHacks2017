@@ -4,6 +4,7 @@ public abstract class GetCommandBlock extends CommandBlock{
   }
   
   abstract void execute();
+  
 }
 
 /*** everything below needs to be written ***/
