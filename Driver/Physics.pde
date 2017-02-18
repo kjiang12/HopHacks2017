@@ -58,8 +58,8 @@ static class Physics {
   }
   
   static float[] brake(float[] currentVel, float currentAngle) {
-      currentVel[0] -= 1.55 * cos(degToRad(currentAngle));
-      currentVel[1] -= 1.55 * cos(degToRad(currentAngle));
+      currentVel[0] -= BRAKE * cos(degToRad(currentAngle));
+      currentVel[1] -= BRAKE * cos(degToRad(currentAngle));
       
       return currentVel;
   }
