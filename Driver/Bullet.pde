@@ -3,7 +3,7 @@ public class Bullet{
   double angle;
   public Bullet(int x, int y, Sprite sprite, double angle){
     this.sprite = sprite;
-    this.sprite.setXY(x, y);
+    this.sprite.setXY(x + 28 * cos((float)angle), y + 28 * sin((float)angle));
     this.angle = angle;
   }
   public int getX(){
