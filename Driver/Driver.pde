@@ -158,11 +158,12 @@ class MyButton extends Controller<MyButton>{
 }
 boolean brake = false;
  void draw(){
-      background(255.0);
-      stageLists.drawObjects(start);
-    control.draw();
+   background(255.0);
+   stageLists.drawObjects(start);
+   noStroke();
+   control.draw();
 
-  }
+ }
   
   void mousePressed(){
   
