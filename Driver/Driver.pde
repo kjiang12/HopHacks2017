@@ -34,6 +34,9 @@
     control.add(new MoveForward(cp5, cf, stageLists.getTankList().get(0)));
     control.add(new MoveForward(cp5, cf, stageLists.getTankList().get(0)));
     control.add(new ForLoop(cp5, cf, stageLists.getTankList().get(0)));
+    control.add(new GetTankAngVel(cp5, cf, stageLists.getTankList().get(0)));
+    control.add(new GetReloadingTime(cp5, cf, stageLists.getTankList().get(0)));
+    control.add(new GetTurrAngVel(cp5, cf, stageLists.getTankList().get(0)));
     control.execute(); //replaces parse();
     
     ddm = new DropDownMenu(cp5);
