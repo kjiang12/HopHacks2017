@@ -15,7 +15,7 @@ public class MoveForward extends CommandBlock{
       return currPow;
   }
   void execute() {
-      tank.updatePos(true);
+      tank.getPos(true);
   }
 
 }

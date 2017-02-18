@@ -16,7 +16,7 @@ public class MoveBackward extends CommandBlock{
   }
 
   void execute() {
-      tank.updatePos(false);
+      tank.getPos(false);
   }
 
 }

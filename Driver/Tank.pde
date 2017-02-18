@@ -68,23 +68,15 @@
             }
             // change to turret angle, call update for angle
             public float getTankAngle() {
-                tankAngle=tankAngle + getAngVel() * (((float) 1)/60);
+                tankAngle=tankAngle + angVel * (((float) 1)/60);
                 return (tankAngle);
             }
             public float getTurrAngle() {
-                turrAngle=turrAngle + getTurrAngVel() * (((float) 1)/60);
+                turrAngle=turrAngle + turrAngVel * (((float) 1)/60);
                 return (turrAngle);
             }
             public float getPower() {
                 return power;
-            }
-            public float getXSpeed(boolean forward) {
-                updateSpeed(forward, xSpeed, ySpeed);
-                return xSpeed;
-            }
-            public float getYSpeed(boolean forward) {
-                updateSpeed(forward, xSpeed, ySpeed);
-                return ySpeed;
             }
             public Sprite getBaseSprite() {
                 return base_sprite;
@@ -114,7 +106,7 @@
             
             
             
-            private void updateSpeed(boolean forward, float xSpeed, float ySpeed) {
+            private float[] getVel(boolean forward, float xSpeed, float ySpeed) {
             float[] oldSpeed=new float[2];
             oldSpeed[0]=xSpeed;
             oldSpeed[1]=ySpeed;
@@ -127,10 +119,12 @@
             }
             xSpeed = newSpeed[0];
             ySpeed = newSpeed[1];
+            return newSpeed;
         }
-        private void updatePos(boolean forward) {
-            float x=getXPos()+ getXSpeed(forward) * (((float) 1)/60);
-            float y=getYPos() + getXSpeed(forward) * (((float) 1)/60);
+        private void getPos(boolean forward) {
+            float [] speeds=getVel(forward, xSpeed, ySpeed);
+            float x=xCor+ speeds[0] * (((float) 1)/60);
+            float y=yCor + speeds[1] * (((float) 1)/60);
             xCor=x;
             yCor=y;
         }
