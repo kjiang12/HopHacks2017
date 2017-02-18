@@ -94,7 +94,7 @@ public class StageLists{
   }
   
   void collisionCheck(){
-    println(bullets.size());
+   // println(bullets.size());
    for (int i = 0; i < obstacles.size(); i++){
      for (int j = 0; j < tanks.size(); j++){
        if(obstacles.get(i).getSprite().bb_collision(tanks.get(j).getBaseSprite())){

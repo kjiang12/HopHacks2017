@@ -58,7 +58,7 @@ class LogicBlock extends CommandBlock{
      }
      
      int getX(){
-       return (int) this.g.getAbsolutePosition()[0] + w/2 ;
+       return (int) this.g.getAbsolutePosition()[0];
      }
   
      int getY(){
