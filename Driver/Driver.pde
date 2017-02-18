@@ -13,10 +13,13 @@
   Boolean selected = false;
   CommandBlock selections;
   
+  Boolean displayCode = false;
+  
  void setup (){
     size(1260, 720);
     noStroke();
-    rectMode(CENTER);
+    rectMode(CORNER);
+    
     cp5 = new ControlP5(this);
     cf = new ControlFont(createFont("Times",16));
   
@@ -27,16 +30,41 @@
     control.add(new MoveBackward(cp5, cf, stageLists.getTankList().get(0)));
     control.add(new MoveForward(cp5, cf, stageLists.getTankList().get(0)));
     control.add(new MoveForward(cp5, cf, stageLists.getTankList().get(0)));
+
     control.execute(); //replaces parse();
+    
+    Toggle tog = cp5.addToggle("Show\nCode")
+     .setFont(cf)
+     .setPosition(20,20)
+     .setSize(70,50)
+     .setColorBackground(color(0, 120, 0))
+     .onChange(new CallbackListener(){
+       public void controlEvent(CallbackEvent event) {
+         if(event.getController().getValue() == 0){
+           displayCode = false;
+         } else {
+           displayCode = true;
+         }
+         control.setVisible(displayCode);
+      }
+     }); 
+     
+     tog.getCaptionLabel().align(ControlP5.CENTER, ControlP5.TOP).setPaddingX(0);
+     
   }
 
 boolean brake = false;
  void draw(){
     background(255.0);
+
     control.draw();
     
     stageLists.drawObjects();
-    
+
+    if(displayCode){
+      fill(color(0,0,200),50);
+      rect(0, 0, 1260, 720);
+    }
 
   }
   
