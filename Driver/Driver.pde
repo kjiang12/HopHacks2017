@@ -91,11 +91,21 @@ void generateObstacles(int numberOfObstacles){
       obstacles.add(crate);
     }
   }
+  overlap = false;
   for(int i = 0; i < numberOfObstacles / 2; i++){
     Barrel barrel = new Barrel(((int) (Math.random() * 1000)),((int) (Math.random() * 700)),new Sprite(this,"../Barrel.png",0));
     barrel.getSprite().setX(barrel.getX());
     barrel.getSprite().setY(barrel.getY());
-    obstacles.add(barrel);
+    for (Obstacles obstacle: obstacles){
+     if(obstacle.getSprite().cc_collision(barrel.getSprite())){
+       i--;
+       overlap = true;
+       break;
+     }
+    }
+    if (!overlap) {
+      obstacles.add(barrel);
+    }
   }
 }
   
