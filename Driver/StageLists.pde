@@ -4,7 +4,7 @@ public class StageLists{
   private ArrayList<Tank> tanks= new ArrayList<Tank>();
   
   public StageLists(){
-    
+     generateObstacles(25);
     
   }
   public ArrayList<Bullet> getBulletList(){
@@ -45,5 +45,61 @@ public class StageLists{
       tank.update();
       tank.draw();
     }
+    collisionCheck();
   }
+  
+  void collisionCheck(){
+   for (Obstacle obstacle: obstacles){
+     if(obstacle.getSprite().cc_collision(tanks.get(0).getBaseSprite())){
+       System.out.print("Collision!");
+     }
+   }
+  
+  }
+  
+  void generateObstacles(int numberOfObstacles){
+    boolean overlap = false;
+    int i = 0;
+    while (i < numberOfObstacles / 2){
+      Crate crate = new Crate(((int) (Math.random() * (width - 50)) + 20),((int) (Math.random() * (height - 50)) + 20), new Sprite(this,"../Crate.png",0));
+      crate.getSprite().setX(crate.getX());
+      crate.getSprite().setY(crate.getY());
+      crate.getSprite().setCollisionRadius((crate.getSprite().getHeight()/2) + 2);
+      for (Obstacle obstacle: obstacles){
+       if(obstacle.getSprite().cc_collision(crate.getSprite())){
+         overlap = true;
+         break;
+       }
+      }
+      if (!overlap) {
+        this.addItem(crate);
+        i++;
+      }
+      else {
+         overlap = false; 
+      }
+    }
+    overlap = false;
+    i = 0;
+    while (i < numberOfObstacles / 2){
+      Barrel barrel = new Barrel(((int) (Math.random() * (width - 50)) + 20),((int) (Math.random() * (height - 50)) + 20), new Sprite(this,"../Barrel.png",0));
+      barrel.getSprite().setX(barrel.getX());
+      barrel.getSprite().setY(barrel.getY());
+      barrel.getSprite().setCollisionRadius((barrel.getSprite().getHeight()/2) + 2);
+      for (Obstacle obstacle: obstacles){
+       if(obstacle.getSprite().cc_collision(barrel.getSprite())){
+         overlap = true;
+         break;
+       }
+      }
+      if (!overlap) {
+        this.addItem(barrel);
+        i++;
+      }
+      else {
+         overlap = false; 
+      }
+    }
+  }
+
 }

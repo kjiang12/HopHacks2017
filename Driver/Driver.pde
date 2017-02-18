@@ -21,7 +21,7 @@
     cf = new ControlFont(createFont("Times",16));
   
     stageLists = new StageLists();
-    generateObstacles(25);
+
     control = new CommandController();
     stageLists.addItem(new Tank(100, 50, 50, 60, 50, new Sprite(this,"../TankBase.png",0), new Sprite(this,"../TankHead5.png",0),60));
     control.add(new MoveBackward(cp5, cf, stageLists.getTankList().get(0)));
@@ -34,11 +34,10 @@ boolean brake = false;
  void draw(){
     background(255.0);
     control.draw();
-
     
     stageLists.drawObjects();
     
-    collisionCheck();
+
   }
   
   void mousePressed(){
@@ -91,59 +90,6 @@ void keyReleased(){
   selections = null;
 }
 
-void generateObstacles(int numberOfObstacles){
-  boolean overlap = false;
-  int i = 0;
-  while (i < numberOfObstacles / 2){
-    Crate crate = new Crate(((int) (Math.random() * (width - 50)) + 20),((int) (Math.random() * (height - 50)) + 20), new Sprite(this,"../Crate.png",0));
-    crate.getSprite().setX(crate.getX());
-    crate.getSprite().setY(crate.getY());
-    crate.getSprite().setCollisionRadius((crate.getSprite().getHeight()/2) + 2);
-    for (Obstacle obstacle: stageLists.getObstacleList()){
-     if(obstacle.getSprite().cc_collision(crate.getSprite())){
-       overlap = true;
-       break;
-     }
-    }
-    if (!overlap) {
-      stageLists.addItem(crate);
-      i++;
-    }
-    else {
-       overlap = false; 
-    }
-  }
-  overlap = false;
-  i = 0;
-  while (i < numberOfObstacles / 2){
-    Barrel barrel = new Barrel(((int) (Math.random() * (width - 50)) + 20),((int) (Math.random() * (height - 50)) + 20), new Sprite(this,"../Barrel.png",0));
-    barrel.getSprite().setX(barrel.getX());
-    barrel.getSprite().setY(barrel.getY());
-    barrel.getSprite().setCollisionRadius((barrel.getSprite().getHeight()/2) + 2);
-    for (Obstacle obstacle: stageLists.getObstacleList()){
-     if(obstacle.getSprite().cc_collision(barrel.getSprite())){
-       overlap = true;
-       break;
-     }
-    }
-    if (!overlap) {
-      stageLists.addItem(barrel);
-      i++;
-    }
-    else {
-       overlap = false; 
-    }
-  }
-}
 
-void collisionCheck(){
-   for (Obstacle obstacle: stageLists.getObstacleList()){
-     if(obstacle.getSprite().cc_collision(stageLists.getTankList().get(0).getBaseSprite())){
-       System.out.print("Collision!");
-     }
-   }
-  
-  
-  
-}
+
   
