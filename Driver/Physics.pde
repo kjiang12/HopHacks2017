@@ -5,36 +5,17 @@ static class Physics {
   private static final float HP_TO_JPS = 746;
   private static final float FPS = 60;
   private static final float BRAKE = 1.55;
-  private static final float TANK_TURN = 37;
-  private static final float TANK_TURN_ACC = 2.5;
-  private static final float TURRET_TURN = 38.59;
-  private static final float LENGTH = 6;
-  private static final float WIDTH = 3;
-  private static final float I = 112500;
-  
-  static float turnLeft(float angularVelocity) {
-    return angularVelocity - TANK_TURN_ACC / FPS;
-  }
-  
-  static float turnRight(float angularVelocity) {
-    return angularVelocity + TANK_TURN_ACC / FPS;
-  }
   
   static float[] brake(float[] currentSpeed, float currentAngle) {
-      currentSpeed[0] -= (currentSpeed[0] / abs(currentSpeed[0])) * 1.55 * cos(degToRad(currentAngle));
-      currentSpeed[1] -= (currentSpeed[1] / abs(currentSpeed[1])) * 1.55 * cos(degToRad(currentAngle));
-      
-      return currentSpeed;
+      currentSpeed[0] -= 1.55 * cos(degToRad(currentAngle));
+      currentSpeed[1] -= 1.55 * cos(degToRad(currentAngle));
   }
   
   static float[] getNewBackwardSpeed(float power, float[] currentSpeed, float currentAngle) {
-    // Limit max power
-    power = min(460, power);
-    
     float currentEnergyX = getEnergy(currentSpeed[0]);
     float currentEnergyY = getEnergy(currentSpeed[1]);
-    float newEnergyX = currentEnergyX - getComponent(hpToJps(power), currentAngle, true);
-    float newEnergyY = currentEnergyY - getComponent(hpToJps(power), currentAngle, false);
+    float newEnergyX = currentEnergyX + getComponent(hpToJps(-1 * power), currentAngle, true);
+    float newEnergyY = currentEnergyY + getComponent(hpToJps(-1 * power), currentAngle, false);
     
     float[] returnArr = new float[2];
     returnArr[0] = max(getSpeed(newEnergyX), getComponent(MIN_SPEED, currentAngle, true));
@@ -44,9 +25,6 @@ static class Physics {
   }
   
   static float[] getNewForwardSpeed(float power, float[] currentSpeed, float currentAngle) {
-    // Limit max power
-    power = min(460, power);
-    
     float currentEnergyX = getEnergy(currentSpeed[0]);
     float currentEnergyY = getEnergy(currentSpeed[1]);
     float newEnergyX = currentEnergyX + getComponent(hpToJps(power), currentAngle, true);
