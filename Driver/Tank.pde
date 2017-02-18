@@ -207,6 +207,10 @@ public class Tank {
     return health;
   }
   
+  public void setHealth(float health){
+    this.health = health;
+  }
+  
   public boolean fired(){
     return fired;
   }
