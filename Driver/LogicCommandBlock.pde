@@ -88,11 +88,12 @@ public class ForLoop extends LogicCommandBlock{
   public ForLoop(ControlP5 cp5, ControlFont cf, Tank tank){
     super(cp5, cf, tank);
     this.g.getCaptionLabel().set("For").setFont(cf);
+    this.thenGroup.setLabel("Do");
     this.elseGroup.setLabel("Next");
   }
 
   void execute() {
-
+    
   }
 }
 

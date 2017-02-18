@@ -54,10 +54,8 @@
      
      tog.getCaptionLabel().align(ControlP5.CENTER, ControlP5.TOP).setPaddingX(0);
 
-
-    PImage startButton = loadImage("../StartButton.png");
     
-    Toggle startTog = cp5.addToggle("Start")
+    cp5.addToggle("Start")
      .setFont(cf)
      .setPosition(1100,20)
      .setSize(100,50)
