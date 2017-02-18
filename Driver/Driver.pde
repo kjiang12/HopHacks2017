@@ -69,11 +69,27 @@ void mouseDragged(){
 }
 
 void generateObstacles(int numberOfObstacles){
-  for(int i = 0; i < numberOfObstacles; i++){
+  boolean overlap = false;
+  for(int i = 0; i < numberOfObstacles / 2; i++){
     Crate crate = new Crate(((int) (Math.random() * 1000)),((int) (Math.random() * 700)),new Sprite(this,"../Crate.png",0));
     crate.getSprite().setX(crate.getX());
     crate.getSprite().setY(crate.getY());
-    obstacles.add(crate);
+    for (Obstacle obstacle: obstacles){
+     if(obstacle.getSprite().cc_collision(crate.getSprite())){
+       i--;
+       overlap = true;
+       break;
+     }
+    }
+    if (!overlap) {
+      obstacles.add(crate);
+    }
+  }
+  for(int i = 0; i < numberOfObstacles / 2; i++){
+    Barrel barrel = new Barrel(((int) (Math.random() * 1000)),((int) (Math.random() * 700)),new Sprite(this,"../Barrel.png",0));
+    barrel.getSprite().setX(barrel.getX());
+    barrel.getSprite().setY(barrel.getY());
+    obstacles.add(barrel);
   }
 }
   
