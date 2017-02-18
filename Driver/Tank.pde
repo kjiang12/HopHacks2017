@@ -188,10 +188,18 @@ public class Tank {
     return health;
   }
   
+  public boolean fired(){
+    return fired;
+  }
+  
+  public void setFired(boolean fired){
+    this.fired = fired;
+  }
+  
   public void fireBullet(){
     if (reloadTime == 0) {
-      
-    }
+      setFired(true);
+    }  
   }
 }
       
