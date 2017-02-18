@@ -39,6 +39,7 @@ class DropDownMenu {
     ddl.setColorBackground(color(60));
     ddl.setColorActive(color(255, 128));
     ddl.setOpen(false);
+    ddl.setVisible(false);
   }
   
   void setVisible(boolean isVisible) {

@@ -4,6 +4,7 @@ public class CommandController{
   int count;
   CommandBlock start;
   Range range;
+  DropDownMenu ddm;
   
   public CommandController(StartBlock start){
     this.commandList = new LinkedList<CommandBlock>();
@@ -11,8 +12,8 @@ public class CommandController{
     count = 0;
     this.start = start;
     this.add(start);
-    
-    range = cp5.addRange("rangeController")
+    this.ddm = new DropDownMenu(cp5);
+    this.range = cp5.addRange("rangeController")
              .setPosition(20,height - 50)
              .setSize(width - 40 ,40)
              .setHandleSize(10)
@@ -61,6 +62,7 @@ public class CommandController{
         command.setVisible(bol);
       }
       range.setVisible(bol);
+      ddm.setVisible(bol);
   }
   
   void connect(CommandBlock command1, CommandBlock command2){
