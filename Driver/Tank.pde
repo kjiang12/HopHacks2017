@@ -68,22 +68,22 @@
             }
             // change to turret angle, call update for angle
             public float getTankAngle() {
-                return (tankAngle + angVel * (((float) 1)/60));
+                tankAngle=tankAngle + getAngVel() * (((float) 1)/60);
+                return (tankAngle);
             }
             public float getTurrAngle() {
-                return (turrAngle + turrAngVel * (((float) 1)/60));
+                turrAngle=turrAngle + getTurrAngVel() * (((float) 1)/60);
+                return (turrAngle);
             }
             public float getPower() {
                 return power;
             }
             public float getXSpeed(boolean forward) {
                 updateSpeed(forward, xSpeed, ySpeed);
-                updatePos(xSpeed, ySpeed);
                 return xSpeed;
             }
             public float getYSpeed(boolean forward) {
                 updateSpeed(forward, xSpeed, ySpeed);
-                updatePos(xSpeed, ySpeed);
                 return ySpeed;
             }
             public Sprite getBaseSprite() {
@@ -91,18 +91,6 @@
             }
             public Sprite getHeadSprite() {
                 return head_sprite;
-            }
-            public void setTankAngle(float tankAngle) {
-                this.tankAngle = tankAngle;
-            }
-            public void setTurrAngle(float turrAngle) {
-              this.turrAngle = turrAngle;
-            }
-            private void setXSpeed(float speed) {
-                this.xSpeed=speed;
-            }
-            private void setYSpeed(float speed) {
-                this.ySpeed = speed;
             }
             public void setPower(float power) {
                 this.power=power;
@@ -137,13 +125,14 @@
             else {
               newSpeed=Physics.getNewBackwardVel(getPower(), oldSpeed, getTankAngle());
             }
-            setXSpeed(newSpeed[0]);
-            setYSpeed(newSpeed[1]);
+            xSpeed = newSpeed[0];
+            ySpeed = newSpeed[1];
         }
-        private void updatePos(float xSpeed, float ySpeed) {
-            float x=getXPos()+ xSpeed * (((float) 1)/60);
-            float y=getYPos() + ySpeed * (((float) 1)/60);
-            setPos(x, y);
+        private void updatePos(boolean forward) {
+            float x=getXPos()+ getXSpeed(forward) * (((float) 1)/60);
+            float y=getYPos() + getXSpeed(forward) * (((float) 1)/60);
+            xCor=x;
+            yCor=y;
         }
         public void detection(float xDist, float yDist) {
             int r= (int) Math.sqrt(xDist*xDist+yDist*yDist);
