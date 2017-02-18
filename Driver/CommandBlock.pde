@@ -83,11 +83,11 @@ public abstract class CommandBlock{
   }
   
   int getX(){
-    return (int) this.g.getPosition()[0];
+    return (int) this.g.getAbsolutePosition()[0];
   }
   
   int getY(){
-    return (int) this.g.getPosition()[1];
+    return (int) this.g.getAbsolutePosition()[1];
   }
 }
 

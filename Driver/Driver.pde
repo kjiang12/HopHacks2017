@@ -18,8 +18,8 @@
   Boolean displayCode = false;
   
  void setup (){
-    //size(1260, 720);
-    fullScreen();
+    size(1260, 720);
+    //fullScreen();
     noStroke();
     rectMode(CORNER);
     start = false;
@@ -169,14 +169,21 @@ boolean brake = false;
         if(selected){
           if(selections != null){
             control.connect(selections, control.getCommand((ControlGroup) cp5.getWindow().getMouseOverList().get(0).bringToFront()));
+            print("Connection");
             selections = null;
           } else {
+            print("First");
             selections = control.getCommand((ControlGroup) cp5.getWindow().getMouseOverList().get(0).bringToFront());
+            print(selections != null);
+            print("selections");
           }
         } else {
           selectedObject = control.getCommand((ControlGroup) cp5.getWindow().getMouseOverList().get(0).bringToFront());
           initX = mouseX;
           initY = mouseY;
+          if(selectedObject instanceof LogicBlock){
+            selectedObject = null;
+          }
         }
       } catch(Exception e){
       }
