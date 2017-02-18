@@ -14,7 +14,7 @@ class DropDownMenu {
           ;   
     customize(d1);
 
-    new Give("Start/Pause").setPosition(1210, 0).setSize(100, 50).setColorBackground(color(0,150,0));
+    new Give(cp5, "Give").setPosition(0, 600).setSize(100, 50).setColorBackground(color(0,150,0));
   }
   
   void customize(DropdownList ddl) {
@@ -32,22 +32,17 @@ class DropDownMenu {
   void setVisible(boolean isVisible) {
     d1.setVisible(isVisible);
   }
-  
-  static private class Give extends Controller<MyButton>{
+}
+
+class Give extends Controller<Give>{
     private String name;
     
-    void MyButton(String name) {
+    Give(ControlP5 cp5, String name) {
       super(cp5, name);
-      this.name = name; 
+      this.name = name;
     }
     
     void onClick() {
-      Pointer p1 = getPointer();
-      println("clicked at "+p1.x()+", "+p1.y());
-      current = 0xffffff00;
-      setValue(y);
-      start = !start;
-
+      
     }
   }
-}

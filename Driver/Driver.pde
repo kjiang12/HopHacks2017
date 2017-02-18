@@ -57,9 +57,7 @@
      
      tog.getCaptionLabel().align(ControlP5.CENTER, ControlP5.TOP).setPaddingX(0);
 
-     new MyButton(cp5, "Start/Pause").setPosition(1210, 0).setSize(100, 50).setColorBackground(color(0,150,0))  ;
-     
-     
+     new MyButton(cp5, "Start/Pause").setPosition(1210, 0).setSize(100, 50).setColorBackground(color(0,150,0));
   }
 class MyButton extends Controller<MyButton>{
   int current = 0xffff0000;
