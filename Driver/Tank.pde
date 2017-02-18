@@ -21,8 +21,8 @@
               this.health = health;
               this.xCor = xCor;
               this.yCor = yCor;
-              this.turrX = turrX;
-              this.turrY = turrY;
+              this.turrX = this.xCor;
+              this.turrY = this.yCor;
               this.tankAngle = tankAngle;
               this.turrAngle = turrAngle;
               this.base_sprite = base_sprite;
@@ -46,8 +46,11 @@
             public float getTurrY() {
                 return turrY;
             }
-            public float getAngle() {
+            public float getTankAngle() {
                 return tankAngle;
+            }
+            public float getTurrAngle() {
+                return turrAngle;
             }
             public float getPower() {
                 return power;
@@ -64,11 +67,11 @@
             public Sprite getHeadSprite() {
                 return head_sprite;
             }
-            public void setDir(float angle) {
-                this.tankAngle = angle;
+            public void setTankAngle(float tankAngle) {
+                this.tankAngle = tankAngle;
             }
-            public void setTurrDir(float angle) {
-              this.turrAngle = angle;
+            public void setTurrAngle(float turrAngle) {
+              this.turrAngle = turrAngle;
             }
             public void setXSpeed(float speed) {
                 this.xSpeed=speed;
