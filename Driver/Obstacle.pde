@@ -1,10 +1,10 @@
 import sprites.Sprite;
 
-public abstract class Obstacles{
+public abstract class Obstacle{
   int x;
   int y;
   Sprite sprite;
-  public Obstacles(int x, int y, Sprite sprite){
+  public Obstacle(int x, int y, Sprite sprite){
     this.x = x;
     this.y = y;
     this.sprite = sprite;
@@ -29,13 +29,13 @@ public abstract class Obstacles{
   }
 }
 
-public class Barrel extends Obstacles{
+public class Barrel extends Obstacle{
   public Barrel(int x, int y, Sprite sprite){
     super(x, y, sprite);
   }
 }
 
-public class Crate extends Obstacles{
+public class Crate extends Obstacle{
   public Crate(int x, int y, Sprite sprite){
     super(x, y, sprite);
   }

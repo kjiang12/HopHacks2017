@@ -24,9 +24,11 @@ public class GetTankAngVel extends GetCommandBlock{
 public class GetReloadingTime extends GetCommandBlock{
   public GetReloadingTime(ControlP5 cp5, ControlFont cf, Tank tank){
     super(cp5, cf, tank);
+    this.g.getCaptionLabel().set("Get Reload Time").setFont(cf);
   }
 
   void execute() {
+     tank.getReloadTime();
   }
 
 }
