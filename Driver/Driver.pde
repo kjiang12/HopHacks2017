@@ -18,7 +18,7 @@ void setup (){
   cf = new ControlFont(createFont("Times",12));
   commandList = new LinkedList<CommandBlock>();
   
-  MoveBackward command = new MoveBackward(cp5, cf);
+  MoveBackward command = new MoveBackward(cp5, cf, tank);
   commandList.add(command);
   parse();
   tank = new Tank(100,50,50,60,50,10,10,new Sprite(this,"../TankBase.png",0),new Sprite(this,"../TankHead.png",0));
@@ -33,12 +33,12 @@ void parse(){
 
 void draw(){
   background(0.0);
-  tank.getBaseSprite().setX(tank.getXPos());
+  /*tank.getBaseSprite().setX(tank.getXPos());
   tank.getBaseSprite().setY(tank.getYPos());
   tank.getHeadSprite().setX(tank.getTurrX());
   tank.getHeadSprite().setY(tank.getTurrY());
   tank.getBaseSprite().draw();
-  tank.getHeadSprite().draw();
+  tank.getHeadSprite().draw();*/
   
 }
 void mousePressed(){
