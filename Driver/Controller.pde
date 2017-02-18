@@ -62,6 +62,7 @@ public class Connector{
   }
   
   void draw(){
+    strokeWeight(5);
     stroke(126);
     line(startX, startY, (endX + startX)/2, (startY + endY)/2);
     stroke(80);
