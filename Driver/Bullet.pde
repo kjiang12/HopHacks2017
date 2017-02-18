@@ -1,32 +1,33 @@
 public class Bullet{
-  int x;
-  int y;
   Sprite sprite;
-  public Bullet(int x, int y, Sprite sprite){
-    this.x = x;
-    this.y = y;
+  double angle;
+  public Bullet(int x, int y, Sprite sprite, double angle){
     this.sprite = sprite;
+    this.sprite.setXY(x, y);
+    this.angle = angle;
   }
   public int getX(){
-   return x; 
+   return (int)sprite.getX();
   }
   public int getY(){
-   return y; 
+   return (int)sprite.getY();
   }
   public Sprite getSprite(){
    return sprite; 
   }
-  public void setX(int x){
-   this.x = x; 
+  public double getAngle(){
+   return angle; 
   }
-  public void setY(int y){
-   this.y = y; 
-  }
-  public void setX(Sprite sprite){
+  public void setSprite(Sprite sprite){
    this.sprite = sprite; 
   }
+  public void setAngle(double angle){
+   this.angle = angle; 
+  }
   public void update(){
-    
-    
+    sprite.setRot(angle);
+    sprite.setDirection(angle);
+    sprite.setSpeed(5);
+    sprite.update(0.4);
   }
 }
