@@ -106,16 +106,27 @@ public class StageLists{
        }
        
      }
-     for (int k = bullets.size() - 1; k > 0; k--){
+   }
+   
+  ArrayList<Integer> removedObstacles = new ArrayList<Integer>();
+  
+  int i = obstacles.size() - 1;
+  while (i >= 0){
+     for (int k = bullets.size() - 1; k >= 0; k--){
        if(obstacles.get(i).getSprite().bb_collision(bullets.get(k).getSprite())){
          bullets.remove(k);
-         k--;
-         this.addItem(new Explosion(obstacles.get(i).getX(), obstacles.get(i).getY(), new Sprite(app,"../Explosion.png",0)));
-         obstacles.remove(i);
+         removedObstacles.add(i);
        }
      }
+     i--;
    }
-   for(int i = 0; i < tanks.size(); i++){
+   
+   for (i = removedObstacles.size() - 1; i >= 0; i--){
+     this.addItem(new Explosion(obstacles.get(i).getX(), obstacles.get(i).getY(), new Sprite(app,"../Explosion.png",0)));
+     obstacles.remove(i);
+   }
+   
+   for(i = 0; i < tanks.size(); i++){
        for (int  j=0; j < tanks.size(); j++){
           if(i!=j && tanks.get(i).getBaseSprite().bb_collision(tanks.get(j).getBaseSprite()))
           {
