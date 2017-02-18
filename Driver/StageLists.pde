@@ -11,6 +11,7 @@ public class StageLists{
   public StageLists(PApplet app){
      this.app = app;
      generateObstacles(2);
+     generateBots(200);
      this.addItem(new Tank(100, 500, 500, PI / 3, 50, new Sprite(app,"../TankBase.png",0), new Sprite(app,"../TankHead5.png",0),20));
      for (int i = 0; i < 5; i++){
      this.addItem(new Bot(100, 200+50*i, 200+50*i, PI / 3, 50, new Sprite(app,"../TankBase.png",0), new Sprite(app,"../TankHead5.png",0),50));
@@ -118,13 +119,24 @@ public class StageLists{
 
      }
    }
+   for(int i = 0; i < tanks.size(); i++){
+       for (int  j=0; j < tanks.size(); j++){
+          if(i!=j && tanks.get(i).getBaseSprite().bb_collision(tanks.get(j).getBaseSprite()))
+          {
+              tanks.get(i).stop();
+              tanks.get(i).setHealth(tanks.get(i).getHealth()-20.0);
+              tanks.get(j).stop();
+              tanks.get(j).setHealth(tanks.get(j).getHealth()-20.0);
+          }
+       }
+   }
    
      for (int l = 0; l < tanks.size(); l++){
        for (int k = 0; k < bullets.size(); k++){
         if(bullets.get(k).getSprite().bb_collision(tanks.get(l).getBaseSprite())){
           bullets.remove(k);
-          tanks.get(l).setHealth(tanks.get(l).getHealth() - 100);
-          if (tanks.get(l).getHealth() <= 100) {
+          tanks.get(l).setHealth(tanks.get(l).getHealth() - 30);
+          if (tanks.get(l).getHealth() <= 0) {
               this.addItem(new Explosion(tanks.get(l).getPos()[0], tanks.get(l).getPos()[1], new Sprite(app,"../Explosion.png",0)));
               tanks.remove(l);
               l = 0;
@@ -136,7 +148,34 @@ public class StageLists{
      }
   
   }
-  
+public void generateBots(int numberOfBots){
+    boolean overlap = false;
+    int i = 0;
+    while (i < numberOfBots){
+      Bot bot = new Bot(100, ((int) (Math.random() * (width - 50)) + 20),((int) (Math.random() * (height - 50)) + 20), (PI / 12) * ((int) (Math.random() * 12)), (PI / 12) * ((int) (Math.random() * 12)), new Sprite(app,"../TankBase.png",0), new Sprite(app,"../TankHead5.png",0),50);
+      for (Obstacle obstacle: obstacles){
+       if(obstacle.getSprite().pp_collision(bot.getBaseSprite())){
+         overlap = true;
+         break;
+       }
+      }
+      for (Tank tank: tanks){
+       if(tank.getBaseSprite().pp_collision(bot.getBaseSprite())){
+         overlap = true;
+         break;
+       }
+      }
+      if (!overlap) {
+        this.addItem(bot);
+        i++;
+        }
+      else {
+         overlap = false; 
+      }
+    }
+    
+    
+  }
   void checkBullet(){
     for(Tank tank: tanks){
       if(tank.fired()){
