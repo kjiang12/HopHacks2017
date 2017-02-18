@@ -12,6 +12,20 @@ static class Physics {
   private static final float WIDTH = 3;
   private static final float I = 112500;
   
+  static float stopTurn(float angularVelocity) {
+    if (angularVelocity < 0) {
+      angularVelocity = turnRight(angularVelocity); 
+    } else if (angularVelocity > 0) {
+      angularVelocity = turnLeft(angularVelocity);
+    }
+    
+    if (angularVelocity > -0.1 && angularVelocity < 0.1) {
+      angularVelocity = 0; 
+    }
+    
+    return angularVelocity;
+  }
+  
   static float turnLeft(float angularVelocity) {
     return angularVelocity - TANK_TURN_ACC / FPS;
   }
