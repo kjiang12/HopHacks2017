@@ -1,5 +1,5 @@
 public class MoveBackward extends CommandBlock{
-  int currPow = 0;
+  float currPow = 0;
   
   public MoveBackward(ControlP5 cp5, ControlFont cf, Tank tank){
     super(cp5, tank);
