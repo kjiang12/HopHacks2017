@@ -3,6 +3,7 @@ public abstract class GetCommandBlock extends CommandBlock{
     super(cp5, tank);
   }
   
+  abstract float getValue();
   abstract void execute();
   
 }
@@ -14,7 +15,9 @@ public class GetTankAngVel extends GetCommandBlock{
     super(cp5, cf, tank);
     this.g.getCaptionLabel().set("Get Tank Angular Velocity").setFont(cf);
   }
-
+  float getValue(){
+      return tank.getTankAngVel();
+  }
   void execute() {
       tank.getTankAngVel();
   }
@@ -27,7 +30,9 @@ public class GetReloadingTime extends GetCommandBlock{
     super(cp5, cf, tank);
     this.g.getCaptionLabel().set("Get Reload Time").setFont(cf);
   }
-
+  float getValue(){
+    return tank.getReloadTime();
+  }
   void execute() {
      tank.getReloadTime();
   }
@@ -39,7 +44,9 @@ public class GetTurrAngVel extends GetCommandBlock{
     super(cp5, cf, tank);
     this.g.getCaptionLabel().set("Get Turret Angular Velocity").setFont(cf);
   }
-
+  float getValue(){
+    return tank.getTurrAngVel();
+  }
   void execute() {
       tank.getTurrAngVel();
   }
