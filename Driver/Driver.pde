@@ -14,7 +14,7 @@
   boolean firstRun = true;
   Boolean selected = false;
   CommandBlock selections;
-  
+  DropDownMenu ddm;
   Boolean displayCode = false;
   
  void setup (){
@@ -36,6 +36,9 @@
     control.add(new ForLoop(cp5, cf, stageLists.getTankList().get(0)));
     control.execute(); //replaces parse();
     
+    ddm = new DropDownMenu(cp5);
+    ddm.setVisible(false);
+    
     Toggle tog = cp5.addToggle("Show\nCode")
      .setFont(cf)
      .setPosition(20,20)
@@ -48,6 +51,7 @@
            displayCode = true;
          }
          control.setVisible(displayCode);
+         ddm.setVisible(displayCode);
       }
      }); 
      
