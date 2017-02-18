@@ -82,12 +82,14 @@ public class StageLists{
   
   void collisionCheck(){
    for (int i = 0; i < obstacles.size(); i++){
-     if(obstacles.get(i).getSprite().cc_collision(tanks.get(0).getBaseSprite())){
-       
-     }
      for (int j = 0; j < bullets.size(); j++){
-       if(obstacles.get(i).getSprite().cc_collision(bullets.get(j).getSprite())){
-         bullets.remove(j);
+       if(obstacles.get(i).getSprite().cc_collision(tanks.get(j).getBaseSprite())){
+         tanks.get(j).stop();
+       }
+     }
+     for (int k = 0; k < bullets.size(); k++){
+       if(obstacles.get(i).getSprite().cc_collision(bullets.get(k).getSprite())){
+         bullets.remove(k);
          this.addItem(new Explosion(obstacles.get(i).getX(), obstacles.get(i).getY(), new Sprite(app,"../Explosion.png",0)));
          obstacles.remove(i);
        }

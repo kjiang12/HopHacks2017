@@ -92,6 +92,11 @@ public class Tank {
     
     return returnArr;
   }
+  
+  public void stop(){
+   base_sprite.setVelXY(0,0); 
+   head_sprite.setVelXY(0,0);  
+  }
                   
   public float getTankAngVel() {          
     return tankAngVel;
