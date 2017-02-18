@@ -84,5 +84,8 @@ public class StartBlock extends CommandBlock{
   }
   
   void execute(){
+    if(this.next != null){
+      this.next.execute();
+    }
   }
 }

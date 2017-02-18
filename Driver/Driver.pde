@@ -25,13 +25,13 @@
     cf = new ControlFont(createFont("Times",16));
 
     stageLists = new StageLists(this);
-
-    control = new CommandController();
     stageLists.addItem(new Tank(100, 50, 50, 60, 50, new Sprite(this,"../TankBase.png",0), new Sprite(this,"../TankHead5.png",0),60));
+    
+    control = new CommandController(new StartBlock(cp5, cf, stageLists.getTankList().get(0)));
     control.add(new MoveBackward(cp5, cf, stageLists.getTankList().get(0)));
     control.add(new MoveForward(cp5, cf, stageLists.getTankList().get(0)));
     control.add(new MoveForward(cp5, cf, stageLists.getTankList().get(0)));
-    control.add(new StartBlock(cp5, cf, stageLists.getTankList().get(0)));
+
     control.execute(); //replaces parse();
     
     Toggle tog = cp5.addToggle("Show\nCode")
@@ -57,11 +57,9 @@
 boolean brake = false;
  void draw(){
     background(255.0);
-
-    control.draw();
     
     stageLists.drawObjects();
-
+    control.draw();
     if(displayCode){
       fill(color(0,0,200),50);
       rect(0, 0, 1260, 720);
