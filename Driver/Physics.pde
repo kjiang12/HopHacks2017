@@ -6,7 +6,7 @@ static class Physics {
   private static final float FPS = 60;
   private static final float BRAKE = 1.55;
   private static final float TANK_TURN = 37;
-  private static final float TANK_TURN_ACC = 4.29;
+  private static final float TANK_TURN_ACC = 2.5;
   private static final float TURRET_TURN = 38.59;
   private static final float TURRET_TURN_ACC = 5;
   private static final float LENGTH = 6;
@@ -25,6 +25,7 @@ static class Physics {
     }
     
     return angularVelocity;
+
   }
   
   static float turnTurretLeft(float angularVelocity) {
