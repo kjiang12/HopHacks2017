@@ -85,15 +85,55 @@ class LogicBlock extends CommandBlock{
    }
    
 public class ForLoop extends LogicCommandBlock{
+  int start, end, count = 0;
+  
   public ForLoop(ControlP5 cp5, ControlFont cf, Tank tank){
     super(cp5, cf, tank);
     this.g.getCaptionLabel().set("For").setFont(cf);
     this.thenGroup.setLabel("Do");
     this.elseGroup.setLabel("Next");
+    
+    
+    cp5.addTextfield("input")
+     .setPosition(20,100)
+     .setSize(200,40)
+     .setFont(cf)
+     .setGroup(this.conditionGroup.g)
+     .setFocus(true)
+     .setColor(color(255,0,0))
+     .onChange(new CallbackListener(){
+       public void controlEvent(CallbackEvent event) {
+         start = (int) Float.parseFloat(event.getController().getStringValue());
+      }
+     });
+     ;
+     
+    cp5.addTextfield("input")
+     .setPosition(20,100)
+     .setSize(200,40)
+     .setFont(cf)
+     .setGroup(this.conditionGroup.g)
+     .setFocus(true)
+     .setColor(color(255,0,0))
+     .onChange(new CallbackListener(){
+       public void controlEvent(CallbackEvent event) {
+         end = (int) Float.parseFloat(event.getController().getStringValue());
+      }
+     });
+     ;
   }
 
   void execute() {
-    
+    if(end != 0 && this.thenGroup.next != null){
+      count = start;
+      if(count < end){
+        thenGroup.next.execute();
+        count++;
+      } else {
+        if(this.elseGroup.next != null){
+          elseGroup.next.execute();
+        }
+    }
   }
 }
 
