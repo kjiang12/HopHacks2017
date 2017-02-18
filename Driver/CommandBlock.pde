@@ -61,15 +61,18 @@ public abstract class CommandBlock{
       this.g.setPosition(newX, newY);
       this.x = newX + scrollScale * 20;
       this.y = newY;
-      if(connection != null){
-        this.connection.changeStart(this);
-      }
-      if(prev != null){
-        this.prev.connection.changeEnd(this);
-      }
+      this.connectionUpdate();
     }
   }
   
+  void connectionUpdate(){
+    if(connection != null){
+      this.connection.changeStart(this);
+    }
+    if(prev != null){
+      this.prev.connection.changeEnd(this);
+    }
+  }
   void scrollMove(float val){
     float newX = x - 20 * val;
     scrollScale = val;

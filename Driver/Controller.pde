@@ -64,7 +64,7 @@ public class CommandController{
   }
   
   void connect(CommandBlock command1, CommandBlock command2){
-    if(command1 == command2.next || command1 == command2 || command2 instanceof StartBlock || command1 instanceof LogicCommandBlock){
+    if(command1 == command2.next || command1 == command2 || command2 instanceof StartBlock || command1 instanceof LogicCommandBlock || command2 instanceof LogicBlock){
       return;
     }
     
