@@ -7,7 +7,7 @@ public class Tank {
   private boolean detected;
   private float tankAngVel;
   private float turrAngVel;
-  private float tankAngle, turrAngle;
+  private float tankAngle, turrAngle; // STORE IN RADIANS
   private String moveState; // "Brake" "Forward" "Backward"
   private String turnState; // "Stop Turn" "Turn Left" "Turn Right"
   private String turrState; // "Stop Turn Turret" "Turn Turret Left" "Turn Turret Right"
