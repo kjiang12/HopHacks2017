@@ -5,6 +5,7 @@ public class StageLists{
   private ArrayList<Bullet> bullets= new ArrayList<Bullet>();
   private ArrayList<Obstacle> obstacles= new ArrayList<Obstacle>();
   private ArrayList<Tank> tanks= new ArrayList<Tank>();
+  private ArrayList<Explosion> explosions= new ArrayList<Explosion>();
   PApplet app;
   
   public StageLists(PApplet app){
@@ -36,13 +37,29 @@ public class StageLists{
     this.tanks.add(tank);
   }
   
+  public ArrayList<Explosion> getExplosionList(){
+    return this.explosions;
+  }
+  
+  public void addItem(Explosion explosion){
+    this.explosions.add(explosion);
+  }
+  
   public void drawObjects(){
-    for(Bullet bullet: bullets){
-      bullet.update();
-      bullet.getSprite().draw();
+    for(int i = 0; i < bullets.size(); i++){
+      if (bullets.get(i).getX() > width || bullets.get(i).getX() < 0 || bullets.get(i).getY() > height || bullets.get(i).getY() < 0){
+       bullets.remove(i);
+      }
+      else{
+        bullets.get(i).update();
+        bullets.get(i).getSprite().draw();
+      }
     }
     for(Obstacle obstacle: obstacles){
       obstacle.getSprite().draw();
+    }
+    for(Explosion explosion: explosions){
+      explosion.getSprite().draw();
     }
     for(Tank tank: tanks){
       tank.turnLeft();
@@ -57,9 +74,16 @@ public class StageLists{
   }
   
   void collisionCheck(){
-   for (Obstacle obstacle: obstacles){
-     if(obstacle.getSprite().cc_collision(tanks.get(0).getBaseSprite())){
-       System.out.print("Collision!");
+   for (int i = 0; i < bullets.size(); i++){
+     if(obstacles.get(i).getSprite().cc_collision(tanks.get(0).getBaseSprite())){
+       
+     }
+     for (int j = 0; j < bullets.size(); j++){
+       if(obstacles.get(i).getSprite().cc_collision(bullets.get(j).getSprite())){
+         bullets.remove(j);
+         this.addItem(new Explosion(obstacles.get(i).getX(), obstacles.get(i).getY(), new Sprite(app,"../Explosion.png",0)));
+         obstacles.remove(i);
+       }
      }
    }
   
@@ -73,8 +97,8 @@ public class StageLists{
           Bullet bullet = new Bullet(((int) pos[0]), ((int) pos[1]), new Sprite(app,"../Bullet.png",0), tank.getTurrAngle());
           println(bullet.getAngle());
           this.addItem(bullet);
-        //  tank.setFired(false);
-       //   tank.setReloadTime(60);
+          tank.setFired(false);
+          tank.setReloadTime(60);
       }
     }    
   }
