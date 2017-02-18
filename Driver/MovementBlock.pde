@@ -10,7 +10,7 @@ public abstract class MovementBlock extends CommandBlock{
   
   
   void setGroup(String s){
-    super.setGroup(s);
+    super.setGroup(s); /*
     slide = cp5.addSlider("Slide " + this.id)
      .setPosition(20,20)
      .setSize(180,30)
@@ -22,7 +22,7 @@ public abstract class MovementBlock extends CommandBlock{
        public void controlEvent(CallbackEvent event) {
          currPow = event.getController().getValue();
       }
-     }); 
+     }); */
   }
   abstract void execute();
 }

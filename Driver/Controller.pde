@@ -13,13 +13,13 @@ public class CommandController{
     this.add(start);
     
     range = cp5.addRange("rangeController")
-             .setPosition(50,600)
-             .setSize(1200,40)
+             .setPosition(20,650)
+             .setSize(1220,40)
              .setHandleSize(10)
              .setRange(0,255)
              .setRangeValues(0,20)
-             .setColorForeground(color(20,120,0))
-             .setColorBackground(color(255,40,0))  
+             .setColorForeground(color(70,70,70))
+             .setColorBackground(color(200,200,200))  
              .setVisible(false)
              .setLabelVisible(false)
              .onChange(new CallbackListener(){
@@ -46,7 +46,7 @@ public class CommandController{
   
   void draw(){
     if(displayCode){
-      fill(color(200,200,200),70);
+      fill(color(0,0,150),100);
       rect(0, 0, width, height);
       
       for(CommandBlock command: commandList) {
