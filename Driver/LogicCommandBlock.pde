@@ -74,11 +74,11 @@ class LogicBlock extends CommandBlock{
      }
     
     void changeX(int x){
-      this.g.setPosition(x, this.g.getPosition[1]);
+      this.g.setPosition(x, this.g.getPosition()[1]);
     }
     
     int getRX(){
-      return this.g.getPosition[0];
+      return (int) this.g.getPosition()[0];
     }
      void execute(){
      }

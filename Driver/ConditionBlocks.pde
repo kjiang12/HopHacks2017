@@ -10,6 +10,9 @@ public abstract class ConditionBlock extends CommandBlock{
   
   LogicBlock add(LogicBlock logic){
     control.add(logic);
+    logic.changeX(logic.getRX() + logic.w/2);
+    logic.changeSize(logic.w / 2, logic.h);
+    logic.w /= 2;
     return logic;
   }
 }
@@ -22,9 +25,7 @@ public class Comparison2Var extends ConditionBlock{
     super(cp5, cf, tank);
     this.h = 120;
     this.g.getCaptionLabel().set("Comparision with 2 Variables").setFont(cf);
-    this.g.setX(this.getRX() + this.w/2);
-    this.g.setSize(this.w / 2, this.h);
-    this.w /= 2;
+    this.g.setSize(this.w , this.h);
 
     this.var1 = this.add(new LogicBlock(cp5, cf, tank, "Var1", 0, this.g));
     this.var2 = this.add(new LogicBlock(cp5, cf, tank, "Var2", 1, this.g));
