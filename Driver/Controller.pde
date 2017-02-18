@@ -115,6 +115,6 @@ public class Connector{
     line(startX, startY, (endX + startX)/2, (startY + endY)/2);
     stroke(80);
     line((endX + startX)/2, (startY + endY)/2, endX, endY);
-    stroke(255);
+    noStroke();
   }
 }
