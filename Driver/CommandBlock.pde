@@ -4,7 +4,7 @@ public abstract class CommandBlock{
   protected ControlP5 cp5;
   protected ControlGroup g;
   protected Tank tank;
-  protected int id;
+  protected int id, h = 75, w = 300;
   protected CommandBlock next, prev;
   protected Connector connection;
   
@@ -13,10 +13,11 @@ public abstract class CommandBlock{
     this.g = cp5.addGroup(count + "")
              .setPosition(100,100)
              .setBackgroundHeight(100)
-             .setSize(300,75)
+             .setSize(w,h)
              .setBarHeight(40)
              .setBackgroundColor(color(80,0,180))
-             .disableCollapse();
+             .disableCollapse()
+             .setVisible(false);
     count++;
     this.tank = tank;
   }
@@ -35,6 +36,10 @@ public abstract class CommandBlock{
     this.connection = connection;
   }
   
+  void setVisible(Boolean bol){
+    this.g.setVisible(bol);
+  }
+  
   void draw(){
     if(connection != null){
       connection.draw();
@@ -46,7 +51,7 @@ public abstract class CommandBlock{
     float[] pos = g.getPosition();
     float newX = pos[0] + x;
     float newY = pos[1] + y;
-    if(newX > 0 && newY - 20 > 0 && newX + 300 < width && newY + 75 < height){
+    if(newX > 0 && newY - 20 > 0 && newX + w < width && newY + h < height){
       this.g.setPosition(pos[0] + x, pos[1] + y);
       if(connection != null){
         this.connection.changeStart(this);
@@ -63,5 +68,14 @@ public abstract class CommandBlock{
   
   int getY(){
     return (int) this.g.getPosition()[1];
+  }
+}
+
+public class StartBlock extends CommandBlock{
+  public StartBlock(ControlP5 cp5, ControlFont cf, Tank tank){
+    super(cp5, tank);
+  }
+  
+  void execute(){
   }
 }

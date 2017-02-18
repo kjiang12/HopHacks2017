@@ -14,27 +14,53 @@
   Boolean selected = false;
   CommandBlock selections;
   
+  Boolean displayCode = false;
+  
  void setup (){
     size(1260, 720);
     noStroke();
-    rectMode(CENTER);
+    rectMode(CORNER);
+    
     cp5 = new ControlP5(this);
     cf = new ControlFont(createFont("Times",16));
-  
     obstacles = new ArrayList<Obstacles>();
-    generateObstacles(300);
     control = new CommandController();
     tank = new Tank(100, 50, 50, 60, 50, new Sprite(this,"../TankBase.png",0), new Sprite(this,"../TankHead5.png",0));
+    
+    generateObstacles(300);
+    
     control.add(new MoveBackward(cp5, cf, tank));
     control.add(new MoveForward(cp5, cf, tank));
     control.add(new MoveForward(cp5, cf, tank));
     control.execute(); //replaces parse();
+    
+    Toggle tog = cp5.addToggle("Show\nCode")
+     .setFont(cf)
+     .setPosition(20,20)
+     .setSize(70,50)
+     .setColorBackground(color(0, 120, 0))
+     .onChange(new CallbackListener(){
+       public void controlEvent(CallbackEvent event) {
+         if(event.getController().getValue() == 0){
+           displayCode = false;
+         } else {
+           displayCode = true;
+         }
+         control.setVisible(displayCode);
+      }
+     }); 
+     
+     tog.getCaptionLabel().align(ControlP5.CENTER, ControlP5.TOP).setPaddingX(0);
+     
   }
 
 boolean brake = false;
  void draw(){
     background(255.0);
-    control.draw();
+    if(displayCode){
+      fill(color(0,0,200),50);
+      rect(0, 0, 1260, 720);
+    }
     tank.turnLeft();
     tank.turnTurretRight();
 
@@ -44,6 +70,7 @@ boolean brake = false;
     for(Obstacles obstacle: obstacles){
       obstacle.getSprite().draw();
     }
+    control.draw();
   }
   
   void mousePressed(){

@@ -27,9 +27,20 @@ public class CommandController{
   }
   
   void draw(){
+    if(displayCode){
+      fill(color(200,200,200),70);
+      rect(0, 0, width, height);
+      
+      for(CommandBlock command: commandList) {
+        command.draw();
+      }
+    } 
+  }
+  
+  void setVisible(Boolean bol){
     for(CommandBlock command: commandList) {
-      command.draw();
-    }
+        command.setVisible(bol);
+      }
   }
   
   void connect(CommandBlock command1, CommandBlock command2){
@@ -67,5 +78,6 @@ public class Connector{
     line(startX, startY, (endX + startX)/2, (startY + endY)/2);
     stroke(80);
     line((endX + startX)/2, (startY + endY)/2, endX, endY);
+    stroke(255);
   }
 }
