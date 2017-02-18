@@ -53,7 +53,7 @@
      
      tog.getCaptionLabel().align(ControlP5.CENTER, ControlP5.TOP).setPaddingX(0);
 
-     new MyButton(cp5, "Start").setPosition(1210, 0).setSize(50, 50);
+     new MyButton(cp5, "Start/Pause").setPosition(1210, 0).setSize(100, 50).setColorBackground(color(0,150,0))  ;
      
      
   }
@@ -114,13 +114,18 @@ class MyButton extends Controller<MyButton>{
     current = 0xffffff00;
   }
   
+  boolean ran = false;
   void onClick() {
     Pointer p1 = getPointer();
     println("clicked at "+p1.x()+", "+p1.y());
     current = 0xffffff00;
     setValue(y);
-    start = true;
-    control.execute();
+    start = !start;
+
+    if (!ran) {
+      control.execute();
+      ran = true;  
+    }
   }
 
   void onRelease() {
@@ -151,9 +156,10 @@ class MyButton extends Controller<MyButton>{
 }
 boolean brake = false;
  void draw(){
-    background(255.0);
 
     if (start) {
+          background(255.0);
+
       stageLists.drawObjects();
     }
     control.draw();
