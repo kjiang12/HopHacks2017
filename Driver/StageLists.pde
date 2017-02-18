@@ -123,8 +123,8 @@ public class StageLists{
        for (int k = 0; k < bullets.size(); k++){
         if(bullets.get(k).getSprite().bb_collision(tanks.get(l).getBaseSprite())){
           bullets.remove(k);
-          tanks.get(l).setHealth(tanks.get(l).getHealth() - 100);
-          if (tanks.get(l).getHealth() <= 100) {
+          tanks.get(l).setHealth(tanks.get(l).getHealth() - 30);
+          if (tanks.get(l).getHealth() <= 0) {
               this.addItem(new Explosion(tanks.get(l).getPos()[0], tanks.get(l).getPos()[1], new Sprite(app,"../Explosion.png",0)));
               tanks.remove(l);
               l = 0;
