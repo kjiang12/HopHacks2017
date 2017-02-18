@@ -10,7 +10,7 @@ public class StageLists{
   
   public StageLists(PApplet app){
      this.app = app;
-     generateObstacles(25);
+     generateObstacles(50);
      this.addItem(new Tank(100, 500, 500, PI / 3, 50, new Sprite(app,"../TankBase.png",0), new Sprite(app,"../TankHead5.png",0),60));
   }
   public ArrayList<Bullet> getBulletList(){
@@ -58,8 +58,15 @@ public class StageLists{
     for(Obstacle obstacle: obstacles){
       obstacle.getSprite().draw();
     }
-    for(Explosion explosion: explosions){
-      explosion.getSprite().draw();
+    for(int i = 0; i < explosions.size(); i++){
+      if(explosions.get(i).getTick() == 150){
+        explosions.remove(i);
+      }
+      else{
+        explosions.get(i).getSprite().setScale(explosions.get(i).getTick() / 25);
+        explosions.get(i).getSprite().draw();
+        explosions.get(i).setTick(explosions.get(i).getTick() + 1);
+      }
     }
     for(Tank tank: tanks){
       tank.turnLeft();
@@ -74,7 +81,7 @@ public class StageLists{
   }
   
   void collisionCheck(){
-   for (int i = 0; i < bullets.size(); i++){
+   for (int i = 0; i < obstacles.size(); i++){
      if(obstacles.get(i).getSprite().cc_collision(tanks.get(0).getBaseSprite())){
        
      }

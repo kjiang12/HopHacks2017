@@ -1,28 +1,26 @@
 import sprites.Sprite;
 
 public abstract class Obstacle{
-  int x;
-  int y;
   Sprite sprite;
   public Obstacle(int x, int y, Sprite sprite){
-    this.x = x;
-    this.y = y;
     this.sprite = sprite;
+    this.sprite.setX(x);
+    this.sprite.setY(y);
   }
-  public int getX(){
-   return x; 
+  public double getX(){
+   return sprite.getX(); 
   }
-  public int getY(){
-   return y; 
+  public double getY(){
+   return sprite.getY(); 
   }
   public Sprite getSprite(){
    return sprite; 
   }
-  public void setX(int x){
-   this.x = x; 
+  public void setX(double x){
+   sprite.setX(x); 
   }
-  public void setY(int y){
-   this.y = y; 
+  public void setY(double y){
+   sprite.setY(y); 
   }
   public void setX(Sprite sprite){
    this.sprite = sprite; 
