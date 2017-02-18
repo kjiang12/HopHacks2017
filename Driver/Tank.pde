@@ -1,6 +1,6 @@
-//Movement methods
-  //move forward
-  public class Tank()
+import sprites.Sprite;
+
+  public class Tank
   {
       private float health;
       private float power;
@@ -8,20 +8,32 @@
       private float ySpeed;
       private float xCor, yCor;
       private boolean detected;
+      private float angVel;
       private float turrX, turrY;
       private float tankAngle, turrAngle;
-      public Tank(float health, float xCor, float yCor, float turrX, float turrY, float tankAngle, float turrAngle)
+      public Tank(float health, float xCor, float yCor, float turrX, float turrY, float tankAngle, float turrAngle, Sprite base_sprite, Sprite head_sprite)
       {
+        angVel=0;
         xSpeed=0;
         ySpeed=0;
         power=0;
-        this.health=health;
-        this.xCor=xCor;
-        this.yCor=yCor;
-        this.turrX=turrX;
-        this.turrY=turrY;
-        this.tankAngle=tankAngle;
-        this.turrAngle=turrAngle;
+        this.health = health;
+        this.xCor = xCor;
+        this.yCor = yCor;
+        this.turrX = turrX;
+        this.turrY = turrY;
+        this.tankAngle = tankAngle;
+        this.turrAngle = turrAngle;
+        this.base_sprite = base_sprite;
+        this.head_sprite = head_sprite;
+      }
+      public float getAngVel()
+      {
+          return angVel;
+      }
+      public void setAngVel(float angVel)
+      {
+          this.angVel=angVel;
       }
       public float getXPos()
       {
@@ -49,11 +61,11 @@
       }
       public void setDir(float angle)
       {
-          this.tankAngle=angle;
+          this.tankAngle = angle;
       }
       public void setTurrDir(float angle)
       {
-        this.turrAngle=angle;
+        this.turrAngle = angle;
       }
       public void setXSpeed(float speed)
       {
@@ -61,7 +73,7 @@
       }
       public void setYSpeed(float speed)
       {
-          this.ySpeed=speed;
+          this.ySpeed = speed;
       }
       public void setPower(float power)
       {
@@ -86,16 +98,13 @@
           this.detected=detected;
       }
   }
-  private void start()
-  {
-    Tank t1=new Tank(
-  }
+
   public void updateSpeed(boolean forward)
   {
-      float[] oldSpeed=new float[2];
-      float[0]=getXSpeed();
+      float [] oldSpeed=new float[2];
+     /* float[0]=getXSpeed();
       float[1]=getYSpeed();
-      if(forward)
+     */ if(forward)
       {
         float[] newSpeed=Physics.getNewSpeed(getPower(), oldSpeed, getAngle());
       }
@@ -108,14 +117,14 @@
   }
   public void updatePos(float xSpeed, float ySpeed)
   {
-      float x=getXPos()+ xSpeed * ((float 1)/60);
-      float y=getYPos() + ySpeed * ((float 1)/60);
+      float x=getXPos()+ xSpeed * (((float) 1)/60);
+      float y=getYPos() + ySpeed * (((float) 1)/60);
       setPos(x, y);
   }
   public void detection(float xDist, float yDist)
   {
       int r=Math.sqrt(xDist*xDist+yDist*yDist);
-      if (r<= //INSERT DETECTION RADIUS)
+      if (r<= 10)
       {
           setDetection(true);
       }
@@ -125,14 +134,14 @@
       power=0;
   }
   //TURNING STUFF (Both tank and turret)
-  p
+  
   
   //AIMING/ FIRING (Also zooming)
   private float getHealth()
   {
       return health;
   }
-  private void 
+ 
       //speed control
   private void speedUp()
   {
