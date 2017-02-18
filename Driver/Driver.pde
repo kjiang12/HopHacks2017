@@ -10,6 +10,7 @@
   float initY;
   StageLists stageLists;
   CommandController control;
+  boolean start;
   
   Boolean selected = false;
   CommandBlock selections;
@@ -21,6 +22,7 @@
     fullScreen();
     noStroke();
     rectMode(CORNER);
+    start = false;
     
     cp5 = new ControlP5(this);
     cf = new ControlFont(createFont("Times",16));
@@ -118,6 +120,7 @@ class MyButton extends Controller<MyButton>{
     println("clicked at "+p1.x()+", "+p1.y());
     current = 0xffffff00;
     setValue(y);
+    start = true;
     control.execute();
   }
 
@@ -151,7 +154,9 @@ boolean brake = false;
  void draw(){
     background(255.0);
 
-    stageLists.drawObjects();
+    if (start) {
+      stageLists.drawObjects();
+    }
     control.draw();
 
   }
