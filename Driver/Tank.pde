@@ -38,7 +38,13 @@
               return xCor;
             }
             public float getYPos() {
-                return yCor;
+                  return yCor;
+            }
+            public float getTurrX() {
+                return turrX;
+            }
+            public float getTurrY() {
+                return turrY;
             }
             public float getAngle() {
                 return tankAngle;
@@ -115,7 +121,7 @@
             setPos(x, y);
         }
         public void detection(float xDist, float yDist) {
-            int r=Math.sqrt(xDist*xDist+yDist*yDist);
+            int r= (int) Math.sqrt(xDist*xDist+yDist*yDist);
             if (r<= 10) {
                 setDetection(true);
             }
