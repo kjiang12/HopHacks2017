@@ -56,8 +56,9 @@
 
 boolean brake = false;
  void draw(){
+       stageLists.getTankList().get(0).brake();
     background(255.0);
-    
+
     stageLists.drawObjects();
     control.draw();
     if(displayCode){
@@ -68,13 +69,7 @@ boolean brake = false;
   }
   
   void mousePressed(){
-    if (!brake) {
-      stageLists.getTankList().get(0).turnRight();
-      brake = true;
-    } else {
-      stageLists.getTankList().get(0).stopTurn();
-      brake = false;
-    }
+  
     if(cp5.getWindow().getMouseOverList().size() > 0){
       try{
         if(selected){
