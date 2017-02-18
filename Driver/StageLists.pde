@@ -11,10 +11,9 @@ public class StageLists{
   public StageLists(PApplet app){
      this.app = app;
      generateObstacles(2);
+     generateBots(200);
      this.addItem(new Tank(100, 500, 500, PI / 3, 50, new Sprite(app,"../TankBase.png",0), new Sprite(app,"../TankHead5.png",0),20));
-     for (int i = 0; i < 5; i++){
-     this.addItem(new Bot(100, 200+50*i, 200+50*i, PI / 3, 50, new Sprite(app,"../TankBase.png",0), new Sprite(app,"../TankHead5.png",0),50));
-     }
+  
   }
   public ArrayList<Bullet> getBulletList(){
     return bullets;
@@ -93,7 +92,7 @@ public class StageLists{
     collisionCheck();
   }
   
-  void collisionCheck(){
+  public void collisionCheck(){
     println(bullets.size());
    for (int i = 0; i < obstacles.size(); i++){
      for (int j = 0; j < tanks.size(); j++){
@@ -137,7 +136,7 @@ public class StageLists{
   
   }
   
-  void checkBullet(){
+  public void checkBullet(){
     for(Tank tank: tanks){
       if(tank.fired()){
           double [] pos = tank.getPos();
@@ -148,7 +147,7 @@ public class StageLists{
       }
     }    
   }
-  void generateObstacles(int numberOfObstacles){
+  public void generateObstacles(int numberOfObstacles){
    boolean overlap = false;
     int i = 0;
     while (i < numberOfObstacles / 2){
@@ -201,6 +200,35 @@ public class StageLists{
          overlap = false; 
       }
     }
+  }
+  
+  public void generateBots(int numberOfBots){
+    boolean overlap = false;
+    int i = 0;
+    while (i < numberOfBots){
+      Bot bot = new Bot(100, ((int) (Math.random() * (width - 50)) + 20),((int) (Math.random() * (height - 50)) + 20), (PI / 12) * ((int) (Math.random() * 12)), (PI / 12) * ((int) (Math.random() * 12)), new Sprite(app,"../TankBase.png",0), new Sprite(app,"../TankHead5.png",0),50);
+      for (Obstacle obstacle: obstacles){
+       if(obstacle.getSprite().pp_collision(bot.getBaseSprite())){
+         overlap = true;
+         break;
+       }
+      }
+      for (Tank tank: tanks){
+       if(tank.getBaseSprite().pp_collision(bot.getBaseSprite())){
+         overlap = true;
+         break;
+       }
+      }
+      if (!overlap) {
+        this.addItem(bot);
+        i++;
+      }
+      else {
+         overlap = false; 
+      }
+    }
+    
+    
   }
 
 }
