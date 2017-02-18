@@ -77,6 +77,15 @@ public class Tank {
     head_sprite.setRot(turrAngle);
     base_sprite.draw();
     head_sprite.draw();
+    
+    fill(255,0,0);
+    rectMode(CORNER);
+    rect((int)(this.getPos()[0]) - 20, (int)(this.getPos()[1]) - 20, 50, 5);
+    
+    fill(0,255,0);
+  
+    rect((int)(this.getPos()[0]) - 20, (int)(this.getPos()[1]) - 20, health / 2, 5);
+
   }
   
   public double[] getPos() {

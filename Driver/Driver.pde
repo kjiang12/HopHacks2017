@@ -89,13 +89,9 @@ boolean brake = false;
         if(selected){
           if(selections != null){
             control.connect(selections, control.getCommand((ControlGroup) cp5.getWindow().getMouseOverList().get(0).bringToFront()));
-            print("Connection");
             selections = null;
           } else {
-            print("First");
             selections = control.getCommand((ControlGroup) cp5.getWindow().getMouseOverList().get(0).bringToFront());
-            print(selections != null);
-            print("selections");
           }
         } else {
           selectedObject = control.getCommand((ControlGroup) cp5.getWindow().getMouseOverList().get(0).bringToFront());
