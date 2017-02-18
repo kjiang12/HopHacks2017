@@ -24,6 +24,7 @@
     control = new CommandController();
     tank = new Tank(100,50,50,60,50,new Sprite(this,"../TankBase.png",0),new Sprite(this,"../TankHead.png",0));
     control.add(new MoveBackward(cp5, cf, tank));
+    control.add(new MoveForward(cp5, cf, tank));
     control.execute(); //replaces parse();
   }
 
@@ -50,7 +51,7 @@
   void mousePressed(){
     if(cp5.getWindow().getMouseOverList().size() > 0){
       try{
-        draggedObject = control.getCommand((ControlGroup) cp5.getWindow().getMouseOverList().get(0));
+        draggedObject = control.getCommand((ControlGroup) cp5.getWindow().getMouseOverList().get(0).bringToFront());
         initX = mouseX;
         initY = mouseY;
       } catch(Exception e){
