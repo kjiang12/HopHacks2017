@@ -24,11 +24,11 @@
     cp5 = new ControlP5(this);
     cf = new ControlFont(createFont("Times",16));
     obstacles = new ArrayList<Obstacles>();
+    
+    generateObstacles(25);
     control = new CommandController();
     tank = new Tank(100, 50, 50, 60, 50, new Sprite(this,"../TankBase.png",0), new Sprite(this,"../TankHead5.png",0));
-    
-    generateObstacles(300);
-    
+
     control.add(new MoveBackward(cp5, cf, tank));
     control.add(new MoveForward(cp5, cf, tank));
     control.add(new MoveForward(cp5, cf, tank));
@@ -63,7 +63,7 @@ boolean brake = false;
     }
     tank.turnLeft();
     tank.turnTurretRight();
-
+    println(tank.getTankAngle());
     tank.update();
     tank.draw();
 
@@ -71,14 +71,15 @@ boolean brake = false;
       obstacle.getSprite().draw();
     }
     control.draw();
+    collisionCheck();
   }
   
   void mousePressed(){
     if (!brake) {
-      tank.brake();
+      tank.turnRight();
       brake = true;
     } else {
-      tank.forward();
+      tank.stopTurn();
       brake = false;
     }
     if(cp5.getWindow().getMouseOverList().size() > 0){
@@ -166,5 +167,16 @@ void generateObstacles(int numberOfObstacles){
        overlap = false; 
     }
   }
+}
+
+void collisionCheck(){
+   for (Obstacles obstacle: obstacles){
+     if(obstacle.getSprite().cc_collision(tank.getBaseSprite())){
+       System.out.print("Collision!");
+     }
+   }
+  
+  
+  
 }
   
