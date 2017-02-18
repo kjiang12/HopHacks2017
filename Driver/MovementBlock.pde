@@ -1,11 +1,8 @@
 public abstract class MovementBlock extends CommandBlock{
-  float currPow = 0;
   Slider slide;
   
   public MovementBlock(ControlP5 cp5, ControlFont cf, Tank tank){
     super(cp5, tank);
-    this.currPow = 0;
-     
   }
   
   

@@ -1,6 +1,6 @@
 public abstract class LogicCommandBlock extends CommandBlock{
   
-  ControlGroup conditionGroup, thenGroup, elseGroup;
+  LogicBlock conditionGroup, thenGroup, elseGroup;
   
   public LogicCommandBlock(ControlP5 cp5, ControlFont cf, Tank tank){
     super(cp5, tank);    
@@ -8,45 +8,10 @@ public abstract class LogicCommandBlock extends CommandBlock{
     this.g.setOpen(true);
     this.g.getCaptionLabel().set("If").setFont(cf);
     this.g.setSize(this.w, this.h);
-    this.conditionGroup = cp5.addGroup("Condition " + this.id)
-             .setPosition(10,50)
-             .setBackgroundHeight(100)
-             .setSize(w,h)
-             .setBarHeight(40)
-             .setBackgroundColor(color(80,0,180))
-             .setFont(new ControlFont(createFont("Times",12)))
-             .setOpen(false)
-             .disableCollapse()
-             .setGroup(this.g)
-             .setVisible(false)
-             .setCaptionLabel("Condition");
-             
-   this.thenGroup = cp5.addGroup("Then " + this.id)
-             .setPosition(10,100)
-             .setBackgroundHeight(100)
-             .setSize(w,h)
-             .setBarHeight(40)
-             .setBackgroundColor(color(80,0,180))
-             .setFont(new ControlFont(createFont("Times",12)))
-             .setOpen(false)
-             .disableCollapse()
-             .setGroup(this.g)
-             .setVisible(false)
-             .setCaptionLabel("Then");
-             
-             
-   this.elseGroup = cp5.addGroup("Else " + this.id)
-             .setPosition(10,150)
-             .setBackgroundHeight(100)
-             .setSize(w,h)
-             .setBarHeight(40)
-             .setBackgroundColor(color(80,0,180))
-             .setFont(new ControlFont(createFont("Times",12)))
-             .setOpen(false)
-             .disableCollapse()
-             .setGroup(this.g)
-             .setVisible(false)
-             .setCaptionLabel("Else");
+   
+    this.conditionGroup = new LogicBlock(cp5, cf, tank, "Condition", 0);
+    this.thenGroup = new LogicBlock(cp5, cf, tank, "Then", 1);
+    this.elseGroup = new LogicBlock(cp5, cf, tank, "Else", 2);         
   
   }
   
@@ -58,11 +23,35 @@ public abstract class LogicCommandBlock extends CommandBlock{
   }
   abstract void execute();
 }
- 
+
+class LogicBlock extends CommandBlock{
+     public LogicBlock(ControlP5 cp5, ControlFont cf, Tank tank, String label, int pos, ControlGroup group){
+       super(cp5, tank);
+       this.g.setPosition(10, 50*(pos + 1));
+       this.g.setBackgroundHeight(100);
+       this.g.setSize(w,h);
+       this.g.setBarHeight(40);
+       this.g.setBackgroundColor(color(80,0,180));
+       this.g.setFont(new ControlFont(createFont("Times",12)));
+       this.g.setOpen(false);
+       this.g.disableCollapse();
+       this.g.setGroup(group);
+       this.g.setVisible(false);
+       this.g.setCaptionLabel(label);
+     }
+     
+     public void setLabel(String s){
+       g.setCaptionLabel(s);
+     }
+     
+     void execute(){
+     }
+   }
+   
 public class ForLoop extends LogicCommandBlock{
   public ForLoop(ControlP5 cp5, ControlFont cf, Tank tank){
     super(cp5, cf, tank);
-    this.elseGroup.setCaptionLabel("Next");
+    this.elseGroup.setLabel("Next");
   }
 
   void execute() {
@@ -85,28 +74,6 @@ public class WhileLoop extends LogicCommandBlock{
   public WhileLoop(ControlP5 cp5, ControlFont cf, Tank tank){
     super(cp5, cf, tank);
     this.g.getCaptionLabel().set("While").setFont(cf);
-  }
-
-  void execute() {
-
-  }
-}
-
-public class ElseIfStatment extends LogicCommandBlock{
-  public ElseIfStatment(ControlP5 cp5, ControlFont cf, Tank tank){
-    super(cp5, cf, tank);
-    this.g.getCaptionLabel().set("Elseif").setFont(cf);
-  }
-
-  void execute() {
-
-  }
-}
-
-public class ElseStatment extends LogicCommandBlock{
-  public ElseStatment(ControlP5 cp5, ControlFont cf, Tank tank){
-    super(cp5, cf, tank);
-        this.g.getCaptionLabel().set("Else").setFont(cf);
   }
 
   void execute() {
