@@ -4,8 +4,9 @@ public class MoveBackward extends CommandBlock{
     super(cp5, tank);
     this.g.getCaptionLabel().set("Move Backwards")
                             .setFont(cf);
-    this.currPow=0;
+    this.currPow=currPow;
   }
+
   public void setPower(float currPow)
   {
       this.currPow=currPow;
