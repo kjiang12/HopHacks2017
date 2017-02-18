@@ -19,6 +19,7 @@ public abstract class CommandBlock{
              .setBackgroundColor(color(80,0,180))
              .disableCollapse()
              .setVisible(false);
+    this.id = count;
     count++;
     this.tank = tank;
   }
@@ -35,6 +36,10 @@ public abstract class CommandBlock{
   
   void setConnection(Connector connection){
     this.connection = connection;
+  }
+  
+  void deleteConnection(){
+    this.connection = null;
   }
   
   void setVisible(Boolean bol){

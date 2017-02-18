@@ -30,7 +30,7 @@
     control.add(new MoveBackward(cp5, cf, stageLists.getTankList().get(0)));
     control.add(new MoveForward(cp5, cf, stageLists.getTankList().get(0)));
     control.add(new MoveForward(cp5, cf, stageLists.getTankList().get(0)));
-
+    control.add(new ForLoop(cp5, cf, stageLists.getTankList().get(0)));
     control.execute(); //replaces parse();
     
     Toggle tog = cp5.addToggle("Show\nCode")

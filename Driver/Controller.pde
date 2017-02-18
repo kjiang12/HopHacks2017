@@ -66,8 +66,19 @@ public class CommandController{
     if(command1 == command2.next || command1 == command2 || command2 instanceof StartBlock){
       return;
     }
-    command1.setNext(command2);
-    command1.setConnection(new Connector(command1.getX(), command1.getY(), command2.getX(), command2.getY()));
+    
+    if(command1.next == command2){
+      command1.next = null;
+      command2.prev = null;
+      command1.deleteConnection();
+    } else {
+      if(command2.prev != null){
+        command2.prev.next = null;
+        command2.prev.deleteConnection();
+      }
+      command1.setNext(command2);
+      command1.setConnection(new Connector(command1.getX(), command1.getY(), command2.getX(), command2.getY()));
+    }
   }
   
   void scroll(float val){
