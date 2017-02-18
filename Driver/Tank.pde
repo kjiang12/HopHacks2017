@@ -13,7 +13,7 @@
             private Sprite base_sprite;
             private Sprite head_sprite;
             
-            public Tank(float health, float xCor, float yCor, float turrX, float turrY, float tankAngle, float turrAngle, Sprite base_sprite, Sprite head_sprite) {
+            public Tank(float health, float xCor, float yCor, float tankAngle, float turrAngle, Sprite base_sprite, Sprite head_sprite) {
               angVel=0;
               xSpeed=0;
               ySpeed=0;
@@ -21,8 +21,6 @@
               this.health = health;
               this.xCor = xCor;
               this.yCor = yCor;
-              this.turrX = this.xCor;
-              this.turrY = this.yCor;
               this.tankAngle = tankAngle;
               this.turrAngle = turrAngle;
               this.base_sprite = base_sprite;
@@ -47,12 +45,6 @@
                   return yCor;
             }
             // change to turret angle, call update for angle
-            public float getTurrX() {
-                return turrX;
-            }
-            public float getTurrY() {
-                return turrY;
-            }
             public float getTankAngle() {
                 return tankAngle;
             }
@@ -97,10 +89,6 @@
             public void setPos(float xCor, float yCor) {
               this.xCor=xCor;
               this.yCor=yCor;
-            }
-            public void setTurrPos(float turrX, float turrY) {
-                this.turrX=turrX;
-                this.turrY=turrY;
             }
             public void setDetection(boolean detected) {
                 this.detected=detected;

@@ -17,7 +17,7 @@
     cp5 = new ControlP5(this);
     cf = new ControlFont(createFont("Times",12));
     commandList = new LinkedList<CommandBlock>();
-    tank = new Tank(100,50,50,60,50,10,10,new Sprite(this,"../TankBase.png",0),new Sprite(this,"../TankHead.png",0));
+    tank = new Tank(100,50,50,0,0,new Sprite(this,"../TankBase.png",0),new Sprite(this,"../TankHead.png",0));
     MoveBackward command = new MoveBackward(cp5, cf, tank);
     commandList.add(command);
 
@@ -35,8 +35,8 @@ void parse(){
      tank.getBaseSprite().setX(tank.getXPos());
      tank.getBaseSprite().setY(tank.getYPos());
      tank.getBaseSprite().setRot(tank.getTankAngle());
-     tank.getHeadSprite().setX(tank.getTurrX());
-     tank.getHeadSprite().setY(tank.getTurrY());
+     tank.getHeadSprite().setX(tank.getXPos());
+     tank.getHeadSprite().setY(tank.getYPos());
      tank.getHeadSprite().setRot(tank.getTurrAngle());
      tank.getBaseSprite().draw();
      tank.getHeadSprite().draw();
