@@ -1,6 +1,8 @@
-public class MoveBackward implements CommandBlock{
-    void execute() {
-      System.out.print("Fire!");
-      
-    }
+public class MoveBackward extends CommandBlock{
+  public MoveBackward(ControlP5 cp5){
+    super(cp5);
+  }
+  void execute() {
+        System.out.print("Fire!");     
+  }
 }
