@@ -190,6 +190,10 @@ public class Tank {
     }
     
   }
+  public void crash(){
+    
+    
+  }
 }
       
       
