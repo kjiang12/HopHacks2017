@@ -15,6 +15,7 @@ void setup (){
   noStroke();
   rectMode(CENTER);
   cp5 = new ControlP5(this);
+  createGUI(cp5);
   cf = new ControlFont(createFont("Times",12));
   commandList = new LinkedList<CommandBlock>();
   
