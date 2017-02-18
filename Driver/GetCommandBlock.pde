@@ -6,6 +6,8 @@ public abstract class GetCommandBlock extends CommandBlock{
   abstract void execute();
 }
 
+/*** everything below needs to be written ***/
+
 public class GetTankAngVel extends GetCommandBlock{
   public GetTankAngVel(ControlP5 cp5, ControlFont cf, Tank tank){
     super(cp5, cf, tank);
@@ -18,7 +20,6 @@ public class GetTankAngVel extends GetCommandBlock{
 
 }
 
-/*** everything below needs to be written ***/
 
 public class GetDirection extends GetCommandBlock{
   public GetTankAngVel(ControlP5 cp5, ControlFont cf, Tank tank){
