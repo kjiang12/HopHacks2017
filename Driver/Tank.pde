@@ -14,7 +14,7 @@ public class Tank {
   private Sprite base_sprite;
   private Sprite head_sprite;
 
-  public Tank(float health, double x, double y, float tankAngle, float turrAngle, Sprite base_sprite, Sprite head_sprite) {
+  public Tank(float health, double x, double y, float tankAngle, float turrAngle, Sprite base_sprite, Sprite head_sprite,int reloadTime) {
     this.health = health;
     this.tankAngle = tankAngle;
     this.turrAngle = turrAngle;
@@ -192,7 +192,6 @@ public class Tank {
     if (reloadTime == 0) {
       
     }
-    s
   }
 }
       

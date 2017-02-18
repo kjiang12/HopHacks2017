@@ -71,6 +71,7 @@ public class StageLists{
           Bullet bullet = new Bullet(((int) pos[0]), ((int) pos[1]), new Sprite(app,"../Bullet.png",0));
           bullets.add(bullet);
           tank.setFired(false);
+          tank.setReloadTime(60);
       }
     }    
   }
