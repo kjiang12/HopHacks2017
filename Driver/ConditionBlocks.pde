@@ -12,9 +12,8 @@ public abstract class ConditionBlock extends CommandBlock{
     control.add(logic);
     logic.changeX(logic.getRX() + logic.w/2);
     logic.changeSize(logic.w / 2, logic.h);
-    print(logic.w + "\n");
+
     logic.w /= 2;
-    print(logic.w + "\n");
     return logic;
   }
 }
@@ -44,13 +43,18 @@ public class Comparison2Var extends ConditionBlock{
                       .setOpen(false)
                       .setLabelVisible(false)
                       .setCaptionLabel("")
-                      .setFont(new ControlFont(createFont("Times", 30)));
+                      .setFont(new ControlFont(createFont("Times", 30)))
+                      .onClick(new CallbackListener(){
+           public void controlEvent(CallbackEvent event) {
+             println(event.getController().getValue());
+           }
+     });;
                        
   }
   
   Boolean calculate(){
     if(var1.next != null && var2.next != null){
-      int op = Integer.parseInt(operatorList.getStringValue());
+      int op = (int) operatorList.getValue();
       
       switch(op){
         case 0:
