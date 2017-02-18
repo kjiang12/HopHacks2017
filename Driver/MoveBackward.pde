@@ -5,9 +5,12 @@ public class MoveBackward extends CommandBlock{
     super(cp5);
     this.g.getCaptionLabel().set("Move Backwards")
                             .setFont(cf);
+<<<<<<< HEAD
     this.t1=t1;
     this.currPow=currPow;
 //<<<<<<< HEAD
+=======
+>>>>>>> origin/master
     this.t1=t1;
     this.currPow=currPow;
   }
@@ -15,8 +18,11 @@ public class MoveBackward extends CommandBlock{
       t1.updateSpeed(false);
       t1.updatePos(t1.getXSpeed(), t1.getYSpeed());
       execute();
+<<<<<<< HEAD
 //=======
 //>>>>>>> origin/master
+=======
+>>>>>>> origin/master
   }
   
   void execute() {
