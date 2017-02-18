@@ -20,9 +20,9 @@ public class GetTankAngVel extends GetCommandBlock{
 
 }
 
-
+/*
 public class GetDirection extends GetCommandBlock{
-  public GetTankAngVel(ControlP5 cp5, ControlFont cf, Tank tank){
+  public GetDirection(ControlP5 cp5, ControlFont cf, Tank tank){
     super(cp5, cf, tank);
   }
 
@@ -32,7 +32,7 @@ public class GetDirection extends GetCommandBlock{
 }
 
 public class GetReloadingTime extends GetCommandBlock{
-  public GetTankAngVel(ControlP5 cp5, ControlFont cf, Tank tank){
+  public GetReloadingTime(ControlP5 cp5, ControlFont cf, Tank tank){
     super(cp5, cf, tank);
   }
 
@@ -86,3 +86,4 @@ public class GetVel extends GetCommandBlock{
   }
 
 }
+*/

@@ -16,7 +16,7 @@
     noStroke();
     rectMode(CENTER);
     cp5 = new ControlP5(this);
-    cf = new ControlFont(createFont("Times",12));
+    cf = new ControlFont(createFont("Times",16));
 
     
     obstacles = new ArrayList<Obstacles>();
@@ -46,7 +46,7 @@
   void mousePressed(){
     if(cp5.getWindow().getMouseOverList().size() > 0){
       try{
-        draggedObject = control.getCommand(Integer.parseInt(cp5.getWindow().getMouseOverList().get(0).getStringValue()));
+        draggedObject = control.getCommand((ControlGroup) cp5.getWindow().getMouseOverList().get(0));
         initX = mouseX;
         initY = mouseY;
       } catch(Exception e){
