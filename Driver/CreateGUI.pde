@@ -77,29 +77,29 @@ class DropDownMenu {
     } else if (label.equals("For")) {
       control.add(new ForLoop(cp5, cf, stageLists.getTankList().get(0)));
     } else if (label.equals("Get My Angular Velocity")) {
-      control.add(new GetMyAngVel(cp5, cf, stageLists.getTankList().get(0))); 
+      control.add(new GetMyAngVel(cp5, cf, stageLists.getTankList().get(0), stageLists.getTankList().get(1))); 
     } else if (label.equals("Get Enemy Angular Velocity")) {
-      control.add(new GetEnemyAngVel(cp5, cf, stageLists.getTankList().get(0))); 
+      control.add(new GetEnemyAngVel(cp5, cf, stageLists.getTankList().get(0), stageLists.getTankList().get(1))); 
     } else if (label.equals("Get My Angle")) {
-      control.add(new GetMyAngle(cp5, cf, stageLists.getTankList().get(0))); 
+      control.add(new GetMyAngle(cp5, cf, stageLists.getTankList().get(0), stageLists.getTankList().get(1))); 
     } else if (label.equals("Get Enemy Angle")) {
-      control.add(new GetEnemyAngle(cp5, cf, stageLists.getTankList().get(0))); 
+      control.add(new GetEnemyAngle(cp5, cf, stageLists.getTankList().get(0), stageLists.getTankList().get(1))); 
     } else if (label.equals("Get My Velocity")) {
-      control.add(new GetMyVel(cp5, cf, stageLists.getTankList().get(0))); 
+      control.add(new GetMyVel(cp5, cf, stageLists.getTankList().get(0), stageLists.getTankList().get(1))); 
     } else if (label.equals("Get Enemy Velocity")) {
-      control.add(new GetEnemyVel(cp5, cf, stageLists.getTankList().get(0))); 
+      control.add(new GetEnemyVel(cp5, cf, stageLists.getTankList().get(0), stageLists.getTankList().get(1))); 
     } else if (label.equals("Get My Position")) {
-      control.add(new GetMyPos(cp5, cf, stageLists.getTankList().get(0))); 
+      control.add(new GetMyPos(cp5, cf, stageLists.getTankList().get(0), stageLists.getTankList().get(1))); 
     } else if (label.equals("Get Enemy Position")) {
-      control.add(new GetEnemyPos(cp5, cf, stageLists.getTankList().get(0))); 
+      control.add(new GetEnemyPos(cp5, cf, stageLists.getTankList().get(0), stageLists.getTankList().get(1))); 
     } else if (label.equals("Get My Reloading Time")) {
-      control.add(new GetMyReloadingTime(cp5, cf, stageLists.getTankList().get(0))); 
+      control.add(new GetMyReloadingTime(cp5, cf, stageLists.getTankList().get(0), stageLists.getTankList().get(1))); 
     } else if (label.equals("Get Enemy Reloading Time")) {
-      control.add(new GetEnemyReloadingTime(cp5, cf, stageLists.getTankList().get(0))); 
+      control.add(new GetEnemyReloadingTime(cp5, cf, stageLists.getTankList().get(0), stageLists.getTankList().get(1))); 
     } else if (label.equals("Get My Turret Angular Velocity")) {
-      control.add(new GetMyTurrAngVel(cp5, cf, stageLists.getTankList().get(0))); 
+      control.add(new GetMyTurrAngVel(cp5, cf, stageLists.getTankList().get(0), stageLists.getTankList().get(1))); 
     } else if (label.equals("Get Enemy Turret Angular Velocity")) {
-      control.add(new GetEnemyTurrAngVel(cp5, cf, stageLists.getTankList().get(0)));  
+      control.add(new GetEnemyTurrAngVel(cp5, cf, stageLists.getTankList().get(0), stageLists.getTankList().get(1)));  
     }
     control.setVisible(true);
   }
