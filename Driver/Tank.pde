@@ -8,10 +8,12 @@ import sprites.Sprite;
       private float ySpeed;
       private float xCor, yCor;
       private boolean detected;
+      private float angVel;
       private float turrX, turrY;
       private float tankAngle, turrAngle;
       public Tank(float health, float xCor, float yCor, float turrX, float turrY, float tankAngle, float turrAngle, Sprite base_sprite, Sprite head_sprite)
       {
+        angVel=0;
         xSpeed=0;
         ySpeed=0;
         power=0;
@@ -24,6 +26,14 @@ import sprites.Sprite;
         this.turrAngle = turrAngle;
         this.base_sprite = base_sprite;
         this.head_sprite = head_sprite;
+      }
+      public float getAngVel()
+      {
+          return angVel;
+      }
+      public void setAngVel(float angVel)
+      {
+          this.angVel=angVel;
       }
       public float getXPos()
       {
