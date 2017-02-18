@@ -2,7 +2,7 @@ static int count = 0;
 
 public abstract class CommandBlock{
   protected ControlP5 cp5;
-  protected Group g;
+  protected ControlGroup g;
   
   public CommandBlock(ControlP5 cp5){
     this.cp5 = cp5;
@@ -12,7 +12,7 @@ public abstract class CommandBlock{
              .setSize(300,100)
              .setBarHeight(20)
              .setBackgroundColor(color(255,80))
-   ;
+             .disableCollapse();
     count++;
   }
   
