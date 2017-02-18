@@ -16,8 +16,7 @@ public class MoveBackward extends CommandBlock{
   }
 
   void execute() {
-      //t1.updateSpeed(false);
-      //t1.updatePos(t1.getXSpeed(), t1.getYSpeed());
-    }
+      tank.updatePos(false);
+  }
 
 }

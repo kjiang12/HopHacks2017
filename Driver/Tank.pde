@@ -7,13 +7,15 @@
             private float ySpeed;
             private float xCor, yCor;
             private boolean detected;
-            private float angVel; // add angVel for turret 
-            private float turrX, turrY; // I dont think we need this
+            private float angVel;
+            private float turrAngVel;
             private float tankAngle, turrAngle;
+            String state="Stop Turn";
+            String turrState="Stop Turret Turn";
             private Sprite base_sprite;
             private Sprite head_sprite;
             
-            public Tank(float health, float xCor, float yCor, float turrX, float turrY, float tankAngle, float turrAngle, Sprite base_sprite, Sprite head_sprite) {
+            public Tank(float health, float xCor, float yCor, float tankAngle, float turrAngle, Sprite base_sprite, Sprite head_sprite) {
               angVel=0;
               xSpeed=0;
               ySpeed=0;
@@ -21,22 +23,40 @@
               this.health = health;
               this.xCor = xCor;
               this.yCor = yCor;
-              this.turrX = this.xCor;
-              this.turrY = this.yCor;
               this.tankAngle = tankAngle;
               this.turrAngle = turrAngle;
               this.base_sprite = base_sprite;
               this.head_sprite = head_sprite;
             }
-            // make this for turret angle too
+            public void setState(String s){
+                state=s;
+            }
+            public void setTurrState(String s){
+              turrState=s;
+            }
             public float getAngVel() {
-                //call update for angVel (either turnLeft, turnRight, or stopTurn based on user choice)
+                if(state.equals("Stop Turn")) {
+                  this.angVel=Physics.stopTurn(angVel);
+                }
+                else if(state.equals("Turn Left")){
+                  this.angVel=Physics.turnLeft(angVel);
+                }
+                else if(state.equals("Turn Right")){
+                  this.angVel=Physics.turnRight(angVel);
+                }
                 return angVel;
             }
-            public void setAngVel(float angVel) {
-              // instead, call turnLeft/turnRight/stopTurn
-              // and for turret: turnTurretLeft, turnTurretRight, stopTurretTurn
-                this.angVel=angVel;
+            public float getTurrAngVel(){
+              if(state.equals("Stop Turret Turn")){
+                  this.angVel=Physics.stopTurretTurn(turrAngVel);
+                }
+                else if(state.equals("Turn Turret Left")){
+                  this.angVel=Physics.turnTurretLeft(turrAngVel);
+                }
+                else if(state.equals("Turn Turret Right")){
+                  this.angVel=Physics.turnTurretRight(turrAngVel);
+                }
+              return turrAngVel;
             }
             public float getXPos() {
               // call update pos
@@ -47,27 +67,23 @@
                   return yCor;
             }
             // change to turret angle, call update for angle
-            public float getTurrX() {
-                return turrX;
-            }
-            public float getTurrY() {
-                return turrY;
-            }
             public float getTankAngle() {
-                return tankAngle;
+                tankAngle=tankAngle + getAngVel() * (((float) 1)/60);
+                return (tankAngle);
             }
             public float getTurrAngle() {
-                return turrAngle;
+                turrAngle=turrAngle + getTurrAngVel() * (((float) 1)/60);
+                return (turrAngle);
             }
             public float getPower() {
                 return power;
             }
-            public float getXSpeed() {
-              // call moveForward/backward first
+            public float getXSpeed(boolean forward) {
+                updateSpeed(forward, xSpeed, ySpeed);
                 return xSpeed;
             }
-            public float getYSpeed() {
-              // call moveForward/backward first
+            public float getYSpeed(boolean forward) {
+                updateSpeed(forward, xSpeed, ySpeed);
                 return ySpeed;
             }
             public Sprite getBaseSprite() {
@@ -75,18 +91,6 @@
             }
             public Sprite getHeadSprite() {
                 return head_sprite;
-            }
-            public void setTankAngle(float tankAngle) {
-                this.tankAngle = tankAngle;
-            }
-            public void setTurrAngle(float turrAngle) {
-              this.turrAngle = turrAngle;
-            }
-            public void setXSpeed(float speed) {
-                this.xSpeed=speed;
-            }
-            public void setYSpeed(float speed) {
-                this.ySpeed = speed;
             }
             public void setPower(float power) {
                 this.power=power;
@@ -97,10 +101,6 @@
             public void setPos(float xCor, float yCor) {
               this.xCor=xCor;
               this.yCor=yCor;
-            }
-            public void setTurrPos(float turrX, float turrY) {
-                this.turrX=turrX;
-                this.turrY=turrY;
             }
             public void setDetection(boolean detected) {
                 this.detected=detected;
@@ -114,23 +114,25 @@
             
             
             
-       /*       public void updateSpeed(boolean forward) {
-            float [] oldSpeed=new float[2];
-            float[0]=getXSpeed();
-            float[1]=getYSpeed();
+            private void updateSpeed(boolean forward, float xSpeed, float ySpeed) {
+            float[] oldSpeed=new float[2];
+            oldSpeed[0]=xSpeed;
+            oldSpeed[1]=ySpeed;
+            float[] newSpeed=new float[2];
             if(forward) {
-              float[] newSpeed=Physics.getNewSpeed(getPower(), oldSpeed, getAngle());
+              newSpeed=Physics.getNewForwardVel(getPower(), oldSpeed, getTankAngle());
             }
             else {
-              float[] newSpeed=Physics.getNewSpeed(getPower(), oldSpeed, getAngle());
+              newSpeed=Physics.getNewBackwardVel(getPower(), oldSpeed, getTankAngle());
             }
-            setXSpeed(newSpeed[0]);
-            setYSpeed(newSpeed[1]);
-        }*/
-        public void updatePos(float xSpeed, float ySpeed) {
-            float x=getXPos()+ xSpeed * (((float) 1)/60);
-            float y=getYPos() + ySpeed * (((float) 1)/60);
-            setPos(x, y);
+            xSpeed = newSpeed[0];
+            ySpeed = newSpeed[1];
+        }
+        private void updatePos(boolean forward) {
+            float x=getXPos()+ getXSpeed(forward) * (((float) 1)/60);
+            float y=getYPos() + getXSpeed(forward) * (((float) 1)/60);
+            xCor=x;
+            yCor=y;
         }
         public void detection(float xDist, float yDist) {
             int r= (int) Math.sqrt(xDist*xDist+yDist*yDist);
