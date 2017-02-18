@@ -63,14 +63,3 @@ void mouseDragged(){
     initY = mouseY;
   }
   
-  void mouseReleased(){
-    draggedObject = null;
-  }
-  
-  void mouseDragged(){
-    if(draggedObject != null){
-      draggedObject.move(mouseX - initX, mouseY - initY);
-      initX = mouseX;
-      initY = mouseY;
-    }
-  }
