@@ -96,6 +96,7 @@ public class Tank {
   public void stop(){
    base_sprite.setVelXY(0,0); 
    head_sprite.setVelXY(0,0);  
+   tankAngVel = 0;
   }
                   
   public float getTankAngVel() {          

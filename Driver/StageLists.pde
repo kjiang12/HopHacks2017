@@ -12,6 +12,7 @@ public class StageLists{
      this.app = app;
      generateObstacles(50);
      this.addItem(new Tank(100, 500, 500, PI / 3, 50, new Sprite(app,"../TankBase.png",0), new Sprite(app,"../TankHead5.png",0),60));
+     tanks.get(0).forward();
   }
   public ArrayList<Bullet> getBulletList(){
     return bullets;
@@ -82,7 +83,7 @@ public class StageLists{
   
   void collisionCheck(){
    for (int i = 0; i < obstacles.size(); i++){
-     for (int j = 0; j < bullets.size(); j++){
+     for (int j = 0; j < tanks.size(); j++){
        if(obstacles.get(i).getSprite().cc_collision(tanks.get(j).getBaseSprite())){
          tanks.get(j).stop();
        }
