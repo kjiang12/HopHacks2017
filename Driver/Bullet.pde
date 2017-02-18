@@ -2,6 +2,7 @@ public class Bullet{
   int x;
   int y;
   Sprite sprite;
+  int 
   public Bullet(int x, int y, Sprite sprite){
     this.x = x;
     this.y = y;
@@ -24,5 +25,9 @@ public class Bullet{
   }
   public void setX(Sprite sprite){
    this.sprite = sprite; 
+  }
+  public void update(){
+    
+    
   }
 }

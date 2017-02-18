@@ -86,10 +86,8 @@ static class Physics {
   }
   
   private static float getComponent(float val, float angle, boolean x) {
-    return x ? val * cos(degToRad(angle)) : val * sin(degToRad(angle));
+    return x ? val * cos(angle) : val * sin(angle);
   }
   
-  private static float degToRad(float angle) {
-     return (angle - 40) * PI / 180.0; 
-  }
+ 
 }
