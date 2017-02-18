@@ -3,8 +3,9 @@ static int count = 0;
 public abstract class CommandBlock{
   protected ControlP5 cp5;
   protected ControlGroup g;
+  protected Tank tank;
   
-  public CommandBlock(ControlP5 cp5){
+  public CommandBlock(ControlP5 cp5, Tank tank){
     this.cp5 = cp5;
     this.g = cp5.addGroup(count + "")
              .setPosition(100,100)
@@ -14,6 +15,7 @@ public abstract class CommandBlock{
              .setBackgroundColor(color(255,80))
              .disableCollapse();
     count++;
+    this.tank = tank;
   }
   
   abstract void execute();
