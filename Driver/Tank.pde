@@ -1,20 +1,27 @@
 import sprites.Sprite;
-import sprites.maths.Vector2D;
 
 public class Tank {
   private float health;
+  private float[] vel;
+  private float[] pos;
   private boolean detected;
   private float tankAngVel;
   private float turrAngVel;
   private float tankAngle, turrAngle;
+  boolean fired;
   private String moveState; // "Brake" "Forward" "Backward"
   private String turnState; // "Stop Turn" "Turn Left" "Turn Right"
   private String turrState; // "Stop Turn Turret" "Turn Turret Left" "Turn Turret Right"
   private int reloadTime;
   private Sprite base_sprite;
   private Sprite head_sprite;
-
-  public Tank(float health, double x, double y, float tankAngle, float turrAngle, Sprite base_sprite, Sprite head_sprite) {
+            
+  public Tank(float health, float xCor, float yCor, float tankAngle, float turrAngle, Sprite base_sprite, Sprite head_sprite, int reloadTime) {
+    pos = new float[2];
+    pos[0] = xCor;
+    pos[1] = yCor;
+    vel = new float[2];
+    fired=false;
     this.health = health;
     this.tankAngle = tankAngle;
     this.turrAngle = turrAngle;
@@ -22,10 +29,9 @@ public class Tank {
     moveState = "Brake";
     turnState = "Stop Turn";
     turrState = "Stop Turret Turn";
+
     this.base_sprite = base_sprite;
     this.head_sprite = head_sprite;
-    this.base_sprite.setPos(new Vector2D(x, y));
-    this.head_sprite.setPos(new Vector2D(x, y));
     this.reloadTime = reloadTime;
   }
   
@@ -50,45 +56,44 @@ public class Tank {
               
     // update tank angle
     tankAngle += tankAngVel;
-    tankAngle %= 2*PI;
               
     // update turret angle
     turrAngle += turrAngVel;
-    turrAngle %= 2*PI;
 
     // update velocity
     if (moveState.equals("Forward")) {
-      Physics.forward(base_sprite, head_sprite);
+      vel = Physics.getNewForwardVel(vel, tankAngle);
+    } else if (moveState.equals("Backward")) {
+      vel = Physics.getNewBackwardVel(vel, tankAngle);
     } else if (moveState.equals("Brake")) {
-      Physics.brake(base_sprite, head_sprite); 
+      vel = Physics.brake(vel, tankAngle); 
     }
+    
+    // update position
+    pos[0] += vel[0];
+    pos[1] += vel[1];
     
     // update reload time
     reloadTime--;
   }
   
   void draw(){
+    base_sprite.setX(pos[0]);
+    base_sprite.setY(pos[1]);
     base_sprite.setRot(tankAngle);
-    base_sprite.setDirection(tankAngle);
+    head_sprite.setX(pos[0]);
+    head_sprite.setY(pos[1]);
     head_sprite.setRot(turrAngle);
     base_sprite.draw();
     head_sprite.draw();
   }
   
-  public double[] getPos() {
-    double[] returnArr = new double[2];
-    returnArr[0] = base_sprite.getX();
-    returnArr[1] = base_sprite.getY();
-    
-    return returnArr;
+  public float[] getPos() {
+    return pos;
   }
               
-  public double[] getVel() {
-    double[] returnArr = new double[2];
-    returnArr[0] = base_sprite.getVelX();
-    returnArr[1] = base_sprite.getVelY();
-    
-    return returnArr;
+  public float[] getVel(boolean forward, float xSpeed, float ySpeed) {
+    return vel;
   }
                   
   public float getTankAngVel() {          
@@ -99,12 +104,12 @@ public class Tank {
     return turrAngVel;
   }
             
-  public double getTankAngle() {
-    return base_sprite.getDirection();
+  public float getTankAngle() {
+    return tankAngle;
   }
             
-  public double getTurrAngle() {
-    return head_sprite.getDirection();
+  public float getTurrAngle() {
+    return turrAngle;
   }
   
   public void forward() {
@@ -170,7 +175,7 @@ public class Tank {
   public void setHeadSprite(Sprite head_sprite) {
     this.head_sprite=head_sprite;
   }
-          
+  
   public void detection(float xDist, float yDist) {
     int r= (int) Math.sqrt(xDist*xDist+yDist*yDist);
     if (r<= 10) {
@@ -183,15 +188,16 @@ public class Tank {
   public float getHealth() {
     return health;
   }
-  
+  public boolean fired(){
+      return fired;
+  }
+  public void setFired(boolean fired){
+      this.fired=fired;
+  }
   public void fireBullet(){
     if (reloadTime == 0) {
-      
+        setFired(true);
     }
-    
-  }
-  public void crash(){
-    
     
   }
 }

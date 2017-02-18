@@ -16,10 +16,6 @@ public class Fire extends ActionCommandBlock{
 
   void execute() {
     tank.fireBullet();
-    //PUT IN TANK CLASS
-    //float startPos = tank.getPos();
-    //Bullet b=new Bullet(startPos[0], startPos[1]);
-    
   }
 
 }
