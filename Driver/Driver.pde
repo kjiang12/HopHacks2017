@@ -67,13 +67,7 @@ boolean brake = false;
   }
   
   void mousePressed(){
-    if (!brake) {
-      stageLists.getTankList().get(0).turnRight();
-      brake = true;
-    } else {
-      stageLists.getTankList().get(0).stopTurn();
-      brake = false;
-    }
+  
     if(cp5.getWindow().getMouseOverList().size() > 0){
       try{
         if(selected){

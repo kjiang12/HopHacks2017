@@ -28,7 +28,7 @@ public class Tank {
     this.base_sprite.setPos(new Vector2D(x, y));
     this.head_sprite.setPos(new Vector2D(x, y));
     this.reloadTime = reloadTime;
-    fired = false;
+    fired = true;
   }
   
   public void update() {
@@ -106,6 +106,7 @@ public class Tank {
   }
             
   public double getTurrAngle() {
+    print(head_sprite.getDirection());
     return head_sprite.getDirection();
   }
   

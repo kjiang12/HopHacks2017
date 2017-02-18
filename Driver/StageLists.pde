@@ -38,6 +38,7 @@ public class StageLists{
   
   public void drawObjects(){
     for(Bullet bullet: bullets){
+      bullet.update();
       bullet.getSprite().draw();
     }
     for(Obstacle obstacle: obstacles){
@@ -46,11 +47,12 @@ public class StageLists{
     for(Tank tank: tanks){
       tank.turnLeft();
       tank.turnTurretRight();
-      println(tank.getTankAngle());
+    //  println(tank.getTankAngle());
       tank.update();
       tank.draw();
     }
 
+    checkBullet();
     collisionCheck();
   }
   
@@ -68,10 +70,11 @@ public class StageLists{
       if(tank.fired()){
           double [] pos = tank.getPos();
           //NEED TO CREATE SPRITE
-          Bullet bullet = new Bullet(((int) pos[0]), ((int) pos[1]), new Sprite(app,"../Bullet.png",0));
-          bullets.add(bullet);
-          tank.setFired(false);
-          tank.setReloadTime(60);
+          Bullet bullet = new Bullet(((int) pos[0]), ((int) pos[1]), new Sprite(app,"../Bullet.png",0), tank.getTurrAngle());
+          println(bullet.getAngle());
+          this.addItem(bullet);
+        //  tank.setFired(false);
+       //   tank.setReloadTime(60);
       }
     }    
   }
