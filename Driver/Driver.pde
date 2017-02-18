@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+import java.util.ListIterator;
 
 void setup (){
   LinkedList<CommandBlock> commandList = new LinkedList<CommandBlock>();
@@ -8,8 +9,10 @@ void setup (){
 }
 
 void parse(LinkedList commandList){
-     for (int i = 0; i < commandList.size(); i++) {
-      commandList.get(i).execute();
+    ListIterator<CommandBlock> listIterator = commandList.listIterator();
+    while (listIterator.hasNext()) {
+      CommandBlock command = listIterator.next();
+      command.execute();
     }
   
 }
