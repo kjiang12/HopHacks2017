@@ -4,12 +4,15 @@
 
   ControlP5 cp5;
   ControlFont cf;
-  CommandBlock draggedObject;
+  CommandBlock selectedObject;
   float initX;
   float initY;
   Tank tank;
   ArrayList<Obstacles> obstacles;
   CommandController control;
+  
+  Boolean selected = false;
+  CommandBlock selections;
   
  void setup (){
     size(1260, 720);
@@ -17,13 +20,13 @@
     rectMode(CENTER);
     cp5 = new ControlP5(this);
     cf = new ControlFont(createFont("Times",16));
-
-    
+  
     obstacles = new ArrayList<Obstacles>();
     generateObstacles(10);
     control = new CommandController();
     tank = new Tank(100,50,50,60,50,new Sprite(this,"../TankBase.png",0),new Sprite(this,"../TankHead.png",0));
     control.add(new MoveBackward(cp5, cf, tank));
+    control.add(new MoveForward(cp5, cf, tank));
     control.add(new MoveForward(cp5, cf, tank));
     control.execute(); //replaces parse();
   }
@@ -31,20 +34,12 @@
 
  void draw(){
     background(255.0);
-    
+    control.draw();
     tank.turnLeft();
     tank.turnTurretRight();
     tank.update();
     tank.draw();
-    /*tank.getBaseSprite().setX(tank.getPos()[0]);
-    tank.getBaseSprite().setY(tank.getPos()[1]);
-    tank.getBaseSprite().setRot(tank.getTankAngle());
-    tank.getHeadSprite().setX(tank.getPos()[0]);
-    tank.getHeadSprite().setY(tank.getPos()[1]);
-    tank.getHeadSprite().setRot(tank.getTurrAngle());
-    tank.getBaseSprite().draw();
-    tank.getHeadSprite().draw();*/
-    
+
     for(Obstacles obstacle: obstacles){
       obstacle.getSprite().draw();
     }
@@ -53,24 +48,44 @@
   void mousePressed(){
     if(cp5.getWindow().getMouseOverList().size() > 0){
       try{
-        draggedObject = control.getCommand((ControlGroup) cp5.getWindow().getMouseOverList().get(0).bringToFront());
-        initX = mouseX;
-        initY = mouseY;
+        if(selected){
+          if(selections != null){
+            control.connect(selections, control.getCommand((ControlGroup) cp5.getWindow().getMouseOverList().get(0).bringToFront()));
+            selections = null;
+          } else {
+            selections = control.getCommand((ControlGroup) cp5.getWindow().getMouseOverList().get(0).bringToFront());
+          }
+        } else {
+          selectedObject = control.getCommand((ControlGroup) cp5.getWindow().getMouseOverList().get(0).bringToFront());
+          initX = mouseX;
+          initY = mouseY;
+        }
       } catch(Exception e){
       }
     }
    }
 
 void mouseReleased(){
-  draggedObject = null;
+  selectedObject = null;
 }
 
 void mouseDragged(){
-  if(draggedObject != null && mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height){
-    draggedObject.move(mouseX - initX, mouseY - initY);
+  if(selectedObject != null && mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height){
+    selectedObject.move(mouseX - initX, mouseY - initY);
     initX = mouseX;
     initY = mouseY;
   }
+}
+
+void keyPressed() {
+  if (key == CODED && keyCode == CONTROL) {
+    selected = true;
+  } 
+}
+
+void keyReleased(){
+  selected = false;
+  selections = null;
 }
 
 void generateObstacles(int numberOfObstacles){
