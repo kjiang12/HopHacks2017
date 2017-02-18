@@ -38,7 +38,6 @@
      .setFont(cf)
      .setPosition(20,20)
      .setSize(70,50)
-     .setColorBackground(color(0, 120, 0))
      .onChange(new CallbackListener(){
        public void controlEvent(CallbackEvent event) {
          if(event.getController().getValue() == 0){
