@@ -31,21 +31,6 @@ void parse(){
     }
 }
 
-void draw(){
-  background(0.0);
-  tank.getBaseSprite().setX(tank.getXPos());
-  tank.getBaseSprite().setY(tank.getYPos());
-  tank.getHeadSprite().setX(tank.getTurrX());
-  tank.getHeadSprite().setY(tank.getTurrY());
-  tank.getBaseSprite().draw();
-  tank.getHeadSprite().draw();
-
-  void parse(){
-      for (CommandBlock command: commandList) {
-        command.execute();
-      }
-    
-  }
     
     void draw(){
       background(0.0);
