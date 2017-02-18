@@ -15,13 +15,19 @@ public abstract class ConditionBlock extends CommandBlock{
 }
 public enum Compare { EQUALS, LESSTHAN, LESSTHANOREQUAL, GREATERTHAN, GREATERTHANOREQUAL};
 public class Comparison2Var extends ConditionBlock{
-  LogicBlocks var1, var2;
+  LogicBlock var1, var2;
   Compare selected;
   
   public Comparison2Var(ControlP5 cp5, ControlFont cf, Tank tank){
     super(cp5, cf, tank);
-    this.var1 = this.add(new LogicBlock(cp5, cf, tank, "Var1", 1, this.g));
-    this.var2 = this.add(new LogicBlock(cp5, cf, tank, "Var2", 2, this.g));
+    this.h = 120;
+    this.g.getCaptionLabel().set("Comparision with 2 Variables").setFont(cf);
+    this.g.setX(this.getRX() + this.w/2);
+    this.g.setSize(this.w / 2, this.h);
+    this.w /= 2;
+
+    this.var1 = this.add(new LogicBlock(cp5, cf, tank, "Var1", 0, this.g));
+    this.var2 = this.add(new LogicBlock(cp5, cf, tank, "Var2", 1, this.g));
   }
   
   Boolean calculate(){
