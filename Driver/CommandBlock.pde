@@ -66,7 +66,7 @@ public abstract class CommandBlock{
   }
   
   void scrollMove(float val){
-    float newX = x - 20 * val;
+    float newX = x - 10 * val;
     scrollScale = val;
     this.g.setPosition(newX, y);
     if(connection != null){
