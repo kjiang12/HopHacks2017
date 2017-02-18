@@ -58,10 +58,88 @@ public abstract class GetCommandBlock extends CommandBlock{
 
 /*** everything below needs to be written ***/
 
-public class GetTankAngVel extends GetCommandBlock{
-  public GetTankAngVel(ControlP5 cp5, ControlFont cf, Tank tank){
+public class GetMyPos extends GetCommandBlock{
+  public GetMyPos(ControlP5 cp5, ControlFont cf, Tank tank){
     super(cp5, cf, tank);
-    this.g.getCaptionLabel().set("Get Tank Angular Velocity").setFont(cf);
+    this.g.getCaptionLabel().set("Get My Position").setFont(cf);
+  }
+  float getValue(){
+      return tank.getTankAngVel();
+  }
+  void execute() {
+    println("IMPLEMENT GETMYPOS");
+  }
+}
+
+public class GetEnemyPos extends GetCommandBlock{
+  public GetEnemyPos(ControlP5 cp5, ControlFont cf, Tank tank){
+    super(cp5, cf, tank);
+    this.g.getCaptionLabel().set("Get Enemy Position").setFont(cf);
+  }
+  float getValue(){
+      return tank.getTankAngVel();
+  }
+  void execute() {
+    println("IMPLEMENT GETENEMYPOS");
+  }
+}
+
+public class GetMyVel extends GetCommandBlock{
+  public GetMyVel(ControlP5 cp5, ControlFont cf, Tank tank){
+    super(cp5, cf, tank);
+    this.g.getCaptionLabel().set("Get My Velocity").setFont(cf);
+  }
+  float getValue(){
+      return tank.getTankAngVel();
+  }
+  void execute() {
+    println("IMPLEMENT GETMYVEL");
+  }
+}
+
+public class GetEnemyVel extends GetCommandBlock{
+  public GetEnemyVel(ControlP5 cp5, ControlFont cf, Tank tank){
+    super(cp5, cf, tank);
+    this.g.getCaptionLabel().set("Get Enemy Velocity").setFont(cf);
+  }
+  float getValue(){
+      return tank.getTankAngVel();
+  }
+  void execute() {
+    println("IMPLEMENT GETENEMYVEL");
+  }
+}
+
+public class GetMyAngle extends GetCommandBlock{
+  public GetMyAngle(ControlP5 cp5, ControlFont cf, Tank tank){
+    super(cp5, cf, tank);
+    this.g.getCaptionLabel().set("Get My Angle").setFont(cf);
+  }
+  float getValue(){
+      return tank.getTankAngVel();
+  }
+  void execute() {
+    println("IMPLEMENT GETMYANGLE");
+  }
+}
+
+public class GetEnemyAngle extends GetCommandBlock{
+  public GetEnemyAngle(ControlP5 cp5, ControlFont cf, Tank tank){
+    super(cp5, cf, tank);
+    this.g.getCaptionLabel().set("Get Enemy Angle").setFont(cf);
+  }
+  float getValue(){
+      return tank.getTankAngVel();
+  }
+  void execute() {
+    println("IMPLEMENT GETENEMYANGLE");
+  }
+}
+
+public class GetMyAngVel extends GetCommandBlock{
+  public GetMyAngVel(ControlP5 cp5, ControlFont cf, Tank tank){
+    super(cp5, cf, tank);
+    this.g.getCaptionLabel().set("Get My Angular Velocity").setFont(cf);
   }
   float getValue(){
       return tank.getTankAngVel();
@@ -69,13 +147,25 @@ public class GetTankAngVel extends GetCommandBlock{
   void execute() {
       tank.getTankAngVel();
   }
-
 }
 
-public class GetReloadingTime extends GetCommandBlock{
-  public GetReloadingTime(ControlP5 cp5, ControlFont cf, Tank tank){
+public class GetEnemyAngVel extends GetCommandBlock{
+  public GetEnemyAngVel(ControlP5 cp5, ControlFont cf, Tank tank){
     super(cp5, cf, tank);
-    this.g.getCaptionLabel().set("Get Reload Time").setFont(cf);
+    this.g.getCaptionLabel().set("Get Enemy Angular Velocity").setFont(cf);
+  }
+  float getValue(){
+      return tank.getTankAngVel();
+  }
+  void execute() {
+      tank.getTankAngVel();
+  }
+}
+
+public class GetMyReloadingTime extends GetCommandBlock{
+  public GetMyReloadingTime(ControlP5 cp5, ControlFont cf, Tank tank){
+    super(cp5, cf, tank);
+    this.g.getCaptionLabel().set("Get My Reload Time").setFont(cf);
   }
   float getValue(){
     return tank.getReloadTime();
@@ -85,10 +175,23 @@ public class GetReloadingTime extends GetCommandBlock{
   }
 }
 
-public class GetTurrAngVel extends GetCommandBlock{
-  public GetTurrAngVel(ControlP5 cp5, ControlFont cf, Tank tank){
+public class GetEnemyReloadingTime extends GetCommandBlock{
+  public GetEnemyReloadingTime(ControlP5 cp5, ControlFont cf, Tank tank){
     super(cp5, cf, tank);
-    this.g.getCaptionLabel().set("Get Turret Angular Velocity").setFont(cf);
+    this.g.getCaptionLabel().set("Get Enemy Reload Time").setFont(cf);
+  }
+  float getValue(){
+    return tank.getReloadTime();
+  }
+  void execute() {
+     tank.getReloadTime();
+  }
+}
+
+public class GetMyTurrAngVel extends GetCommandBlock{
+  public GetMyTurrAngVel(ControlP5 cp5, ControlFont cf, Tank tank){
+    super(cp5, cf, tank);
+    this.g.getCaptionLabel().set("Get My Turret Angular Velocity").setFont(cf);
   }
   float getValue(){
     return tank.getTurrAngVel();
@@ -96,8 +199,20 @@ public class GetTurrAngVel extends GetCommandBlock{
   void execute() {
       tank.getTurrAngVel();
   }
-  
+}
+
+public class GetEnemyTurrAngVel extends GetCommandBlock{
+  public GetEnemyTurrAngVel(ControlP5 cp5, ControlFont cf, Tank tank){
+    super(cp5, cf, tank);
+    this.g.getCaptionLabel().set("Get Enemy Turret Angular Velocity").setFont(cf);
   }
+  float getValue(){
+    return tank.getTurrAngVel();
+  }
+  void execute() {
+      tank.getTurrAngVel();
+  }
+}
 
 
 

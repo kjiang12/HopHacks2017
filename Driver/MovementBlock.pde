@@ -93,5 +93,38 @@ public class TurnTurretRight extends MovementBlock{
   void execute() {
     tank.turnTurretRight();
   }
+}
+  
+public class StopTurning extends MovementBlock{
+  public StopTurning(ControlP5 cp5, ControlFont cf, Tank tank){
+    super(cp5, cf, tank);
+    this.g.getCaptionLabel().set("Stop Turning").setFont(cf);
+  }
 
+  void execute() {
+    println("IMPLEMENT STOPTURNING");
+  }
+}
+
+public class StopTurningTurret extends MovementBlock{
+  public StopTurningTurret(ControlP5 cp5, ControlFont cf, Tank tank){
+    super(cp5, cf, tank);
+    this.g.getCaptionLabel().set("Stop Turning Turret").setFont(cf);
+  }
+
+  void execute() {
+    println("IMPLEMENT STOPTURNINGTURRET");
+  }
+}
+
+
+public class Brake extends MovementBlock{
+  public Brake(ControlP5 cp5, ControlFont cf, Tank tank){
+    super(cp5, cf, tank);
+    this.g.getCaptionLabel().set("Brake").setFont(cf);
+  }
+
+  void execute() {
+    println("IMPLEMENT BRAKE");
+  }
 }
