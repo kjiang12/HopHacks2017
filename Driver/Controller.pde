@@ -42,6 +42,7 @@ public class CommandController{
   }
   
   void execute(){
+    print("yes");
     start.execute();
   }
   

@@ -66,6 +66,7 @@
            start = false;
          } else {
            start = true;
+           control.execute();
          }
       }
      }); 
