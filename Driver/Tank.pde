@@ -90,10 +90,6 @@
             public void lowerHealth(float damage) {
                 this.health=this.health-damage;
             }
-            public void setPos(float xCor, float yCor) {
-              this.xCor=xCor;
-              this.yCor=yCor;
-            }
             public void setDetection(boolean detected) {
                 this.detected=detected;
             }

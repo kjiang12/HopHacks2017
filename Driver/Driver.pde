@@ -8,6 +8,7 @@
   float initX;
   float initY;
   Tank tank;
+  ArrayList<Obstacles> obstacles;
   CommandController control;
   
  void setup (){
@@ -16,6 +17,10 @@
     rectMode(CENTER);
     cp5 = new ControlP5(this);
     cf = new ControlFont(createFont("Times",12));
+
+    
+    obstacles = new ArrayList<Obstacles>();
+    generateObstacles(10);
     control = new CommandController();
     tank = new Tank(100,50,50,60,50,new Sprite(this,"../TankBase.png",0),new Sprite(this,"../TankHead.png",0));
     control.add(new MoveBackward(cp5, cf, tank));
@@ -33,6 +38,9 @@
      tank.getHeadSprite().setRot(tank.getTurrAngle());
      tank.getBaseSprite().draw();
      tank.getHeadSprite().draw();
+     for(Obstacles obstacle: obstacles){
+       obstacle.getSprite().draw();
+     }
   }
   
   void mousePressed(){
@@ -58,5 +66,12 @@ void mouseDragged(){
   }
 }
 
-
+void generateObstacles(int numberOfObstacles){
+  for(int i = 0; i < numberOfObstacles; i++){
+    Crate crate = new Crate(((int) (Math.random() * 1000)),((int) (Math.random() * 700)),new Sprite(this,"../Crate.png",0));
+    crate.getSprite().setX(crate.getX());
+    crate.getSprite().setY(crate.getY());
+    obstacles.add(crate);
+  }
+}
   
