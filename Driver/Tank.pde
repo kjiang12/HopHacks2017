@@ -13,6 +13,7 @@ public class Tank {
   private int reloadTime;
   private Sprite base_sprite;
   private Sprite head_sprite;
+  private boolean fired;
 
   public Tank(float health, double x, double y, float tankAngle, float turrAngle, Sprite base_sprite, Sprite head_sprite,int reloadTime) {
     this.health = health;
@@ -27,6 +28,7 @@ public class Tank {
     this.base_sprite.setPos(new Vector2D(x, y));
     this.head_sprite.setPos(new Vector2D(x, y));
     this.reloadTime = reloadTime;
+    fired = false;
   }
   
   public void update() {

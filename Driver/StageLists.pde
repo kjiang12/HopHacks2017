@@ -66,7 +66,7 @@ public class StageLists{
   void checkBullet(){
     for(Tank tank: tanks){
       if(tank.fired()){
-          float [] pos = tank.getPos();
+          double [] pos = tank.getPos();
           //NEED TO CREATE SPRITE
           Bullet bullet = new Bullet(((int) pos[0]), ((int) pos[1]), new Sprite(app,"../Bullet.png",0));
           bullets.add(bullet);
