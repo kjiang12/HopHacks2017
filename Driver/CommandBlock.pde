@@ -15,4 +15,10 @@ public abstract class CommandBlock{
   }
   
   abstract void execute();
+  
+  void draw(){
+    if(cp5.isMouseOver(g)){
+      print("hello");
+    }
+  }
 }

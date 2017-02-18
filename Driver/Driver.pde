@@ -4,6 +4,7 @@ import controlP5.*;
 
 ControlP5 cp5;
 ControlFont cf;
+LinkedList<CommandBlock> commandList;
 
 void setup (){
   size(1200, 700);
@@ -11,7 +12,7 @@ void setup (){
   rectMode(CENTER);
   cp5 = new ControlP5(this);
   cf = new ControlFont(createFont("Times",12));
-  LinkedList<CommandBlock> commandList = new LinkedList<CommandBlock>();
+  commandList = new LinkedList<CommandBlock>();
   MoveBackward command = new MoveBackward(cp5, cf);
   commandList.add(command);
   parse(commandList);
@@ -28,5 +29,9 @@ void parse(LinkedList commandList){
 
 void draw(){
   background(0);
-
+  if(cp5.isMouseOver()){
+    for(CommandBlock command : commandList){
+      command.draw();
+    }
+  }
 }
