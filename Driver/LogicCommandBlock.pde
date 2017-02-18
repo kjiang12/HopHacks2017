@@ -9,9 +9,9 @@ public abstract class LogicCommandBlock extends CommandBlock{
     this.g.getCaptionLabel().set("If").setFont(cf);
     this.g.setSize(this.w, this.h);
    
-    this.conditionGroup = new LogicBlock(cp5, cf, tank, "Condition", 0);
-    this.thenGroup = new LogicBlock(cp5, cf, tank, "Then", 1);
-    this.elseGroup = new LogicBlock(cp5, cf, tank, "Else", 2);         
+    this.conditionGroup = new LogicBlock(cp5, cf, tank, "Condition", 0, this.g);
+    this.thenGroup = new LogicBlock(cp5, cf, tank, "Then", 1, this.g);
+    this.elseGroup = new LogicBlock(cp5, cf, tank, "Else", 2, this.g);         
   
   }
   

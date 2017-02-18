@@ -24,7 +24,6 @@ public class GetTankAngVel extends GetCommandBlock{
 
 }
 
-
 public class GetReloadingTime extends GetCommandBlock{
   public GetReloadingTime(ControlP5 cp5, ControlFont cf, Tank tank){
     super(cp5, cf, tank);
@@ -36,7 +35,6 @@ public class GetReloadingTime extends GetCommandBlock{
   void execute() {
      tank.getReloadTime();
   }
-
 }
 
 public class GetTurrAngVel extends GetCommandBlock{
