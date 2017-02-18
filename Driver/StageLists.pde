@@ -117,6 +117,15 @@ public class StageLists{
 
      }
    }
+   for(int i = 0; i < tanks.size(); i++){
+       for (int  j=0; j < tanks.size(); j++){
+          if(i!=j && tanks.get(i).getBaseSprite().bb_collision(tanks.get(j).getBaseSprite()))
+          {
+              tanks.get(i).stop();
+              tanks.get(j).stop();
+          }
+       }
+   }
    
      for (int l = 0; l < tanks.size(); l++){
        for (int k = 0; k < bullets.size(); k++){
