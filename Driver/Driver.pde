@@ -1,7 +1,7 @@
   import java.util.LinkedList;
   import java.util.ListIterator;
   import controlP5.*;
-  
+
   ControlP5 cp5;
   ControlFont cf;
   LinkedList<CommandBlock> commandList;
@@ -20,9 +20,26 @@
     
   //  MoveBackward command = new MoveBackward(cp5, cf);
    // commandList.add(command);
-    parse();
-    tank = new Tank(100,50,50,60,50,180,90,new Sprite(this,"../TankBase.png",0),new Sprite(this,"../TankHead.png",0));
-  }
+
+  parse();
+  tank = new Tank(100,50,50,60,50,10,10,new Sprite(this,"../TankBase.png",0),new Sprite(this,"../TankHead.png",0));
+}
+
+void parse(){
+    for (CommandBlock command: commandList) {
+      command.execute();
+    }
+  
+}
+
+void draw(){
+  background(0.0);
+  tank.getBaseSprite().setX(tank.getXPos());
+  tank.getBaseSprite().setY(tank.getYPos());
+  tank.getHeadSprite().setX(tank.getTurrX());
+  tank.getHeadSprite().setY(tank.getTurrY());
+  tank.getBaseSprite().draw();
+  tank.getHeadSprite().draw();
   
   void parse(){
       for (CommandBlock command: commandList) {

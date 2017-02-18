@@ -25,7 +25,6 @@ static class Physics {
     }
     
     return angularVelocity;
-
   }
   
   static float turnTurretLeft(float angularVelocity) {

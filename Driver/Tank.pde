@@ -7,8 +7,8 @@
             private float ySpeed;
             private float xCor, yCor;
             private boolean detected;
-            private float angVel;
-            private float turrX, turrY;
+            private float angVel; // add angVel for turret 
+            private float turrX, turrY; // I dont think we need this
             private float tankAngle, turrAngle;
             private Sprite base_sprite;
             private Sprite head_sprite;
@@ -28,18 +28,25 @@
               this.base_sprite = base_sprite;
               this.head_sprite = head_sprite;
             }
+            // make this for turret angle too
             public float getAngVel() {
+                //call update for angVel (either turnLeft, turnRight, or stopTurn based on user choice)
                 return angVel;
             }
             public void setAngVel(float angVel) {
+              // instead, call turnLeft/turnRight/stopTurn
+              // and for turret: turnTurretLeft, turnTurretRight, stopTurretTurn
                 this.angVel=angVel;
             }
             public float getXPos() {
+              // call update pos
               return xCor;
             }
             public float getYPos() {
+              // call update pos
                   return yCor;
             }
+            // change to turret angle, call update for angle
             public float getTurrX() {
                 return turrX;
             }
@@ -56,9 +63,11 @@
                 return power;
             }
             public float getXSpeed() {
+              // call moveForward/backward first
                 return xSpeed;
             }
             public float getYSpeed() {
+              // call moveForward/backward first
                 return ySpeed;
             }
             public Sprite getBaseSprite() {
