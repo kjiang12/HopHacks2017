@@ -11,7 +11,8 @@ public abstract class CommandBlock{
              .setBackgroundHeight(100)
              .setSize(300,100)
              .setBarHeight(20)
-             .setBackgroundColor(color(255,80));
+             .setBackgroundColor(color(255,80))
+   ;
     count++;
   }
   
