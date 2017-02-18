@@ -103,6 +103,14 @@ public class IfStatement extends LogicCommandBlock{
   }
 
   void execute() {
-
+    if(conditionGroup.next != null && thenGroup.next != null){
+      if(((ConditionBlock)conditionGroup.next).calculate()){
+        thenGroup.next.execute();
+      } else {
+        if(elseGroup.next != null){
+          elseGroup.next.execute();
+        }
+    }
   }
+}
 }
