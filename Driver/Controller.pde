@@ -44,7 +44,7 @@ public class CommandController{
   }
   
   void connect(CommandBlock command1, CommandBlock command2){
-    if(command1.next == command2){
+    if(command1.next == command2 || command1 == command2){
       return;
     }
     command1.setNext(command2);

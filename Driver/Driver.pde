@@ -32,6 +32,7 @@
     control.add(new MoveBackward(cp5, cf, tank));
     control.add(new MoveForward(cp5, cf, tank));
     control.add(new MoveForward(cp5, cf, tank));
+    control.add(new StartBlock(cp5, cf, tank));
     control.execute(); //replaces parse();
     
     Toggle tog = cp5.addToggle("Show\nCode")
