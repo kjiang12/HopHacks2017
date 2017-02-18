@@ -5,6 +5,8 @@ public abstract class CommandBlock{
   protected ControlGroup g;
   protected Tank tank;
   protected int id;
+  protected CommandBlock next, prev;
+  protected Connector connection;
   
   public CommandBlock(ControlP5 cp5, Tank tank){
     this.cp5 = cp5;
@@ -24,6 +26,20 @@ public abstract class CommandBlock{
     this.g.setStringValue(s);
   }
   
+  void setNext(CommandBlock command){
+    this.next = command;
+    command.prev = this;
+  }
+  
+  void setConnection(Connector connection){
+    this.connection = connection;
+  }
+  
+  void draw(){
+    if(connection != null){
+      connection.draw();
+    }
+  }
   abstract void execute();
 
   void move(float x, float y){
@@ -31,7 +47,21 @@ public abstract class CommandBlock{
     float newX = pos[0] + x;
     float newY = pos[1] + y;
     if(newX > 0 && newY - 20 > 0 && newX + 300 < width && newY + 75 < height){
-      g.setPosition(pos[0] + x, pos[1] + y);
+      this.g.setPosition(pos[0] + x, pos[1] + y);
+      if(connection != null){
+        this.connection.changeStart(this);
+      }
+      if(prev != null){
+        this.prev.connection.changeEnd(this);
+      }
     }
+  }
+  
+  int getX(){
+    return (int) this.g.getPosition()[0];
+  }
+  
+  int getY(){
+    return (int) this.g.getPosition()[1];
   }
 }
