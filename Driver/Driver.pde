@@ -17,13 +17,12 @@
     cp5 = new ControlP5(this);
     cf = new ControlFont(createFont("Times",12));
     commandList = new LinkedList<CommandBlock>();
-    
-  //  MoveBackward command = new MoveBackward(cp5, cf);
-   // commandList.add(command);
+    tank = new Tank(100,50,50,60,50,10,10,new Sprite(this,"../TankBase.png",0),new Sprite(this,"../TankHead.png",0));
+    MoveBackward command = new MoveBackward(cp5, cf, tank);
+    commandList.add(command);
 
-  parse();
-  tank = new Tank(100,50,50,60,50,10,10,new Sprite(this,"../TankBase.png",0),new Sprite(this,"../TankHead.png",0));
-}
+    parse();
+  }
 
 void parse(){
     for (CommandBlock command: commandList) {
@@ -42,6 +41,7 @@ void parse(){
      tank.getBaseSprite().draw();
      tank.getHeadSprite().draw();
   }
+  
   void mousePressed(){
     if(cp5.getWindow().getMouseOverList().size() > 0){
     draggedObject = commandList.get(Integer.parseInt(cp5.getWindow().getMouseOverList().get(0).getName()));
@@ -60,4 +60,5 @@ void mouseDragged(){
     initX = mouseX;
     initY = mouseY;
   }
+}
   
