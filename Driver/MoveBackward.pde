@@ -14,6 +14,14 @@ public class MoveBackward extends CommandBlock{
      ;
      
   }
+  public void setPower(float currPow)
+  {
+      this.currPow=currPow;
+  }
+  public float getPower()
+  {
+      return currPow;
+  }
 
   void execute() {
       tank.getPos(false);
