@@ -16,7 +16,7 @@
     noStroke();
     rectMode(CENTER);
     cp5 = new ControlP5(this);
-    cf = new ControlFont(createFont("Times",12));
+    cf = new ControlFont(createFont("Times",16));
 
     
     obstacles = new ArrayList<Obstacles>();
@@ -30,6 +30,8 @@
 
  void draw(){
     background(255.0);
+    
+    float 
      tank.getBaseSprite().setX(tank.getXPos());
      tank.getBaseSprite().setY(tank.getYPos());
      tank.getBaseSprite().setRot(tank.getTankAngle());
@@ -46,7 +48,7 @@
   void mousePressed(){
     if(cp5.getWindow().getMouseOverList().size() > 0){
       try{
-        draggedObject = control.getCommand(Integer.parseInt(cp5.getWindow().getMouseOverList().get(0).getStringValue()));
+        draggedObject = control.getCommand((ControlGroup) cp5.getWindow().getMouseOverList().get(0));
         initX = mouseX;
         initY = mouseY;
       } catch(Exception e){
@@ -67,11 +69,27 @@ void mouseDragged(){
 }
 
 void generateObstacles(int numberOfObstacles){
-  for(int i = 0; i < numberOfObstacles; i++){
+  boolean overlap = false;
+  for(int i = 0; i < numberOfObstacles / 2; i++){
     Crate crate = new Crate(((int) (Math.random() * 1000)),((int) (Math.random() * 700)),new Sprite(this,"../Crate.png",0));
     crate.getSprite().setX(crate.getX());
     crate.getSprite().setY(crate.getY());
-    obstacles.add(crate);
+    for (Obstacle obstacle: obstacles){
+     if(obstacle.getSprite().cc_collision(crate.getSprite())){
+       i--;
+       overlap = true;
+       break;
+     }
+    }
+    if (!overlap) {
+      obstacles.add(crate);
+    }
+  }
+  for(int i = 0; i < numberOfObstacles / 2; i++){
+    Barrel barrel = new Barrel(((int) (Math.random() * 1000)),((int) (Math.random() * 700)),new Sprite(this,"../Barrel.png",0));
+    barrel.getSprite().setX(barrel.getX());
+    barrel.getSprite().setY(barrel.getY());
+    obstacles.add(barrel);
   }
 }
   
