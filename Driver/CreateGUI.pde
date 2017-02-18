@@ -78,5 +78,6 @@ class DropDownMenu {
     } else if (label.equals("Get My Position")) {
     } else if (label.equals("Get Enemy Position")) {
     }
+    control.setVisible(true);
   }
 }
