@@ -1,9 +1,11 @@
 public abstract class GetCommandBlock extends CommandBlock{
   
   ControlGroup tankAngGroup, reloadGroup, turrAngGroup;
-  
+  Tank myTank, enemyTank;
   public GetCommandBlock(ControlP5 cp5, ControlFont cf, Tank myTank, Tank enemyTank){
     super(cp5, myTank);
+    this.myTank = myTank;
+    this.enemyTank = enemyTank;
     this.h = 150;
     
     /*this.g.setOpen(true);
@@ -192,7 +194,7 @@ public class GetMyAngle extends GetCommandBlock{
 
 public class GetEnemyAngle extends GetCommandBlock{
   public GetEnemyAngle(ControlP5 cp5, ControlFont cf, Tank myTank, Tank enemyTank){
-    super(cp5, cf, myTank, enemyTakn);
+    super(cp5, cf, myTank, enemyTank);
     this.g.getCaptionLabel().set("Get Enemy Angle").setFont(cf);
   }
   
@@ -298,7 +300,7 @@ public class GetMyReloadingTime extends GetCommandBlock{
 
 public class GetEnemyReloadingTime extends GetCommandBlock{
   public GetEnemyReloadingTime(ControlP5 cp5, ControlFont cf, Tank myTank, Tank enemyTank){
-    super(cp5, cf, mytank, enemyTank);
+    super(cp5, cf, myTank, enemyTank);
     this.g.getCaptionLabel().set("Get Enemy Reload Time").setFont(cf);
   }
   
@@ -341,7 +343,7 @@ public class GetMyTurrAngVel extends GetCommandBlock{
     throw new UnsupportedOperationException(); 
   }
   
-  double[] getDoubleValue() {
+  double[] getDoubleArrValue() {
     throw new UnsupportedOperationException(); 
   }
   

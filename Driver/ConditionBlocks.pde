@@ -53,17 +53,113 @@ public class Comparison2Var extends ConditionBlock{
       
       switch(op){
         case 0:
-          return ((GetCommandBlock) var1.next).getValue() == ((GetCommandBlock) var2.next).getValue();
+          try {
+            return ((GetCommandBlock) var1.next).getFloatValue() == ((GetCommandBlock) var2.next).getFloatValue();
+          } catch (UnsupportedOperationException e) {
+            try {
+              return ((GetCommandBlock) var1.next).getIntValue() == ((GetCommandBlock) var2.next).getIntValue();
+            } catch (UnsupportedOperationException f) {
+              try {
+                return ((GetCommandBlock) var1.next).getDoubleValue() == ((GetCommandBlock) var2.next).getDoubleValue();
+              } catch (UnsupportedOperationException g) {
+                try {
+                  return ((GetCommandBlock) var1.next).getDoubleArrValue()[0] == ((GetCommandBlock) var2.next).getDoubleArrValue()[0] &&  ((GetCommandBlock) var1.next).getDoubleArrValue()[1] == ((GetCommandBlock) var2.next).getDoubleArrValue()[1];
+                } catch (UnsupportedOperationException h) {
+                  return false; 
+                }
+              }
+            }
+          }
         case 1:
-          return ((GetCommandBlock) var1.next).getValue() < ((GetCommandBlock) var2.next).getValue();
+           try {
+            return ((GetCommandBlock) var1.next).getFloatValue() < ((GetCommandBlock) var2.next).getFloatValue();
+          } catch (UnsupportedOperationException e) {
+            try {
+              return ((GetCommandBlock) var1.next).getIntValue() < ((GetCommandBlock) var2.next).getIntValue();
+            } catch (UnsupportedOperationException f) {
+              try {
+                return ((GetCommandBlock) var1.next).getDoubleValue() < ((GetCommandBlock) var2.next).getDoubleValue();
+              } catch (UnsupportedOperationException g) {
+                try {
+                  return ((GetCommandBlock) var1.next).getDoubleArrValue()[0] < ((GetCommandBlock) var2.next).getDoubleArrValue()[0] &&  ((GetCommandBlock) var1.next).getDoubleArrValue()[1] < ((GetCommandBlock) var2.next).getDoubleArrValue()[1];
+                } catch (UnsupportedOperationException h) {
+                  return false; 
+                }
+              }
+            }
+          }
         case 2:
-          return ((GetCommandBlock) var1.next).getValue() <= ((GetCommandBlock) var2.next).getValue();
+          try {
+            return ((GetCommandBlock) var1.next).getFloatValue() <= ((GetCommandBlock) var2.next).getFloatValue();
+          } catch (UnsupportedOperationException e) {
+            try {
+              return ((GetCommandBlock) var1.next).getIntValue() <= ((GetCommandBlock) var2.next).getIntValue();
+            } catch (UnsupportedOperationException f) {
+              try {
+                return ((GetCommandBlock) var1.next).getDoubleValue() <= ((GetCommandBlock) var2.next).getDoubleValue();
+              } catch (UnsupportedOperationException g) {
+                try {
+                  return ((GetCommandBlock) var1.next).getDoubleArrValue()[0] <= ((GetCommandBlock) var2.next).getDoubleArrValue()[0] &&  ((GetCommandBlock) var1.next).getDoubleArrValue()[1] <= ((GetCommandBlock) var2.next).getDoubleArrValue()[1];
+                } catch (UnsupportedOperationException h) {
+                  return false; 
+                }
+              }
+            }
+          }
         case 3:
-          return ((GetCommandBlock) var1.next).getValue() > ((GetCommandBlock) var2.next).getValue();
+           try {
+            return ((GetCommandBlock) var1.next).getFloatValue() > ((GetCommandBlock) var2.next).getFloatValue();
+          } catch (UnsupportedOperationException e) {
+            try {
+              return ((GetCommandBlock) var1.next).getIntValue() > ((GetCommandBlock) var2.next).getIntValue();
+            } catch (UnsupportedOperationException f) {
+              try {
+                return ((GetCommandBlock) var1.next).getDoubleValue() > ((GetCommandBlock) var2.next).getDoubleValue();
+              } catch (UnsupportedOperationException g) {
+                try {
+                  return ((GetCommandBlock) var1.next).getDoubleArrValue()[0] > ((GetCommandBlock) var2.next).getDoubleArrValue()[0] &&  ((GetCommandBlock) var1.next).getDoubleArrValue()[1] > ((GetCommandBlock) var2.next).getDoubleArrValue()[1];
+                } catch (UnsupportedOperationException h) {
+                  return false; 
+                }
+              }
+            }
+          }
         case 4:
-          return ((GetCommandBlock) var1.next).getValue() >= ((GetCommandBlock) var2.next).getValue();
+          try {
+            return ((GetCommandBlock) var1.next).getFloatValue() >= ((GetCommandBlock) var2.next).getFloatValue();
+          } catch (UnsupportedOperationException e) {
+            try {
+              return ((GetCommandBlock) var1.next).getIntValue() >= ((GetCommandBlock) var2.next).getIntValue();
+            } catch (UnsupportedOperationException f) {
+              try {
+                return ((GetCommandBlock) var1.next).getDoubleValue() >= ((GetCommandBlock) var2.next).getDoubleValue();
+              } catch (UnsupportedOperationException g) {
+                try {
+                  return ((GetCommandBlock) var1.next).getDoubleArrValue()[0] >= ((GetCommandBlock) var2.next).getDoubleArrValue()[0] &&  ((GetCommandBlock) var1.next).getDoubleArrValue()[1] >= ((GetCommandBlock) var2.next).getDoubleArrValue()[1];
+                } catch (UnsupportedOperationException h) {
+                  return false; 
+                }
+              }
+            }
+          }
         case 5:
-          return ((GetCommandBlock) var1.next).getValue() != ((GetCommandBlock) var2.next).getValue();
+           try {
+            return ((GetCommandBlock) var1.next).getFloatValue() != ((GetCommandBlock) var2.next).getFloatValue();
+          } catch (UnsupportedOperationException e) {
+            try {
+              return ((GetCommandBlock) var1.next).getIntValue() != ((GetCommandBlock) var2.next).getIntValue();
+            } catch (UnsupportedOperationException f) {
+              try {
+                return ((GetCommandBlock) var1.next).getDoubleValue() != ((GetCommandBlock) var2.next).getDoubleValue();
+              } catch (UnsupportedOperationException g) {
+                try {
+                  return ((GetCommandBlock) var1.next).getDoubleArrValue()[0] != ((GetCommandBlock) var2.next).getDoubleArrValue()[0] ||  ((GetCommandBlock) var1.next).getDoubleArrValue()[1] != ((GetCommandBlock) var2.next).getDoubleArrValue()[1];
+                } catch (UnsupportedOperationException h) {
+                  return false; 
+                }
+              }
+            }
+          }
       }
     }
     return false;
@@ -129,19 +225,23 @@ public class Comparison1Var extends ConditionBlock{
     if(var1.next != null){
       int op = (int) operatorList.getValue();
       
-      switch(op){
-        case 0:
-          return value == ((GetCommandBlock) var1.next).getValue();
-        case 1:
-          return value < ((GetCommandBlock) var1.next).getValue();
-        case 2:
-          return value <= ((GetCommandBlock) var1.next).getValue();
-        case 3:
-          return value > ((GetCommandBlock) var1.next).getValue();
-        case 4:
-          return value >= ((GetCommandBlock) var1.next).getValue();
-        case 5:
-          return value != ((GetCommandBlock) var1.next).getValue();
+      try { 
+        switch(op){
+          case 0:
+            return value == ((GetCommandBlock) var1.next).getFloatValue();
+          case 1:
+            return value < ((GetCommandBlock) var1.next).getFloatValue();
+          case 2:
+            return value <= ((GetCommandBlock) var1.next).getFloatValue();
+          case 3:
+            return value > ((GetCommandBlock) var1.next).getFloatValue();
+          case 4:
+            return value >= ((GetCommandBlock) var1.next).getFloatValue();
+          case 5:
+            return value != ((GetCommandBlock) var1.next).getFloatValue();
+        }
+      } catch (UnsupportedOperationException e) {
+        
       }
     }
     return false;
