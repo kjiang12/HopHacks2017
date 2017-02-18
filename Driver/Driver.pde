@@ -1,6 +1,7 @@
 import java.util.LinkedList;
 import java.util.ListIterator;
 import controlP5.*;
+import sprites.Sprite;
 
 ControlP5 cp5;
 ControlFont cf;
@@ -15,10 +16,10 @@ void setup (){
   commandList = new LinkedList<CommandBlock>();
   MoveBackward command = new MoveBackward(cp5, cf);
   commandList.add(command);
-  parse(commandList);
+  parse();
 }
 
-void parse(LinkedList commandList){
+void parse(){
     for (CommandBlock command: commandList) {
       command.execute();
     }
