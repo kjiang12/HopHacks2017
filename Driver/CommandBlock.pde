@@ -24,8 +24,6 @@ public abstract class CommandBlock{
     float[] pos = g.getPosition();
     float newX = pos[0] + x;
     float newY = pos[1] + y;
-    print(newX);
-    print(newY);
     if(newX > 0 && newY - 20 > 0 && newX + 300 < width && newY + 100 < height){
       g.setPosition(pos[0] + x, pos[1] + y);
     }
