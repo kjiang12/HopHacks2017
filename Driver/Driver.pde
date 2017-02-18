@@ -30,27 +30,25 @@ void parse(){
       command.execute();
     }
 }
-
-    
-    void draw(){
-      background(0.0);
-      tank.getBaseSprite().setX(tank.getXPos());
-      tank.getBaseSprite().setY(tank.getYPos());
-      tank.getBaseSprite().setRot(tank.getTankAngle());
-      tank.getHeadSprite().setX(tank.getTurrX());
-      tank.getHeadSprite().setY(tank.getTurrY());
-      tank.getHeadSprite().setRot(tank.getTurrAngle());
-      tank.getBaseSprite().draw();
-      tank.getHeadSprite().draw();
-      
-    }
-void mousePressed(){
-  if(cp5.getWindow().getMouseOverList().size() > 0){
+  
+ void draw(){
+    background(0.0);
+     tank.getBaseSprite().setX(tank.getXPos());
+     tank.getBaseSprite().setY(tank.getYPos());
+     tank.getBaseSprite().setRot(tank.getTankAngle());
+     tank.getHeadSprite().setX(tank.getTurrX());
+     tank.getHeadSprite().setY(tank.getTurrY());
+     tank.getHeadSprite().setRot(tank.getTurrAngle());
+     tank.getBaseSprite().draw();
+     tank.getHeadSprite().draw();
+  }
+  void mousePressed(){
+    if(cp5.getWindow().getMouseOverList().size() > 0){
     draggedObject = commandList.get(Integer.parseInt(cp5.getWindow().getMouseOverList().get(0).getName()));
     initX = mouseX;
     initY = mouseY;
+    }
   }
-}
 
 void mouseReleased(){
   draggedObject = null;
