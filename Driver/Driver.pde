@@ -32,15 +32,15 @@
     background(255.0);
     
     tank.update();
-    
-    tank.getBaseSprite().setX(tank.getPos()[0]);
+    tank.draw();
+    /*tank.getBaseSprite().setX(tank.getPos()[0]);
     tank.getBaseSprite().setY(tank.getPos()[1]);
     tank.getBaseSprite().setRot(tank.getTankAngle());
     tank.getHeadSprite().setX(tank.getPos()[0]);
     tank.getHeadSprite().setY(tank.getPos()[1]);
     tank.getHeadSprite().setRot(tank.getTurrAngle());
     tank.getBaseSprite().draw();
-    tank.getHeadSprite().draw();
+    tank.getHeadSprite().draw();*/
     
     for(Obstacles obstacle: obstacles){
       obstacle.getSprite().draw();

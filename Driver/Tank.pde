@@ -69,6 +69,17 @@ public class Tank {
     pos[1] += vel[1] / 60.0;
   }
   
+  void draw(){
+    base_sprite.setX(pos[0]);
+    base_sprite.setY(pos[1]);
+    base_sprite.setRot(tankAngle);
+    head_sprite.setX(pos[0]);
+    head_sprite.setY(pos[1]);
+    head_sprite.setRot(turrAngle);
+    base_sprite.draw();
+    head_sprite.draw();
+  }
+  
   public float[] getPos() {
     return pos;
   }
