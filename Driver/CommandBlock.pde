@@ -77,8 +77,10 @@ public class StartBlock extends CommandBlock{
     this.g.getCaptionLabel().set("Start")
                             .setFont(cf)
                             .setColorBackground(color(0,255,0));
-    this.g.setColorBackground(color(0,255,0))
-          ;
+    this.g.setColorBackground(color(0,255,0));
+    this.g.setColorActive(color(0,255,0));
+    this.g.setOpen(false);
+    this.g.setBarHeight(75);
   }
   
   void execute(){
