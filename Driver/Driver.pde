@@ -24,7 +24,7 @@
     obstacles = new ArrayList<Obstacles>();
     generateObstacles(300);
     control = new CommandController();
-    tank = new Tank(100, 50, 50, 60, 50, new Sprite(this,"../TankBase.png",0), new Sprite(this,"../TankHead5.png",0));
+    tank = new Tank(100, 500, 500, PI / 3, 50, new Sprite(this,"../TankBase.png",0), new Sprite(this,"../TankHead5.png",0));
     control.add(new MoveBackward(cp5, cf, tank));
     control.add(new MoveForward(cp5, cf, tank));
     control.add(new MoveForward(cp5, cf, tank));
@@ -35,12 +35,10 @@ boolean brake = false;
  void draw(){
     background(255.0);
     control.draw();
-    tank.turnLeft();
     tank.turnTurretRight();
-    println(tank.getTankAngle());
     tank.update();
     tank.draw();
-
+  
     for(Obstacles obstacle: obstacles){
       obstacle.getSprite().draw();
     }
@@ -48,10 +46,11 @@ boolean brake = false;
   
   void mousePressed(){
     if (!brake) {
-      tank.turnRight();
+      tank.forward();
+      tank.turnLeft();
       brake = true;
     } else {
-      tank.stopTurn();
+      tank.brake();
       brake = false;
     }
     if(cp5.getWindow().getMouseOverList().size() > 0){

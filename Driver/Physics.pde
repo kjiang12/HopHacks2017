@@ -1,10 +1,10 @@
 static class Physics {
   private static final float MASS = 30000;
-  private static final float MAX_VEL= 5.33;
-  private static final float MIN_VEL= -3.0;
+  private static final double MAX_VEL= 5.33;
+  private static final float MIN_VEL= 3.0;
   private static final float ACC = 1.87;
   private static final float FPS = 60;
-  private static final float BRAKE = 1.55;
+  private static final double BRAKE = 1.55;
   private static final float TANK_TURN = 37 * PI / 180.0;
   private static final float TANK_TURN_ACC = 30 * PI / 180.0;
   private static final float TURRET_TURN = 38 * PI / 180.0;
@@ -58,39 +58,31 @@ static class Physics {
     return min(angularVelocity + TANK_TURN_ACC, TANK_TURN) / FPS;
   }
   
-  static float[] brake(float[] currentVel, float currentAngle) {
-    if (currentVel[0] < -0.1 || currentVel[0] > 0.1) {
-      currentVel[0] -= (currentVel[0] / abs(currentVel[0])) * getComponent(BRAKE, currentAngle, true) * SCALE / FPS;
-    }
-    if (currentVel[1] < -0.1 || currentVel[1] > 0.1) {
-      currentVel[1] -= (currentVel[1] / abs(currentVel[1])) * getComponent(BRAKE, currentAngle, false) * SCALE / FPS;
+  static void brake(Sprite base_sprite, Sprite head_sprite) {
+    Vector2D vel = new Vector2D(base_sprite.getVelX(), base_sprite.getVelY());
+    
+    if (base_sprite.getSpeed() > 0.1) {
+      Vector2D reverseVel = vel.getReverse();
+      reverseVel.normalize();
+      reverseVel.mult(BRAKE);
+      base_sprite.setAccXY(reverseVel.x, reverseVel.y);
+    } else {
+      base_sprite.setSpeed(0); 
     }
     
-    if (currentVel[0] > -0.1 && currentVel[0] < 0.1) {
-      currentVel[0] = 0; 
-    }
-      
-    if (currentVel[1] > -0.1 && currentVel[1] < 0.1) {
-      currentVel[1] = 0;
-    }
-      
-    return currentVel;
+    base_sprite.update(.1);
+    head_sprite.setPos(new Vector2D(base_sprite.getX(), base_sprite.getY()));
   }
   
-  static float[] getNewBackwardVel(float[] currentVel, float currentAngle) {
-    float[] returnArr = new float[2];
-    returnArr[0] = min(currentVel[0] - getComponent(ACC, currentAngle, true), getComponent(MIN_VEL, currentAngle, true)) * SCALE / FPS;
-    returnArr[1] = min(currentVel[1] - getComponent(ACC, currentAngle, false), getComponent(MIN_VEL, currentAngle, false)) * SCALE / FPS;
-
-    return returnArr;
-  }
-  
-  static float[] getNewForwardVel(float[] currentVel, float currentAngle) {
-    float[] returnArr = new float[2];
-    returnArr[0] = max(currentVel[0] + getComponent(ACC, currentAngle, true), getComponent(MAX_VEL, currentAngle, true)) * SCALE / FPS;
-    returnArr[1] = max(currentVel[1] + getComponent(ACC, currentAngle, false), getComponent(MAX_VEL, currentAngle, false)) * SCALE / FPS;
-    println(returnArr[0] + " " + returnArr[1]);
-    return returnArr;
+  static void forward(Sprite base_sprite, Sprite head_sprite) {
+    base_sprite.setAcceleration(ACC);
+    
+    if (base_sprite.getSpeed() > MAX_VEL) {
+      base_sprite.setSpeed(MAX_VEL);
+    }
+    
+    base_sprite.update(.1);
+    head_sprite.setPos(new Vector2D(base_sprite.getX(), base_sprite.getY()));
   }
   
   private static float getComponent(float val, float angle, boolean x) {
