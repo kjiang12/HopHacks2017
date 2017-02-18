@@ -16,7 +16,9 @@ public class Tank {
   private Sprite head_sprite;
             
   public Tank(float health, float xCor, float yCor, float tankAngle, float turrAngle, Sprite base_sprite, Sprite head_sprite) {
-    pos = new {xCor, yCor};
+    pos = new float[2];
+    pos[0] = xCor;
+    pos[1] = yCor;
     vel = new float[2];
     power=0;
     this.health = health;
@@ -52,11 +54,10 @@ public class Tank {
               
     // update turret angle
     turrAngle=turrAngle + turrAngVel * (((float) 1)/60);
-            
-<<<<<<< HEAD
+          
     // update velocity
-    if (moveState.equals("Forward") {
-      vel = Physics.getNewForwardVel(getPower(), vel, tankAngle;
+    if (moveState.equals("Forward")) {
+      vel = Physics.getNewForwardVel(getPower(), vel, tankAngle);
     } else if (moveState.equals("Backward")) {
       vel = Physics.getNewBackwardVel(getPower(), vel, tankAngle);
     } else if (moveState.equals("Brake")) {
