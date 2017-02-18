@@ -51,7 +51,10 @@ public abstract class GetCommandBlock extends CommandBlock{
   void setGroup(String s){
     super.setGroup(s);
     super.g.setBackgroundColor(color(255, 0, 0));}
-  abstract float getValue();
+  abstract float getFloatValue();
+  abstract int getIntValue();
+  abstract double getDoubleValue();
+  abstract double[] getDoubleArrValue();
   abstract void execute();
     
 }
@@ -63,7 +66,20 @@ public class GetMyPos extends GetCommandBlock{
     super(cp5, cf, myTank, enemyTank);
     this.g.getCaptionLabel().set("Get My Position").setFont(cf);
   }
-  double[] getValue(){
+  
+  float getFloatValue() {
+     throw new UnsupportedOperationException();
+  }
+  
+  int getIntValue() {
+     throw new UnsupportedOperationException();
+  }
+  
+  double getDoubleValue() {
+     throw new UnsupportedOperationException();
+  }
+  
+  double[] getDoubleArrValue(){
       return myTank.getPos();
   }
   void execute() {
@@ -76,7 +92,19 @@ public class GetEnemyPos extends GetCommandBlock{
     super(cp5, cf, myTank, enemyTank);
     this.g.getCaptionLabel().set("Get Enemy Position").setFont(cf);
   }
-  double[] getValue(){
+  float getFloatValue() {
+     throw new UnsupportedOperationException();
+  }
+  
+  int getIntValue() {
+     throw new UnsupportedOperationException();
+  }
+  
+  double getDoubleValue() {
+     throw new UnsupportedOperationException(); 
+  }
+  
+  double[] getDoubleArrValue(){
       return enemyTank.getPos();
   }
   void execute() {
@@ -89,8 +117,20 @@ public class GetMyVel extends GetCommandBlock{
     super(cp5, cf, myTank, enemyTank);
     this.g.getCaptionLabel().set("Get My Velocity").setFont(cf);
   }
-  double[] getValue(){
-      return myTank.getVel();
+  float getFloatValue() {
+    throw new UnsupportedOperationException();
+  }
+  
+  int getIntValue() {
+    throw new UnsupportedOperationException();
+  }
+  
+  double getDoubleValue() {
+    throw new UnsupportedOperationException(); 
+  }
+  
+  double[] getDoubleArrValue(){
+    return myTank.getVel();
   }
   void execute() {
     println("IMPLEMENT GETMYVEL");
@@ -102,8 +142,21 @@ public class GetEnemyVel extends GetCommandBlock{
     super(cp5, cf, myTank, enemyTank);
     this.g.getCaptionLabel().set("Get Enemy Velocity").setFont(cf);
   }
-  double[] getValue(){
-      return enemyTank.getVel();
+  
+  float getFloatValue() {
+    throw new UnsupportedOperationException();
+  }
+  
+  int getIntValue() {
+    throw new UnsupportedOperationException();
+  }
+  
+  double getDoubleValue() {
+    throw new UnsupportedOperationException(); 
+  }
+  
+  double[] getDoubleArrValue(){
+    return enemyTank.getVel();
   }
   void execute() {
     println("IMPLEMENT GETENEMYVEL");
@@ -115,9 +168,23 @@ public class GetMyAngle extends GetCommandBlock{
     super(cp5, cf, myTank, enemyTank);
     this.g.getCaptionLabel().set("Get My Angle").setFont(cf);
   }
-  double getValue(){
-      return myTank.getTankAngle();
+  
+  float getFloatValue() {
+    throw new UnsupportedOperationException(); 
   }
+  
+  int getIntValue() {
+    throw new UnsupportedOperationException(); 
+  }
+  
+  double getDoubleValue(){
+    return myTank.getTankAngle();
+  }
+  
+  double[] getDoubleArrValue() {
+    throw new UnsupportedOperationException();
+  }
+  
   void execute() {
     println("IMPLEMENT GETMYANGLE");
   }
@@ -128,8 +195,21 @@ public class GetEnemyAngle extends GetCommandBlock{
     super(cp5, cf, myTank, enemyTakn);
     this.g.getCaptionLabel().set("Get Enemy Angle").setFont(cf);
   }
-  double getValue(){
-      return enemyTank.getTankAngle();
+  
+  float getFloatValue() {
+    throw new UnsupportedOperationException(); 
+  }
+  
+  int getIntValue() {
+    throw new UnsupportedOperationException(); 
+  }
+  
+  double getDoubleValue(){
+    return enemyTank.getTankAngle();
+  }
+  
+  double[] getDoubleArrValue() {
+    throw new UnsupportedOperationException(); 
   }
   void execute() {
     println("IMPLEMENT GETENEMYANGLE");
@@ -141,9 +221,23 @@ public class GetMyAngVel extends GetCommandBlock{
     super(cp5, cf, myTank, enemyTank);
     this.g.getCaptionLabel().set("Get My Angular Velocity").setFont(cf);
   }
-  float getValue(){
-      return myTank.getTankAngVel();
+  
+  float getFloatValue(){
+    return myTank.getTankAngVel();
   }
+  
+  int getIntValue() {
+    throw new UnsupportedOperationException(); 
+  }
+  
+  double getDoubleValue() {
+    throw new UnsupportedOperationException(); 
+  }
+  
+  double[] getDoubleArrValue() {
+    throw new UnsupportedOperationException(); 
+  }
+  
   void execute() {
   
   }
@@ -154,9 +248,22 @@ public class GetEnemyAngVel extends GetCommandBlock{
     super(cp5, cf, myTank, enemyTank);
     this.g.getCaptionLabel().set("Get Enemy Angular Velocity").setFont(cf);
   }
-  float getValue(){
-      return enemyTank.getTankAngVel();
+  float getFloatValue(){
+    return enemyTank.getTankAngVel();
   }
+  
+  int getIntValue() {
+    throw new UnsupportedOperationException(); 
+  }
+  
+  double getDoubleValue() {
+    throw new UnsupportedOperationException(); 
+  }
+  
+  double[] getDoubleArrValue() {
+    throw new UnsupportedOperationException(); 
+  }
+  
   void execute() {
 
   }
@@ -167,9 +274,23 @@ public class GetMyReloadingTime extends GetCommandBlock{
     super(cp5, cf, myTank, enemyTank);
     this.g.getCaptionLabel().set("Get My Reload Time").setFont(cf);
   }
-  int getValue(){
+  
+  float getFloatValue() {
+    throw new UnsupportedOperationException(); 
+  }
+  
+  int getIntValue(){
     return myTank.getReloadTime();
   }
+  
+  double getDoubleValue() {
+    throw new UnsupportedOperationException(); 
+  }
+  
+  double[] getDoubleArrValue() {
+    throw new UnsupportedOperationException();
+  }
+  
   void execute() {
 
   }
@@ -180,9 +301,23 @@ public class GetEnemyReloadingTime extends GetCommandBlock{
     super(cp5, cf, mytank, enemyTank);
     this.g.getCaptionLabel().set("Get Enemy Reload Time").setFont(cf);
   }
-  int getValue(){
+  
+  float getFloatValue() {
+    throw new UnsupportedOperationException();
+  }
+  
+  int getIntValue(){
     return enemyTank.getReloadTime();
   }
+  
+  double getDoubleValue() {
+    throw new UnsupportedOperationException();
+  }
+  
+  double[] getDoubleArrValue() {
+    throw new UnsupportedOperationException(); 
+  }
+  
   void execute() {
 
   }
@@ -193,9 +328,23 @@ public class GetMyTurrAngVel extends GetCommandBlock{
     super(cp5, cf, myTank, enemyTank);
     this.g.getCaptionLabel().set("Get My Turret Angular Velocity").setFont(cf);
   }
-  float getValue(){
+  
+  float getFloatValue(){
     return myTank.getTurrAngVel();
   }
+  
+  int getIntValue() {
+    throw new UnsupportedOperationException(); 
+  }
+  
+  double getDoubleValue() {
+    throw new UnsupportedOperationException(); 
+  }
+  
+  double[] getDoubleValue() {
+    throw new UnsupportedOperationException(); 
+  }
+  
   void execute() {
 
   }
@@ -206,9 +355,23 @@ public class GetEnemyTurrAngVel extends GetCommandBlock{
     super(cp5, cf, myTank, enemyTank);
     this.g.getCaptionLabel().set("Get Enemy Turret Angular Velocity").setFont(cf);
   }
-  float getValue(){
+  
+  float getFloatValue() {
     return enemyTank.getTurrAngVel();
   }
+  
+  int getIntValue() {
+    throw new UnsupportedOperationException(); 
+  }
+  
+  double getDoubleValue() {
+    throw new UnsupportedOperationException(); 
+  }
+  
+  double[] getDoubleArrValue() {
+    throw new UnsupportedOperationException(); 
+  }
+  
   void execute() {
 
   }
