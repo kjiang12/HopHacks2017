@@ -61,19 +61,11 @@ public abstract class CommandBlock{
       this.g.setPosition(newX, newY);
       this.x = newX + scrollScale * 20;
       this.y = newY;
-      if(connection != null){
-        this.connection.changeStart(this);
-      }
-      if(prev != null){
-        this.prev.connection.changeEnd(this);
-      }
+      this.connectionUpdate();
     }
   }
   
-  void scrollMove(float val){
-    float newX = x - 20 * val;
-    scrollScale = val;
-    this.g.setPosition(newX, y);
+  void connectionUpdate(){
     if(connection != null){
       this.connection.changeStart(this);
     }
@@ -81,13 +73,23 @@ public abstract class CommandBlock{
       this.prev.connection.changeEnd(this);
     }
   }
+  void scrollMove(float val){
+    if(this instanceof LogicBlock){
+      this.connectionUpdate();
+      return;
+    }
+    float newX = x - 20 * val;
+    scrollScale = val;
+    this.g.setPosition(newX, y);
+    this.connectionUpdate();
+  }
   
   int getX(){
-    return (int) this.g.getPosition()[0];
+    return (int) this.g.getAbsolutePosition()[0];
   }
   
   int getY(){
-    return (int) this.g.getPosition()[1];
+    return (int) this.g.getAbsolutePosition()[1];
   }
 }
 

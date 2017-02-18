@@ -9,10 +9,15 @@ public abstract class LogicCommandBlock extends CommandBlock{
     this.g.getCaptionLabel().set("If").setFont(cf);
     this.g.setSize(this.w, this.h);
    
-    this.conditionGroup = new LogicBlock(cp5, cf, tank, "Condition", 0, this.g);
-    this.thenGroup = new LogicBlock(cp5, cf, tank, "Then", 1, this.g);
-    this.elseGroup = new LogicBlock(cp5, cf, tank, "Else", 2, this.g);         
+    this.conditionGroup = this.add(new LogicBlock(cp5, cf, tank, "Condition", 0, this.g));
+    this.thenGroup = this.add(new LogicBlock(cp5, cf, tank, "Then", 1, this.g));
+    this.elseGroup = this.add(new LogicBlock(cp5, cf, tank, "Else", 2, this.g));         
   
+  }
+  
+  LogicBlock add(LogicBlock logic){
+    control.add(logic);
+    return logic;
   }
   
   void setVisible(Boolean bol){
@@ -21,6 +26,14 @@ public abstract class LogicCommandBlock extends CommandBlock{
     this.thenGroup.setVisible(bol);
     this.elseGroup.setVisible(bol);
   }
+  
+  void move(float x, float y){
+    super.move(x, y);
+    this.conditionGroup.connectionUpdate();
+    this.thenGroup.connectionUpdate();
+    this.elseGroup.connectionUpdate();
+  }
+  
   abstract void execute();
 }
 
@@ -41,7 +54,15 @@ class LogicBlock extends CommandBlock{
      }
      
      public void setLabel(String s){
-       g.setCaptionLabel(s);
+       this.g.setCaptionLabel(s);
+     }
+     
+     int getX(){
+       return (int) this.g.getAbsolutePosition()[0] + w/2 ;
+     }
+  
+     int getY(){
+       return (int) this.g.getAbsolutePosition()[1] - 10;
      }
      
      void execute(){
@@ -51,6 +72,7 @@ class LogicBlock extends CommandBlock{
 public class ForLoop extends LogicCommandBlock{
   public ForLoop(ControlP5 cp5, ControlFont cf, Tank tank){
     super(cp5, cf, tank);
+    this.g.getCaptionLabel().set("For").setFont(cf);
     this.elseGroup.setLabel("Next");
   }
 
