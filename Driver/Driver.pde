@@ -30,10 +30,6 @@
     stageLists = new StageLists(this);
 
     control = new CommandController(new StartBlock(cp5, cf, stageLists.getTankList().get(0)));
-    control.add(new MoveBackward(cp5, cf, stageLists.getTankList().get(0)));
-    control.add(new MoveForward(cp5, cf, stageLists.getTankList().get(0)));
-    control.add(new MoveForward(cp5, cf, stageLists.getTankList().get(0)));
-    control.add(new ForLoop(cp5, cf, stageLists.getTankList().get(0)));
     control.execute(); //replaces parse();
     
     ddm = new DropDownMenu(cp5);
@@ -210,11 +206,7 @@ void keyPressed() {
   } 
 }
 
-void keyReleased(){
+void keyReleased() {
   selected = false;
   selections = null;
-}
-
-
-
-  
+}  
