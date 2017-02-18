@@ -4,11 +4,11 @@
 
   ControlP5 cp5;
   ControlFont cf;
-  LinkedList<CommandBlock> commandList;
   CommandBlock draggedObject;
   float initX;
   float initY;
   Tank tank;
+  CommandController control;
   
   void setup (){
     size(1200, 700);
@@ -16,16 +16,15 @@
     rectMode(CENTER);
     cp5 = new ControlP5(this);
     cf = new ControlFont(createFont("Times",12));
-    commandList = new LinkedList<CommandBlock>();
+    control = new CommandController();
     tank = new Tank(100,50,50,60,50,10,10,new Sprite(this,"../TankBase.png",0),new Sprite(this,"../TankHead.png",0));
-    MoveBackward command = new MoveBackward(cp5, cf, tank);
-    commandList.add(command);
-
+    control.add(new MoveBackward(cp5, cf, tank));
     parse();
   }
 
+
 void parse(){
-    for (CommandBlock command: commandList) {
+    for (CommandBlock command: control.getList()) {
       command.execute();
     }
 }
@@ -44,11 +43,14 @@ void parse(){
   
   void mousePressed(){
     if(cp5.getWindow().getMouseOverList().size() > 0){
-    draggedObject = commandList.get(Integer.parseInt(cp5.getWindow().getMouseOverList().get(0).getName()));
-    initX = mouseX;
-    initY = mouseY;
+      try{
+        draggedObject = control.getCommand(Integer.parseInt(cp5.getWindow().getMouseOverList().get(0).getStringValue()));
+        initX = mouseX;
+        initY = mouseY;
+      } catch(Exception e){
+      }
     }
-  }
+   }
 
 void mouseReleased(){
   draggedObject = null;
@@ -61,4 +63,6 @@ void mouseDragged(){
     initY = mouseY;
   }
 }
+
+
   
