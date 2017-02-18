@@ -25,7 +25,7 @@ static class Physics {
       angularVelocity = 0; 
     }
     
-    return angularVelocity / FPS;
+    return angularVelocity;
   }
   
   static float turnTurretLeft(float angularVelocity) {
@@ -47,7 +47,7 @@ static class Physics {
       angularVelocity = 0; 
     }
     
-    return angularVelocity / FPS;
+    return angularVelocity;
   }
   
   static float turnLeft(float angularVelocity) {
