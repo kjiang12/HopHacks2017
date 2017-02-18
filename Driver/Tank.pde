@@ -10,6 +10,9 @@ import sprites.Sprite;
       private float angVel;
       private float turrX, turrY;
       private float tankAngle, turrAngle;
+      private Sprite base_sprite;
+      private Sprite head_sprite;
+      
       public Tank(float health, float xCor, float yCor, float turrX, float turrY, float tankAngle, float turrAngle, Sprite base_sprite, Sprite head_sprite) {
         angVel=0;
         xSpeed=0;
