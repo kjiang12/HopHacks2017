@@ -17,12 +17,7 @@
     rectMode(CENTER);
     cp5 = new ControlP5(this);
     cf = new ControlFont(createFont("Times",12));
-    commandList = new LinkedList<CommandBlock>();
-    tank = new Tank(100,50,50,0,0,new Sprite(this,"../TankBase.png",0),new Sprite(this,"../TankHead.png",0));
-    MoveBackward command = new MoveBackward(cp5, cf, tank);
-    commandList.add(command);
 
-    parse();
     
     obstacles = new ArrayList<Obstacles>();
     generateObstacles(10);
