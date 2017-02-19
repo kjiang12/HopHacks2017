@@ -5,6 +5,8 @@ public class StageLists{
   private ArrayList<Bullet> bullets= new ArrayList<Bullet>();
   private ArrayList<Obstacle> obstacles= new ArrayList<Obstacle>();
   private ArrayList<Tank> tanks= new ArrayList<Tank>();
+  private float xTrav=0;
+  private float yTrav=0;
   private ArrayList<Explosion> explosions= new ArrayList<Explosion>();
   PApplet app;
   
@@ -50,14 +52,23 @@ public class StageLists{
   
   public void drawObjects(boolean doUpdate){
     for(int i = 0; i < bullets.size(); i++){
-      if (bullets.get(i).getX() > width || bullets.get(i).getX() < 0 || bullets.get(i).getY() > height || bullets.get(i).getY() < 0){
+      boolean remove=false;
+      if (bullets.get(i).getX() > width || bullets.get(i).getX() < 0 || bullets.get(i).getY() > height || bullets.get(i).getY() < 0 ){
        bullets.remove(i);
       }
       else{
         if (doUpdate) {
-          bullets.get(i).update();
+          if(bullets.get(i).update()>175){
+              remove = true;
+          }          
         }
+        if(remove){
+            bullets.remove(i);
+            remove=false;
+        }
+        else{
         bullets.get(i).getSprite().draw();
+        }
       }
     }
     for(Obstacle obstacle: obstacles){
@@ -133,9 +144,9 @@ public class StageLists{
           if(i!=j && tanks.get(i).getBaseSprite().bb_collision(tanks.get(j).getBaseSprite()))
           {
               tanks.get(i).stop();
-              tanks.get(i).setHealth(tanks.get(i).getHealth() - 1);
+              tanks.get(i).lowerHealth(1);
               tanks.get(j).stop();
-              tanks.get(j).setHealth(tanks.get(j).getHealth() - 1);
+              tanks.get(j).lowerHealth(1);
           }
        }
    }
@@ -144,7 +155,7 @@ public class StageLists{
        for (int k = bullets.size() - 1; k >= 0; k--){
           if(bullets.get(k).getSprite().bb_collision(tanks.get(l).getBaseSprite())){
             bullets.remove(k);
-            tanks.get(l).setHealth(tanks.get(l).getHealth() - 30);
+            tanks.get(l).lowerHealth(((int) (Math.random() * 20)) + 10);
 
           }
         }
@@ -153,7 +164,7 @@ public class StageLists{
   }
   
   public void checkDeath(){
-     for(int i = tanks.size() - 1; i > 0; i--){
+     for(int i = tanks.size() - 1; i >= 0; i--){
          if (tanks.get(i).getHealth() <= 0) {
             this.addItem(new Explosion(tanks.get(i).getPos() [0], tanks.get(i).getPos() [1], new Sprite(app,"../Explosion.png",0)));
             tanks.remove(i);
