@@ -3,7 +3,6 @@ import sprites.maths.Vector2D;
 
 public class Tank {
   private float health;
-  private boolean detected;
   private float tankAngVel;
   private float turrAngVel;
   private float tankAngle, turrAngle;
@@ -85,7 +84,13 @@ public class Tank {
     fill(0,255,0);
   
     rect((int)(this.getPos()[0]) - 20, (int)(this.getPos()[1]) - 20, health / 2, 5);
-
+    if(Math.abs(base_sprite.getX() - mouseX) <=15 && Math.abs(base_sprite.getY() - mouseY) <=15){
+    ellipseMode(CENTER);
+    noFill();
+    stroke(153);
+    ellipse((int) getPos()[0], (int) getPos()[1], 175, 175);
+    noStroke();
+    }
   }
   
   public double[] getPos() {
@@ -182,9 +187,6 @@ public class Tank {
     this.health=this.health-damage;
   }
             
-  public void setDetection(boolean detected) {
-    this.detected=detected;
-  }
             
   public void setBaseSprite(Sprite base_sprite) {
     this.base_sprite=base_sprite;
@@ -203,12 +205,9 @@ public class Tank {
     this.reloadDecrementer = reloadDecrementer; 
   }
 
-  public void detection(float xDist, float yDist) {
-    int r= (int) Math.sqrt(xDist*xDist+yDist*yDist);
-    if (r<= 10) {
-      setDetection(true);
+  public int getMaxRange() {
+    return 175;
     }
-  }
   
   //TURNING STUFF (Both tank and turret)
   //AIMING/ FIRING (Also zooming)
