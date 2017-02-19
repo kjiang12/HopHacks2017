@@ -12,7 +12,7 @@ public class StageLists{
   
   public StageLists(PApplet app){
      this.app = app;
-     generateObstacles(2);
+     generateObstacles(25);
      generateBots(2);
 
      this.addItem(new Player(100, 500, 500, PI / 3, 50, new Sprite(app,"../TankBase1.png",0), new Sprite(app,"../TankHead5.png",0),20));
@@ -123,25 +123,23 @@ public class StageLists{
      }
    }
    
-  ArrayList<Integer> removedObstacles = new ArrayList<Integer>();
+  ArrayList<Obstacle> removedObstacles = new ArrayList<Obstacle>();
   
-  int i = obstacles.size() - 1;
-  while (i >= 0){
+  for (int i = 0; i < obstacles.size() - 1; i++){
      for (int k = bullets.size() - 1; k >= 0; k--){
        if(obstacles.get(i).getSprite().bb_collision(bullets.get(k).getSprite())){
          bullets.remove(k);
-         removedObstacles.add(i);
+         removedObstacles.add(obstacles.get(i));
        }
      }
-     i--;
+   }
+
+   for (int i = removedObstacles.size() - 1; i >= 0; i--){
+     this.addItem(new Explosion(removedObstacles.get(i).getX(), removedObstacles.get(i).getY(), new Sprite(app,"../Explosion.png",0)));
+     obstacles.remove(removedObstacles.get(i));
    }
    
-   for (i = removedObstacles.size() - 1; i >= 0; i--){
-     this.addItem(new Explosion(obstacles.get(i).getX(), obstacles.get(i).getY(), new Sprite(app,"../Explosion.png",0)));
-     obstacles.remove(i);
-   }
-   
-   for(i = 0; i < tanks.size(); i++){
+   for(int i = 0; i < tanks.size(); i++){
        for (int  j=0; j < tanks.size(); j++){
           if(i!=j && tanks.get(i).getBaseSprite().bb_collision(tanks.get(j).getBaseSprite()))
           {

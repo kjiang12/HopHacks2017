@@ -18,8 +18,8 @@
   Boolean displayCode = false;  
   
  void setup (){
-    size(1260, 720);
-   // fullScreen();
+   // size(1260, 720);
+    fullScreen();
     noStroke();
     rectMode(CORNER);
     start = false;
