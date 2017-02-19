@@ -51,9 +51,8 @@ public class Bot extends Tank{
       findTarget();
     }
     else {
-      double [] location = {target.getPos()[0],target.getPos()[1]};
-      super.stop();
-      super.aimTo(location);
+      super.stopTurn();
+      super.aimTo(target.getPos());
        super.fireBullet();
        checkTarget();
     }
