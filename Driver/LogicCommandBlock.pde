@@ -150,15 +150,18 @@ public class ForLoop extends LogicCommandBlock{
       
     if(end != 0 && this.thenGroup.next != null){
       if(!current.contains(this)){
+        this.selecting();
         current.push(this);
         count = start;
       }
       if(count < end * 60){
+        this.thenGroup.selecting();
+        this.elseGroup.notSelecting();
         thenGroup.next.execute();
         count++;
-        println(count);
       } else {
         current.pop();
+        this.selected();
         if(this.elseGroup.next != null){
           elseGroup.next.execute();
         }
@@ -177,10 +180,15 @@ public class IfStatement extends LogicCommandBlock{
 
   void execute() {
     if(conditionGroup.next != null && thenGroup.next != null){
+      this.selected();
       if(((ConditionBlock)conditionGroup.next).calculate()){
+        this.thenGroup.selected();
+        this.elseGroup.notSelected();
         thenGroup.next.execute();
       } else {
         if(elseGroup.next != null){
+          this.thenGroup.notSelected();
+          this.elseGroup.selected();
           elseGroup.next.execute();
         }
     }

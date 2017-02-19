@@ -220,6 +220,7 @@ public class Comparison1Var extends ConditionBlock{
     if(var1.next != null){
       int op = (int) operatorList.getValue();
       value = Float.parseFloat(input.getText());
+      this.selected();
       try { 
         switch(op){
           case 0:

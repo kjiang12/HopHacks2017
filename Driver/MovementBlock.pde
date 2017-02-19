@@ -33,6 +33,7 @@ public class MoveBackward extends MovementBlock{
 
   void execute() {
     tank.backward();
+    this.selected();
     if(this.next != null){
       this.next.execute();
     }
@@ -47,6 +48,7 @@ public class MoveForward extends MovementBlock{
 
   void execute() {
     tank.forward();
+    this.selected();
     if(this.next != null){
       this.next.execute();
     }
@@ -62,6 +64,7 @@ public class TurnLeft extends MovementBlock{
 
   void execute() {
     tank.turnLeft();
+    this.selected();
     if(this.next != null){
       this.next.execute();
     }
@@ -77,6 +80,7 @@ public class TurnRight extends MovementBlock{
 
   void execute() {
     tank.turnRight();
+    this.selected();
     if(this.next != null){
       this.next.execute();
     }
@@ -92,6 +96,7 @@ public class TurnTurretLeft extends MovementBlock{
 
   void execute() {
     tank.turnTurretLeft();
+    this.selected();
     if(this.next != null){
       this.next.execute();
     }
@@ -107,6 +112,7 @@ public class TurnTurretRight extends MovementBlock{
 
   void execute() {
     tank.turnTurretRight();
+    this.selected();
     if(this.next != null){
       this.next.execute();
     }
@@ -121,6 +127,7 @@ public class StopTurning extends MovementBlock{
 
   void execute() {
     tank.stopTurn();
+    this.selected();
     if(this.next != null){
       this.next.execute();
     }
@@ -135,6 +142,7 @@ public class StopTurningTurret extends MovementBlock{
 
   void execute() {
     tank.stopTurretTurn();
+    this.selected();
     if(this.next != null){
       this.next.execute();
     }
@@ -150,6 +158,7 @@ public class Brake extends MovementBlock{
 
   void execute() {
     tank.brake();
+    this.selected();
     if(this.next != null){
       this.next.execute();
     }
@@ -189,11 +198,13 @@ public class Wait extends MovementBlock{
     if(curr >= time){
       if(!current.contains(this)){
         curr = 0;
+        this.selecting();
         current.push(this);
       }
       curr++;
     } else {
       current.pop();
+      this.selected();
       if(this.next != null){
         this.next.execute();
       }

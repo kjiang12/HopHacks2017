@@ -91,6 +91,22 @@ public abstract class CommandBlock{
   int getY(){
     return (int) this.g.getAbsolutePosition()[1];
   }
+  
+  void selected(){
+    this.g.setColorBackground(color(0,170,0));
+  }
+  
+  void selecting(){
+    this.g.setColorBackground(color(200,200,0));
+  }
+  
+  void notSelecting(){
+    this.g.setColorBackground(color(0,0,255));
+  }
+  
+  void notSelected(){
+    this.g.setColorBackground(color(255,0,0));
+  }
 }
 
 public class StartBlock extends CommandBlock{

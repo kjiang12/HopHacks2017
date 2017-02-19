@@ -75,8 +75,8 @@
          } else {
            start = true;
            control.execute();
-           displayCode = false;
-           control.setVisible(displayCode);
+           //displayCode = false;
+           //control.setVisible(displayCode);
          }
       }
      });
