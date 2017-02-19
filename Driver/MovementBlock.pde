@@ -46,9 +46,7 @@ public class MoveForward extends MovementBlock{
   }
 
   void execute() {
-    print("hello");
     tank.forward();
-    print("yo");
     if(this.next != null){
       this.next.execute();
     }

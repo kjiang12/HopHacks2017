@@ -139,6 +139,33 @@ public class GetMyVel extends GetCommandBlock{
   }
 }
 
+public class GetMySpeed extends GetCommandBlock{
+  public GetMySpeed(ControlP5 cp5, ControlFont cf, Tank myTank, Tank enemyTank){
+    super(cp5, cf, myTank, enemyTank);
+    this.g.getCaptionLabel().set("Get My Speed").setFont(cf);
+  }
+  float getFloatValue() {
+    println("x: " + myTank.getVel()[0]);
+    println("x^2: " + pow((float) myTank.getVel()[0], 2.0));
+    return sqrt(pow((float) myTank.getVel()[0], 2.0) + pow((float) myTank.getVel()[1], 2.0));
+  }
+  
+  int getIntValue() {
+    throw new UnsupportedOperationException();
+  }
+  
+  double getDoubleValue() {
+    throw new UnsupportedOperationException(); 
+  }
+  
+  double[] getDoubleArrValue(){
+     throw new UnsupportedOperationException(); 
+  }
+  void execute() {
+    println(this.getFloatValue());
+  }
+}
+
 public class GetEnemyVel extends GetCommandBlock{
   public GetEnemyVel(ControlP5 cp5, ControlFont cf, Tank myTank, Tank enemyTank){
     super(cp5, cf, myTank, enemyTank);

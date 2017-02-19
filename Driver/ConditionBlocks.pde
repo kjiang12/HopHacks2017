@@ -182,7 +182,7 @@ public class Comparison1Var extends ConditionBlock{
   LogicBlock var1;
   float value = 0;
   DropdownList operatorList;
-  
+  Textfield input;
   String[] comparisionOperators = {"=", "<", "<=", ">", ">=", "!="};
   
   public Comparison1Var(ControlP5 cp5, ControlFont cf, Tank tank){
@@ -206,28 +206,20 @@ public class Comparison1Var extends ConditionBlock{
                       .setCaptionLabel("")
                       .setFont(new ControlFont(createFont("Times", 30)));
      
-     cp5.addTextfield("input")
+     input = cp5.addTextfield("input")
      .setPosition(20,25)
      .setSize(70,40)
      .setFont(cf)
      .setGroup(this.g)
-     .setColor(color(255,0,0))
-     .onChange(new CallbackListener(){
-       public void controlEvent(CallbackEvent event) {
-         try{
-           value = Float.parseFloat(event.getController().getStringValue());
-         } catch(Exception e){
-         }
-      }
-     });
-     ;
+     .setColor(color(255,0,0));
+     
                        
   }
   
   Boolean calculate(){
     if(var1.next != null){
       int op = (int) operatorList.getValue();
-      
+      value = Float.parseFloat(input.getText());
       try { 
         switch(op){
           case 0:

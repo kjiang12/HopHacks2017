@@ -8,7 +8,7 @@ class DropDownMenu {
   String[] movement = {"Move Forward", "Brake", "Turn Left", "Turn Right", "Stop Turning"};
   String[] combat = {"Turn Turret Left", "Turn Turret Right", "Stop Turning Turret", "Fire"};
   String[] get = {"Get My Angular Velocity", "Get Enemy Angular Velocity", "Get My Angle", "Get Enemy Angle", "Get My Velocity", "Get Enemy Velocity", "Get My Position", "Get Enemy Position", "Get My Reloading Time",
-                  "Get Enemy Reloading Time", "Get My Turret Angular Velocity", "Get Enemy Turret Angular Velocity"};
+                  "Get Enemy Reloading Time", "Get My Turret Angular Velocity", "Get Enemy Turret Angular Velocity", "Get My Speed"};
   String[] ctrl = {"If", "For", "Wait"}; 
   boolean onOff1, onOff2, onOff3, onOff4, onOff5;
   
@@ -241,6 +241,8 @@ class DropDownMenu {
       control.add(new GetEnemyAngle(cp5, cf, stageLists.getTankList().get(0), stageLists.getTankList().get(1))); 
     } else if (label.equals("Get My Velocity")) {
       control.add(new GetMyVel(cp5, cf, stageLists.getTankList().get(0), stageLists.getTankList().get(1))); 
+    } else if (label.equals("Get My Speed")) {
+      control.add(new GetMySpeed(cp5, cf, stageLists.getTankList().get(0), stageLists.getTankList().get(1))); 
     } else if (label.equals("Get Enemy Velocity")) {
       control.add(new GetEnemyVel(cp5, cf, stageLists.getTankList().get(0), stageLists.getTankList().get(1))); 
     } else if (label.equals("Get My Position")) {
