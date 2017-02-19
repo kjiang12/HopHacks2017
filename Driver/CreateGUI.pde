@@ -26,6 +26,14 @@ class DropDownMenu {
            public void controlEvent(CallbackEvent event) {
              if (!onOff1) {
                onOff1 = true;
+               onOff2 = false;
+               onOff3 = false;
+               onOff4 = false;
+               onOff5 = false;
+               d2.setOpen(false);
+               d3.setOpen(false);
+               d4.setOpen(false);
+               d5.setOpen(false);
              } else if (onOff1) {
                addControl(event.getController().getLabel());
                onOff1 = false; 
@@ -40,7 +48,15 @@ class DropDownMenu {
            .onClick(new CallbackListener(){
             public void controlEvent(CallbackEvent event) {
               if (!onOff2) {
+                onOff1 = false;
                 onOff2 = true;
+                onOff3 = false;
+                onOff4 = false;
+                onOff5 = false;
+                d1.setOpen(false);
+                d3.setOpen(false);
+                d4.setOpen(false);
+                d5.setOpen(false);
               } else if (onOff2) {
                 addControl(event.getController().getLabel());
                 onOff2 = false; 
@@ -55,7 +71,15 @@ class DropDownMenu {
           .onClick(new CallbackListener(){
            public void controlEvent(CallbackEvent event) {
              if (!onOff3) {
+               onOff1 = false;
+               onOff2 = false;
                onOff3 = true;
+               onOff4 = false;
+               onOff5 = false;
+               d1.setOpen(false);
+               d2.setOpen(false);
+               d4.setOpen(false);
+               d5.setOpen(false);
              } else if (onOff3) {
                addControl(event.getController().getLabel());
                onOff3 = false; 
@@ -70,7 +94,15 @@ class DropDownMenu {
           .onClick(new CallbackListener(){
            public void controlEvent(CallbackEvent event) {
              if (!onOff4) {
+               onOff1 = false;
+               onOff2 = false;
+               onOff3 = false;
                onOff4 = true;
+               onOff5 = false;
+               d1.setOpen(false);
+               d2.setOpen(false);
+               d3.setOpen(false);
+               d5.setOpen(false);
              } else if (onOff4) {
                addControl(event.getController().getLabel());
                onOff4 = false; 
@@ -84,11 +116,19 @@ class DropDownMenu {
           .setFont(new ControlFont(createFont("Times",12)))
           .onClick(new CallbackListener(){
            public void controlEvent(CallbackEvent event) {
-             if (!onOff4) {
-               onOff4 = true;
-             } else if (onOff4) {
+             if (!onOff5) {
+               onOff1 = false;
+               onOff2 = false;
+               onOff3 = false;
+               onOff4 = false;
+               onOff5 = true;
+               d1.setOpen(false);
+               d2.setOpen(false);
+               d3.setOpen(false);
+               d4.setOpen(false);
+             } else if (onOff5) {
                addControl(event.getController().getLabel());
-               onOff4 = false; 
+               onOff5 = false; 
              }
            }
      });
@@ -120,6 +160,34 @@ class DropDownMenu {
     d3.setVisible(isVisible);
     d4.setVisible(isVisible);
     d5.setVisible(isVisible);
+  }
+  
+  void mousePress(int x, int y) {
+    onOff1 = (x > 100 && x < 300) && (y < 220); 
+    onOff2 = (x > 300 && x < 500) && (y < 340); 
+    onOff3 = (x > 500 && x < 700) && (y < 280); 
+    onOff4 = (x > 700 && x < 900) && (y < 400); 
+    onOff5 = (x > 900 && x < 1100) && (y < 160);
+    
+    if (!onOff1) {
+      d1.setOpen(onOff1);
+    }
+    
+    if (!onOff2) {
+      d2.setOpen(onOff2);
+    }
+    
+    if (!onOff3) {
+      d3.setOpen(onOff3);
+    }
+    
+    if (!onOff4) {
+      d4.setOpen(onOff4);
+    }
+    
+    if (!onOff5) {
+      d5.setOpen(onOff5);
+    }
   }
   
   void addControl(String label) {

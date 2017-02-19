@@ -5,6 +5,8 @@ public class StageLists{
   private ArrayList<Bullet> bullets= new ArrayList<Bullet>();
   private ArrayList<Obstacle> obstacles= new ArrayList<Obstacle>();
   private ArrayList<Tank> tanks= new ArrayList<Tank>();
+  private float xTrav=0;
+  private float yTrav=0;
   private ArrayList<Explosion> explosions= new ArrayList<Explosion>();
   PApplet app;
   
@@ -50,14 +52,23 @@ public class StageLists{
   
   public void drawObjects(boolean doUpdate){
     for(int i = 0; i < bullets.size(); i++){
-      if (bullets.get(i).getX() > width || bullets.get(i).getX() < 0 || bullets.get(i).getY() > height || bullets.get(i).getY() < 0){
+      boolean remove=false;
+      if (bullets.get(i).getX() > width || bullets.get(i).getX() < 0 || bullets.get(i).getY() > height || bullets.get(i).getY() < 0 ){
        bullets.remove(i);
       }
       else{
         if (doUpdate) {
-          bullets.get(i).update();
+          if(bullets.get(i).update()>175){
+              remove = true;
+          }          
         }
+        if(remove){
+            bullets.remove(i);
+            remove=false;
+        }
+        else{
         bullets.get(i).getSprite().draw();
+        }
       }
     }
     for(Obstacle obstacle: obstacles){

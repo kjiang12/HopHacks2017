@@ -83,6 +83,15 @@ public class Tank {
     
     rectMode(CORNER);
     fill(0,255,0);
+  
+    rect((int)(this.getPos()[0]) - 20, (int)(this.getPos()[1]) - 20, health / 2, 5);
+    if(Math.abs(base_sprite.getX() - mouseX) <=15 && Math.abs(base_sprite.getY() - mouseY) <=15){
+    ellipseMode(CENTER);
+    noFill();
+    stroke(153);
+    ellipse((int) getPos()[0], (int) getPos()[1], 350, 350);
+    noStroke();
+    }
     rect((int)(this.getPos()[0]) - 20, (int)(this.getPos()[1]) - 20, maxHealth/2, 5);
     fill(255,0,0);
     rect((int)(this.getPos()[0]) - 20 + (health / 2), (int)(this.getPos()[1]) - 20, (maxHealth / 2) - (health / 2), 5);
@@ -206,12 +215,9 @@ public class Tank {
     this.reloadDecrementer = reloadDecrementer; 
   }
 
-  public void detection(float xDist, float yDist) {
-    int r= (int) Math.sqrt(xDist*xDist+yDist*yDist);
-    if (r<= 10) {
-      setDetection(true);
+  public int getMaxRange() {
+    return 175;
     }
-  }
   
   //TURNING STUFF (Both tank and turret)
   //AIMING/ FIRING (Also zooming)
