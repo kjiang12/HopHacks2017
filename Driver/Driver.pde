@@ -59,7 +59,7 @@
     
     cp5.addToggle("Start")
      .setFont(cf)
-     .setPosition(1100,10)
+     .setPosition(1810,10)
      .setSize(100,50)
      .setImages(loadImage("../StartButton.png"),loadImage("../PauseButton.png"))
      .onChange(new CallbackListener(){

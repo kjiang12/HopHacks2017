@@ -20,7 +20,7 @@ class DropDownMenu {
     onOff4 = false;
     onOff5 = false;
     d1 = cp5.addDropdownList("Math")
-          .setPosition(100, 0)
+          .setPosition(210, 0)
           .setFont(new ControlFont(createFont("Times",12)))
           .onClick(new CallbackListener(){
            public void controlEvent(CallbackEvent event) {
@@ -44,7 +44,7 @@ class DropDownMenu {
           ;   
           
      d2 = cp5.addDropdownList("Movement")
-           .setPosition(300, 0)
+           .setPosition(510, 0)
            .setFont(new ControlFont(createFont("Times",12)))
            .onClick(new CallbackListener(){
             public void controlEvent(CallbackEvent event) {
@@ -68,7 +68,7 @@ class DropDownMenu {
           ;   
           
     d3 = cp5.addDropdownList("Combat")
-          .setPosition(500, 0)
+          .setPosition(810, 0)
           .setFont(new ControlFont(createFont("Times",12)))
           .onClick(new CallbackListener(){
            public void controlEvent(CallbackEvent event) {
@@ -92,7 +92,7 @@ class DropDownMenu {
           ;   
           
     d4 = cp5.addDropdownList("Get")
-          .setPosition(700, 0)
+          .setPosition(1110, 0)
           .setFont(new ControlFont(createFont("Times",12)))
           .onClick(new CallbackListener(){
            public void controlEvent(CallbackEvent event) {
@@ -116,7 +116,7 @@ class DropDownMenu {
           ;   
           
     d5 = cp5.addDropdownList("Control")
-          .setPosition(900, 0)
+          .setPosition(1410, 0)
           .setFont(new ControlFont(createFont("Times",12)))
           .onClick(new CallbackListener(){
            public void controlEvent(CallbackEvent event) {
@@ -151,7 +151,7 @@ class DropDownMenu {
     ddl.setItemHeight(60);
     ddl.setBarHeight(40);
     ddl.setHeight(400);
-    ddl.setWidth(200);
+    ddl.setWidth(300);
     ddl.addItems(options);
     ddl.setColorBackground(color(60));
     ddl.setColorActive(color(255, 128));
@@ -168,11 +168,11 @@ class DropDownMenu {
   }
   
   void mousePress(int x, int y) {
-    onOff1 = (x > 100 && x < 300) && (y < 220); 
-    onOff2 = (x > 300 && x < 500) && (y < 340); 
-    onOff3 = (x > 500 && x < 700) && (y < 280); 
-    onOff4 = (x > 700 && x < 900) && (y < 400); 
-    onOff5 = (x > 900 && x < 1100) && (y < 160);
+    onOff1 = (x > 210 && x < 510) && (y < 220); 
+    onOff2 = (x > 510 && x < 810) && (y < 340); 
+    onOff3 = (x > 810 && x < 1110) && (y < 280); 
+    onOff4 = (x > 1110 && x < 1410) && (y < 400); 
+    onOff5 = (x > 1410 && x < 1710) && (y < 160);
     
     if (!onOff1) {
       d1.setOpen(onOff1);
