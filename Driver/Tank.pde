@@ -3,6 +3,7 @@ import sprites.maths.Vector2D;
 
 public class Tank {
   private float health;
+  private float maxHealth;
   private boolean detected;
   private float tankAngVel;
   private float turrAngVel;
@@ -18,6 +19,7 @@ public class Tank {
 
   public Tank(float health, double x, double y, float tankAngle, float turrAngle, Sprite base_sprite, Sprite head_sprite,int reloadTime) {
     this.health = health;
+    this.maxHealth = health;
     this.tankAngle = tankAngle;
     this.turrAngle = turrAngle;
     tankAngVel = 0;
@@ -78,15 +80,19 @@ public class Tank {
     base_sprite.draw();
     head_sprite.draw();
     
-    fill(255,0,0);
-    rectMode(CORNER);
-    rect((int)(this.getPos()[0]) - 20, (int)(this.getPos()[1]) - 20, 50, 5);
     
+    rectMode(CORNER);
     fill(0,255,0);
-  
-    if (health / 2 > 0) {
-      rect((int)(this.getPos()[0]) - 20, (int)(this.getPos()[1]) - 20, health / 2, 5);
-    }
+    rect((int)(this.getPos()[0]) - 20, (int)(this.getPos()[1]) - 20, maxHealth/2, 5);
+    fill(255,0,0);
+    rect((int)(this.getPos()[0]) - 20 + (health / 2), (int)(this.getPos()[1]) - 20, (maxHealth / 2) - (health / 2), 5);
+    
+    fill(0, 0, 0);
+    text((int)health + "/" + (int)maxHealth, (int)(this.getPos()[0]) - 20, (int)(this.getPos()[1]) - 30);
+     
+    
+
+
   }
   
   public double[] getPos() {
@@ -220,6 +226,15 @@ public class Tank {
   public void setHealth(float health){
     this.health = health;
   }
+  
+  public float getMaxHealth() {
+    return maxHealth;
+  }
+  
+  public void setMaxHealth(float maxHealth){
+    this.maxHealth = maxHealth;
+  }
+  
   
   public boolean fired(){
     return fired;

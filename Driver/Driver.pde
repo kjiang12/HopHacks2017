@@ -19,8 +19,7 @@
   
  void setup (){
     size(1260, 720);
-    surface.setResizable(true);
-    //fullScreen();
+   // fullScreen();
     noStroke();
     rectMode(CORNER);
     start = false;

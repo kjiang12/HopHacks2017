@@ -11,7 +11,7 @@ public class StageLists{
   public StageLists(PApplet app){
      this.app = app;
      generateObstacles(2);
-     generateBots(10);
+     generateBots(50);
 
      this.addItem(new Tank(100, 500, 500, PI / 3, 50, new Sprite(app,"../TankBase1.png",0), new Sprite(app,"../TankHead5.png",0),20));
 
@@ -94,7 +94,6 @@ public class StageLists{
       checkBullet();
       collisionCheck();
     }
-    print("width:" + width + "height:" + height);
   }
   
   void collisionCheck(){
