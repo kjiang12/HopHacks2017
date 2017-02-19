@@ -133,9 +133,9 @@ public class StageLists{
           if(i!=j && tanks.get(i).getBaseSprite().bb_collision(tanks.get(j).getBaseSprite()))
           {
               tanks.get(i).stop();
-              tanks.get(i).setHealth(tanks.get(i).getHealth() - 1);
+              tanks.get(i).lowerHealth(1);
               tanks.get(j).stop();
-              tanks.get(j).setHealth(tanks.get(j).getHealth() - 1);
+              tanks.get(j).lowerHealth(1);
           }
        }
    }
@@ -144,7 +144,7 @@ public class StageLists{
        for (int k = bullets.size() - 1; k >= 0; k--){
           if(bullets.get(k).getSprite().bb_collision(tanks.get(l).getBaseSprite())){
             bullets.remove(k);
-            tanks.get(l).setHealth(tanks.get(l).getHealth() - 30);
+            tanks.get(l).lowerHealth(((int) (Math.random() * 20)) + 10);
 
           }
         }
@@ -153,7 +153,7 @@ public class StageLists{
   }
   
   public void checkDeath(){
-     for(int i = tanks.size() - 1; i > 0; i--){
+     for(int i = tanks.size() - 1; i >= 0; i--){
          if (tanks.get(i).getHealth() <= 0) {
             this.addItem(new Explosion(tanks.get(i).getPos() [0], tanks.get(i).getPos() [1], new Sprite(app,"../Explosion.png",0)));
             tanks.remove(i);

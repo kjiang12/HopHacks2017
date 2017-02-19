@@ -2,8 +2,8 @@ import sprites.Sprite;
 import sprites.maths.Vector2D;
 
 public class Tank {
-  private float health;
-  private float maxHealth;
+  private int health;
+  private int maxHealth;
   private boolean detected;
   private float tankAngVel;
   private float turrAngVel;
@@ -17,7 +17,7 @@ public class Tank {
   private Sprite head_sprite;
   private boolean fired;
 
-  public Tank(float health, double x, double y, float tankAngle, float turrAngle, Sprite base_sprite, Sprite head_sprite,int reloadTime) {
+  public Tank(int health, double x, double y, float tankAngle, float turrAngle, Sprite base_sprite, Sprite head_sprite,int reloadTime) {
     this.health = health;
     this.maxHealth = health;
     this.tankAngle = tankAngle;
@@ -88,7 +88,7 @@ public class Tank {
     rect((int)(this.getPos()[0]) - 20 + (health / 2), (int)(this.getPos()[1]) - 20, (maxHealth / 2) - (health / 2), 5);
     
     fill(0, 0, 0);
-    text((int)health + "/" + (int)maxHealth, (int)(this.getPos()[0]) - 20, (int)(this.getPos()[1]) - 30);
+    text(health + "/" + maxHealth, (int)(this.getPos()[0]) - 20, (int)(this.getPos()[1]) - 30);
      
     
 
@@ -184,21 +184,17 @@ public class Tank {
   public int getReloadDecrementer(){
     return reloadDecrementer; 
   }
-  
-  public void lowerHealth(float damage) {
-    this.health=this.health-damage;
-  }
             
   public void setDetection(boolean detected) {
-    this.detected=detected;
+    this.detected = detected;
   }
             
   public void setBaseSprite(Sprite base_sprite) {
-    this.base_sprite=base_sprite;
+    this.base_sprite = base_sprite;
   }
             
   public void setHeadSprite(Sprite head_sprite) {
-    this.head_sprite=head_sprite;
+    this.head_sprite = head_sprite;
   }
 
   
@@ -219,22 +215,25 @@ public class Tank {
   
   //TURNING STUFF (Both tank and turret)
   //AIMING/ FIRING (Also zooming)
-  public float getHealth() {
+  public int getHealth() {
     return health;
   }
   
-  public void setHealth(float health){
+  public void setHealth(int health){
     this.health = health;
   }
   
-  public float getMaxHealth() {
+  public int getMaxHealth() {
     return maxHealth;
   }
   
-  public void setMaxHealth(float maxHealth){
+  public void setMaxHealth(int maxHealth){
     this.maxHealth = maxHealth;
   }
   
+  public void lowerHealth(int damage) {
+    this.health = health - damage;
+  }
   
   public boolean fired(){
     return fired;

@@ -1,7 +1,7 @@
 public class Bot extends Tank{
   int timer;
   int randomTime;
-  public Bot(float health, double x, double y, float tankAngle, float turrAngle, Sprite base_sprite, Sprite head_sprite,int reloadTime){
+  public Bot(int health, double x, double y, float tankAngle, float turrAngle, Sprite base_sprite, Sprite head_sprite,int reloadTime){
     super(health, x, y, tankAngle, turrAngle, base_sprite, head_sprite, reloadTime);
     timer = 0;
     randomTime = ((int) (Math.random() * 200));
