@@ -12,9 +12,7 @@ public class StageLists{
   
   public StageLists(PApplet app){
      this.app = app;
-     generateObstacles(25);
-     this.addItem(new Player(100, 500, 500, PI / 3, 50, new Sprite(app,"../TankBase1.png",0), new Sprite(app,"../TankHead5.png",0),20, tanks));
-     generateBots(5);
+     generateMap("Columns");
   }
   public ArrayList<Bullet> getBulletList(){
     return bullets;
@@ -175,7 +173,7 @@ public void generateBots(int numberOfBots){
     boolean overlap = false;
     int i = 0;
     while (i < numberOfBots){
-      Bot bot = new Bot(100, ((int) (Math.random() * (width - 50)) + 20),((int) (Math.random() * (height - 50)) + 20), (PI / 12) * ((int) (Math.random() * 12)), (PI / 12) * ((int) (Math.random() * 12)), new Sprite(app,"../TankBase" + (((int) (Math.random() * 2)) + 1) + ".png",0), new Sprite(app,"../TankHead" + (((int) (Math.random() * 4)) + 1) + ".png",0),75,tanks);
+      Bot bot = new Bot(100, ((int) (Math.random() * (width - 50)) + 20),((int) (Math.random() * (height - 50)) + 20), (PI / 12) * ((int) (Math.random() * 12)), (PI / 12) * ((int) (Math.random() * 12)), new Sprite(app,"../TankBase" + (((int) (Math.random() * 3)) + 1) + ".png",0), new Sprite(app,"../TankHead" + (((int) (Math.random() * 5)) + 1) + ".png",0),75,tanks);
       for (Obstacle obstacle: obstacles){
        if(obstacle.getSprite().pp_collision(bot.getBaseSprite())){
          overlap = true;
@@ -284,6 +282,26 @@ public void generateBots(int numberOfBots){
        text("VICTORY!!!!", width / 3, height / 2);
        textSize(12);
      }
+  }
+  
+  public void generateMap(String code){
+    if (code.equals("Random")) {
+     this.addItem(new Player(100, ((int) (Math.random() * (width - 50)) + 20),((int) (Math.random() * (height - 50)) + 20), PI / 3, 50, new Sprite(app,"../TankBase1.png",0), new Sprite(app,"../TankHead5.png",0),20, tanks));
+     generateObstacles(25);
+     generateBots(5); 
+    }
+    else if (code.equals("Columns")){
+      
+      this.addItem(new Player(100, 500, 500, PI / 3, 50, new Sprite(app,"../TankBase1.png",0), new Sprite(app,"../TankHead5.png",0),20, tanks));
+      for (int i = 0; i < 23; i++) {
+         for (int j = 0; j < 10; j++) {
+           this.addItem(new Crate(150 * j,10 + i * 35, new Sprite(app,"../Crate.png",0))); 
+         }
+      }
+      for (int i = 0; i < 9; i++) {
+        this.addItem(new Bot(100, 150 * i + 50, 50 + 50 * i, (PI / 12) * ((int) (Math.random() * 12)), (PI / 12) * ((int) (Math.random() * 12)), new Sprite(app,"../TankBase" + (((int) (Math.random() * 3)) + 1) + ".png",0), new Sprite(app,"../TankHead" + (((int) (Math.random() * 5)) + 1) + ".png",0),75,tanks));
+      }
+    }
   }
 
 }

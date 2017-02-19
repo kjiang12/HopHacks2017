@@ -86,7 +86,6 @@ public class Bot extends Tank{
           super.stop();
         }
       }
-      print(super.getBaseSprite().getRot());
     /*    if ((targetX < 0 && targetY < 0) || (targetX > 0 && targetY < 0)){
           super.getBaseSprite().setDirection((atan((float)(targetY/targetX))) + PI);
           super.getHeadSprite().setDirection((atan((float)(targetY/targetX))) + PI);
