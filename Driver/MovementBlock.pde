@@ -195,7 +195,7 @@ public class Wait extends MovementBlock{
     } catch (Exception e){
       time = 0;
     }
-    if(curr >= time){
+    if(curr <= time){
       if(!current.contains(this)){
         curr = 0;
         this.selecting();

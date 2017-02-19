@@ -8,6 +8,7 @@ public class CommandController{
   CommandBlock start;
   Range range;
   DropDownMenu ddm;
+  Boolean began = false;
   
   public CommandController(StartBlock start){
     this.commandList = new LinkedList<CommandBlock>();
@@ -86,8 +87,16 @@ public class CommandController{
     return commandTable.get(Integer.parseInt(group.getStringValue()));
   }
   
-  void execute(){
-    start.execute();
+  void execute(Boolean cont){
+    if(cont){
+      if(!began){
+        start.execute();
+        began = true;
+      }
+      if(current.size() > 0) {
+         current.peek().execute();
+       }
+    }
   }
   
   void draw(){
@@ -100,9 +109,6 @@ public class CommandController{
         command.draw();
       }
     } 
-    if(current.size() > 0){
-      current.peek().execute();
-    }
   }
   
   void setVisible(Boolean bol){
