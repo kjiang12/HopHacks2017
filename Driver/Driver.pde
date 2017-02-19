@@ -32,8 +32,13 @@
   void reset(){
     start = false;
     
+    if(cp5 != null){
+      for(ControllerInterface control : cp5.getAll()){
+        print(control.getName());
+        cp5.remove(control.getName());
+      }
+    }
     cp5 = new ControlP5(this);
-
     stageLists = new StageLists(this);
 
     control = new CommandController(new StartBlock(cp5, cf, stageLists.getTankList().get(0)));
