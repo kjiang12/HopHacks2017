@@ -27,7 +27,7 @@ public class Explosion{
   public void setY(double y){
    sprite.setY(y); 
   }
-  public void setX(Sprite sprite){
+  public void setSprite(Sprite sprite){
    this.sprite = sprite; 
   }
   public void setTick(int tick){
