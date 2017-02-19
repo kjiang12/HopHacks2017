@@ -4,12 +4,12 @@ class DropDownMenu {
   ControlP5 cp5;
   DropdownList d1, d2, d3, d4, d5;
   String choice;
-  String[] conditional = {"1 Var", "2 Var"};
+  String[] conditional = {"1 Var", "2 Var", "Pause Block"};
   String[] movement = {"Move Forward", "Brake", "Turn Left", "Turn Right", "Stop Turning"};
   String[] combat = {"Turn Turret Left", "Turn Turret Right", "Stop Turning Turret", "Fire"};
   String[] get = {"Get My Angular Velocity", "Get Enemy Angular Velocity", "Get My Angle", "Get Enemy Angle", "Get My Velocity", "Get Enemy Velocity", "Get My Position", "Get Enemy Position", "Get My Reloading Time",
                   "Get Enemy Reloading Time", "Get My Turret Angular Velocity", "Get Enemy Turret Angular Velocity", "Get My Speed"};
-  String[] ctrl = {"If", "For", "Wait"}; 
+  String[] ctrl = {"If", "For"}; 
   boolean onOff1, onOff2, onOff3, onOff4, onOff5;
   
   public DropDownMenu(ControlP5 cp5) {
@@ -131,6 +131,8 @@ class DropDownMenu {
                d3.setOpen(false);
                d4.setOpen(false);
              } else if (onOff5) {
+               println("yes");
+               println(event.getController().getLabel());
                addControl(event.getController().getLabel());
                d5.setCaptionLabel("Control");
                onOff5 = false; 
@@ -201,6 +203,7 @@ class DropDownMenu {
   }
   
   void addControl(String label) {
+    println(label);
     if (label.equals("If")) {  
       control.add(new IfStatement(cp5, cf, stageLists.getTankList().get(0)));    
     } else if (label.equals("Sin")) {
@@ -229,7 +232,7 @@ class DropDownMenu {
       control.add(new Fire(cp5, cf, stageLists.getTankList().get(0)));
     } else if (label.equals("For")) {
       control.add(new ForLoop(cp5, cf, stageLists.getTankList().get(0)));
-    } else if (label.equals("Wait")) {
+    } else if (label.equals("Pause Block")) {
       control.add(new Wait(cp5, cf, stageLists.getTankList().get(0)));
     } else if (label.equals("Get My Angular Velocity")) {
       control.add(new GetMyAngVel(cp5, cf, stageLists.getTankList().get(0), stageLists.getTankList().get(1))); 
