@@ -16,23 +16,28 @@
   CommandBlock selections;
   DropDownMenu ddm;
   Boolean displayCode = false;  
+  PImage code;
   
  void setup (){
     size(1260, 720);
    // fullScreen();
     noStroke();
     rectMode(CORNER);
+    cf = new ControlFont(createFont("Times",16));
+    code = loadImage("../Code.png");
+    code.resize(100,100);
+    reset();
+  }
+  
+  void reset(){
     start = false;
     
     cp5 = new ControlP5(this);
-    cf = new ControlFont(createFont("Times",16));
 
     stageLists = new StageLists(this);
 
     control = new CommandController(new StartBlock(cp5, cf, stageLists.getTankList().get(0)));
     
-    PImage code = loadImage("../Code.png");
-    code.resize(100,100);
     Toggle tog = cp5.addToggle("Show\nCode")
      .setFont(new ControlFont(createFont("Times", 20)))
      .setPosition(0,0)
@@ -74,10 +79,10 @@
      .setFont(cf)
      .setPosition(0,640)
      .setSize(100,50)
-     .setImages(loadImage("../StartButton.png"),loadImage("../PauseButton.png"))
+     
      .onChange(new CallbackListener(){
        public void controlEvent(CallbackEvent event) {
-        setup();
+        reset();
       }
      }); 
   }
