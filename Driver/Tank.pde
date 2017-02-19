@@ -94,7 +94,7 @@ public class Tank {
     fill(255,0,0);  
     rect((int)(this.getPos()[0]) - 20, (int)(this.getPos()[1]) - 20, 50, 5);
     fill(0,255,0);
-    rect((int)(this.getPos()[0]) - 20, (int)(this.getPos()[1]) - 20, (50 * ((double) health / maxHealth)), 5);
+    rect((int)(this.getPos()[0]) - 20, (int)(this.getPos()[1]) - 20, (int)(50 * ((double) health / maxHealth)), 5);
     
     fill(0, 0, 0);
     text(health + "/" + maxHealth, (int)(this.getPos()[0]) - 20, (int)(this.getPos()[1]) - 30);
