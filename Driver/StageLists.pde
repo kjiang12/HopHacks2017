@@ -14,7 +14,7 @@ public class StageLists{
      this.app = app;
      generateObstacles(25);
      this.addItem(new Player(100, 500, 500, PI / 3, 50, new Sprite(app,"../TankBase1.png",0), new Sprite(app,"../TankHead5.png",0),20, tanks));
-     generateBots(5);
+     generateBots(25);
   }
   public ArrayList<Bullet> getBulletList(){
     return bullets;
@@ -177,7 +177,7 @@ public void generateBots(int numberOfBots){
     boolean overlap = false;
     int i = 0;
     while (i < numberOfBots){
-      Bot bot = new Bot(100, ((int) (Math.random() * (width - 50)) + 20),((int) (Math.random() * (height - 50)) + 20), (PI / 12) * ((int) (Math.random() * 12)), (PI / 12) * ((int) (Math.random() * 12)), new Sprite(app,"../TankBase" + (((int) (Math.random() * 2)) + 1) + ".png",0), new Sprite(app,"../TankHead" + (((int) (Math.random() * 4)) + 1) + ".png",0),75,tanks);
+      Bot bot = new Bot(100, ((int) (Math.random() * (width - 50)) + 20),((int) (Math.random() * (height - 50)) + 20), (PI / 12) * ((int) (Math.random() * 12)), (PI / 12) * ((int) (Math.random() * 12)), new Sprite(app,"../TankBase" + (((int) (Math.random() * 3)) + 1) + ".png",0), new Sprite(app,"../TankHead" + (((int) (Math.random() * 5)) + 1) + ".png",0),75,tanks);
       for (Obstacle obstacle: obstacles){
        if(obstacle.getSprite().pp_collision(bot.getBaseSprite())){
          overlap = true;
