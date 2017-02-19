@@ -52,7 +52,8 @@ public abstract class GetCommandBlock extends CommandBlock{
   }
   void setGroup(String s){
     super.setGroup(s);
-    super.g.setBackgroundColor(color(255, 0, 0));}
+    super.g.setBackgroundColor(color(255, 0, 0));
+  }
   abstract float getFloatValue();
   abstract int getIntValue();
   abstract double getDoubleValue();

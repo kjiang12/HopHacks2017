@@ -151,12 +151,12 @@ public class ForLoop extends LogicCommandBlock{
     if(end != 0 && this.thenGroup.next != null){
       if(!current.contains(this)){
         current.push(this);
+        count = start;
       }
-      count = start;
       if(count < end * 60){
-        println("execute");
         thenGroup.next.execute();
         count++;
+        println(count);
       } else {
         current.pop();
         if(this.elseGroup.next != null){

@@ -157,7 +157,7 @@ public class Brake extends MovementBlock{
 }
 
 public class Wait extends MovementBlock{
-  int time, curr = 0;
+  int time, curr;
   
   Textfield timeField;
   public Wait(ControlP5 cp5, ControlFont cf, Tank tank){
@@ -168,8 +168,7 @@ public class Wait extends MovementBlock{
                     .setText(" Time ")
                     .setPosition(50, 15)
                     .setFont(new ControlFont(createFont("Times", 20)))
-                    .setGroup(this.g)
-                    ;
+                    .setGroup(this.g);
                     
     timeField = cp5.addTextfield("input2 " + this.id)
      .setPosition(120,10)
@@ -189,6 +188,7 @@ public class Wait extends MovementBlock{
     }
     if(curr >= time){
       if(!current.contains(this)){
+        curr = 0;
         current.push(this);
       }
       curr++;
