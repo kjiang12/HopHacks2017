@@ -12,10 +12,10 @@
   CommandController control;
   boolean start;
   boolean firstRun = true;
-  Boolean selected = false;
+  Boolean selected;
   CommandBlock selections;
   DropDownMenu ddm;
-  Boolean displayCode = false;  
+  Boolean displayCode;  
   PImage code;
   
  void setup (){
@@ -31,7 +31,8 @@
   
   void reset(){
     start = false;
-    
+    displayCode = false;  
+    selected = false;
     if(cp5 != null){
       for(ControllerInterface control : cp5.getAll()){
         print(control.getName());
