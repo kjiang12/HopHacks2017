@@ -17,7 +17,23 @@ public abstract class ConditionBlock extends CommandBlock{
     return logic;
   }
 }
-
+public class Comparison1Var extends ConditionBlock{
+  LogicBlock var1;
+  public Comparison1Var(ControlP5 cp5, ControlFont cf, Tank tank){
+    super(cp5, cf, tank);
+    this.h = 120;
+    this.g.getCaptionLabel().set("Comparision with 1 Variable").setFont(cf);
+    this.g.setSize(this.w , this.h);
+    this.var1 = this.add(new LogicBlock(cp5, cf, tank, "Var1", 0, this.g));
+  }
+    Boolean calculate(){
+    if(var1.next != null){
+      //return ((GetCommandBlock) var1.next).getValue();
+    }
+    return false;
+    }
+}
+  
 public class Comparison2Var extends ConditionBlock{
   LogicBlock var1, var2;
   DropdownList operatorList;
