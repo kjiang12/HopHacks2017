@@ -14,7 +14,7 @@ public class StageLists{
      this.app = app;
      generateObstacles(25);
      this.addItem(new Player(100, 500, 500, PI / 3, 50, new Sprite(app,"../TankBase1.png",0), new Sprite(app,"../TankHead5.png",0),20, tanks));
-     generateBots(5);
+     generateBots(1);
   }
   public ArrayList<Bullet> getBulletList(){
     return bullets;
@@ -93,8 +93,10 @@ public class StageLists{
     //  tank.forward();
     //  tank.fireBullet();
     //  println(tank.getTankAngle());
+    double[] target = {0, 0};
       if (doUpdate) {
         tank.update();
+        tanks.get(0).moveTo(target);
       }
       tank.draw();
     }

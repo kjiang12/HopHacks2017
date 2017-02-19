@@ -18,6 +18,7 @@ public class Tank {
   private Sprite head_sprite;
   private boolean fired;
   private ArrayList<Tank> enemies;
+  private static final double MAX_VEL = 5.33;
 
   public Tank(int health, double x, double y, float tankAngle, float turrAngle, Sprite base_sprite, Sprite head_sprite,int reloadTime, ArrayList<Tank> enemies) {
     this.health = health;
@@ -101,10 +102,6 @@ public class Tank {
     
     fill(0, 0, 0);
     text(health + "/" + maxHealth, (int)(this.getPos()[0]) - 20, (int)(this.getPos()[1]) - 30);
-     
-    
-
-
   }
   
   public double[] getPos() {
@@ -121,6 +118,40 @@ public class Tank {
     returnArr[1] = base_sprite.getVelY();
     
     return returnArr;
+  }
+  
+  public void moveTo(double[] pos) {
+     double[] vector = new double[2];
+
+     vector[0] = pos[0] - getPos()[0];
+     vector[1] = pos[1] - getPos()[1];
+     
+     double[] heading = new double[2];
+     heading[0] = cos((float)base_sprite.getRot());
+     heading[1] = sin((float)base_sprite.getRot());
+     
+     double cross = vector[0] * heading[1] - vector[1] * heading[0];
+     
+     if(cross > 0.0f) {
+       turnLeft(); 
+     }
+
+     if(cross < 0.0f) {
+       turnRight(); 
+     }
+     
+     forward();
+  }
+  
+  public boolean faceAngle(double angle) {
+    if (abs((float)((angle - base_sprite.getRot()) % (2 * PI))) < 0.2) {
+      stopTurn();
+      return true; 
+    }
+    
+    turnLeft();
+    
+    return false;
   }
   
   public void stop(){

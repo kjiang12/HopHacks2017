@@ -1,14 +1,14 @@
 static class Physics {
   private static final float MASS = 30000;
-  private static final double MAX_VEL= 5.33;
+  private static final double MAX_VEL= 13.33;
   private static final float MIN_VEL= 3.0;
   private static final float ACC = 1.87;
   private static final float FPS = 60;
   private static final double BRAKE = 1.55;
-  private static final float TANK_TURN = 37 * PI / 180.0;
-  private static final float TANK_TURN_ACC = 30 * PI / 180.0;
-  private static final float TURRET_TURN = 38 * PI / 180.0;
-  private static final float TURRET_TURN_ACC = 30 * PI / 180.0;
+  private static final float TANK_TURN = 80 * PI / 180.0;
+  private static final float TANK_TURN_ACC = 90 * PI / 180.0;
+  private static final float TURRET_TURN = 80 * PI / 180.0;
+  private static final float TURRET_TURN_ACC = 90 * PI / 180.0;
   private static final float LENGTH = 6;
   private static final float WIDTH = 3;
   private static final float I = 112500;
