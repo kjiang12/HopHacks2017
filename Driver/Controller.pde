@@ -1,3 +1,6 @@
+import java.util.Stack;
+Stack<CommandBlock> current;
+
 public class CommandController{
   LinkedList<CommandBlock> commandList;
   HashMap<Integer, CommandBlock> commandTable;
@@ -5,7 +8,6 @@ public class CommandController{
   CommandBlock start;
   Range range;
   DropDownMenu ddm;
-  CommandBlock current;
   
   public CommandController(StartBlock start){
     this.commandList = new LinkedList<CommandBlock>();
@@ -13,6 +15,7 @@ public class CommandController{
     count = 0;
     this.start = start;
     this.add(start);
+    current = new Stack<CommandBlock>();
     this.ddm = new DropDownMenu(cp5);
     this.range = cp5.addRange("rangeController")
              .setPosition(20,height - 50)
@@ -97,6 +100,9 @@ public class CommandController{
         command.draw();
       }
     } 
+    if(current.size() > 0){
+      current.peek().execute();
+    }
   }
   
   void setVisible(Boolean bol){
