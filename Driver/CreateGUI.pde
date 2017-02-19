@@ -9,7 +9,7 @@ class DropDownMenu {
   String[] combat = {"Turn Turret Left", "Turn Turret Right", "Stop Turning Turret", "Fire"};
   String[] get = {"Get My Angular Velocity", "Get Enemy Angular Velocity", "Get My Angle", "Get Enemy Angle", "Get My Velocity", "Get Enemy Velocity", "Get My Position", "Get Enemy Position", "Get My Reloading Time",
                   "Get Enemy Reloading Time", "Get My Turret Angular Velocity", "Get Enemy Turret Angular Velocity"};
- String[] ctrl = {"If", "For"}; 
+ String[] ctrl = {"If", "For", "Wait"}; 
   boolean onOff1, onOff2, onOff3, onOff4, onOff5;
   
   public DropDownMenu(ControlP5 cp5) {
@@ -230,6 +230,8 @@ class DropDownMenu {
       control.add(new Fire(cp5, cf, stageLists.getTankList().get(0)));
     } else if (label.equals("For")) {
       control.add(new ForLoop(cp5, cf, stageLists.getTankList().get(0)));
+    } else if (label.equals("Wait")) {
+      control.add(new Wait(cp5, cf, stageLists.getTankList().get(0)));
     } else if (label.equals("Get My Angular Velocity")) {
       control.add(new GetMyAngVel(cp5, cf, stageLists.getTankList().get(0), stageLists.getTankList().get(1))); 
     } else if (label.equals("Get Enemy Angular Velocity")) {
