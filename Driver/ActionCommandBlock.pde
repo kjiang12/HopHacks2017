@@ -15,6 +15,7 @@ public class Fire extends ActionCommandBlock{
   }
 
   void execute() {
+    println("aaaaa fire");
     tank.fireBullet();
     if(this.next != null){
       this.next.execute();

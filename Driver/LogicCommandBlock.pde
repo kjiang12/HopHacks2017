@@ -90,7 +90,7 @@ class LogicBlock extends CommandBlock{
    
 public class ForLoop extends LogicCommandBlock{
   int start, end, count = 0;
-  
+  Textfield endField, startField;
   public ForLoop(ControlP5 cp5, ControlFont cf, Tank tank){
     super(cp5, cf, tank);
     this.conditionGroup.g.remove();
@@ -107,7 +107,7 @@ public class ForLoop extends LogicCommandBlock{
                     .setGroup(this.g)
                     ;
                     
-    cp5.addTextfield("input1 " + this.id)
+    startField = cp5.addTextfield("input1 " + this.id)
      .setPosition(100,10)
      .setSize(60,40)
      .setFont(cf)
@@ -127,7 +127,7 @@ public class ForLoop extends LogicCommandBlock{
                     .setGroup(this.g)
                     ;
                     
-    cp5.addTextfield("input2 " + this.id)
+    endField = cp5.addTextfield("input2 " + this.id)
      .setPosition(220,10)
      .setSize(60,40)
      .setFont(cf)
@@ -136,6 +136,7 @@ public class ForLoop extends LogicCommandBlock{
      .setColor(color(255,0,0))
      .onChange(new CallbackListener(){
        public void controlEvent(CallbackEvent event) {
+         print("parsing");
          end = (int) Float.parseFloat(event.getController().getStringValue());
       }
      });
@@ -143,9 +144,15 @@ public class ForLoop extends LogicCommandBlock{
   }
 
   void execute() {
+    try {
+      end = (int) Float.parseFloat(endField.getText());
+      start = (int) Float.parseFloat(startField.getText());
+      
     if(end != 0 && this.thenGroup.next != null){
+      println("yes");
       count = start;
       if(count < end * 60){
+        println("execute");
         thenGroup.next.execute();
         count++;
       } else {
@@ -154,7 +161,9 @@ public class ForLoop extends LogicCommandBlock{
         }
     }
   }
+} catch(Exception e){
 }
+  }
 }
 
 public class IfStatement extends LogicCommandBlock{
