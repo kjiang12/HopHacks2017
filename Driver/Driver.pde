@@ -15,7 +15,7 @@
   Boolean selected = false;
   CommandBlock selections;
   DropDownMenu ddm;
-  Boolean displayCode = false;
+  Boolean displayCode = false;  
   
  void setup (){
     size(1260, 720);
@@ -84,7 +84,7 @@ boolean brake = false;
  }
   
   void mousePressed(){
-  
+    control.getDDM().mousePress(mouseX, mouseY);
     if(cp5.getWindow().getMouseOverList().size() > 0){
       try{
         if(selected){
