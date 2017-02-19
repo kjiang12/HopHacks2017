@@ -2,11 +2,13 @@ public class Bullet{
   Sprite sprite;
   double angle;
   private int distTrav;
-  private int origLoc=0;
+  private int origXLoc=0;
+  private int origYLoc=0;
   public Bullet(int x, int y, Sprite sprite, double angle){
     this.sprite = sprite;
     this.distTrav=0;
-    this.origLoc= (int) Math.sqrt((x + 28 * cos((float) angle)) * (x + 28 * cos((float) angle)) + (y + 28 * sin((float) angle)) * (y + 28 * sin((float) angle)));
+    this.origXLoc= (int) (x + 28 * cos((float) angle));
+    this.origYLoc= (int) (y + 28 * sin((float) angle));
     this.sprite.setXY(x + 28 * cos((float)angle), y + 28 * sin((float)angle));
     this.angle = angle;
   }
@@ -33,7 +35,7 @@ public class Bullet{
     sprite.setDirection(angle);
     sprite.setSpeed(5);
     sprite.update(0.4);
-    distTrav= (int) Math.sqrt(getX()*getX() + getY()*getY()) - origLoc;
+    distTrav= (int) Math.abs(Math.sqrt((getX()-origXLoc)*(getX()-origXLoc) + (getY()-origYLoc)*(getY()-origYLoc)));
     return distTrav;
   }
 }

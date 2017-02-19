@@ -56,7 +56,8 @@ public class StageLists{
       }
       else{
         if (doUpdate) {
-          if(bullets.get(i).update()>175){
+          if(bullets.get(i).update()>120){
+              System.out.println("Out of Range");
               remove = true;
           }          
         }
