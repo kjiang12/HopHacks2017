@@ -2,34 +2,106 @@ import controlP5.*;
 
 class DropDownMenu {
   ControlP5 cp5;
-  DropdownList d1;
+  DropdownList d1, d2, d3, d4, d5;
   String choice;
-  String[] options = {"If", "Sin", "Cos", "Tan", "Move Forward", "Brake", "Turn Left", "Turn Right", "Stop Turning", "Turn Turret Left", "Turn Turret Right", "Stop Turning Turret", "Fire", "For", "Get My Angular Velocity", "Get Enemy Angular Velocity", 
-                      "Get My Angle", "Get Enemy Angle", "Get My Velocity", "Get Enemy Velocity", "Get My Position", "Get Enemy Position", "Get My Reloading Time", "Get Enemy Reloading Time", "Get My Turret Angular Velocity", "Get Enemy Turret Angular Velocity"};
-  boolean onOff;
+  String[] math = {"Sin", "Cos", "Tan"};
+  String[] movement = {"Move Forward", "Brake", "Turn Left", "Turn Right", "Stop Turning"};
+  String[] combat = {"Turn Turret Left", "Turn Turret Right", "Stop Turning Turret", "Fire"};
+  String[] get = {"Get My Angular Velocity", "Get Enemy Angular Velocity", "Get My Angle", "Get Enemy Angle", "Get My Velocity", "Get Enemy Velocity", "Get My Position", "Get Enemy Position", "Get My Reloading Time",
+                  "Get Enemy Reloading Time", "Get My Turret Angular Velocity", "Get Enemy Turret Angular Velocity"};
+ String[] ctrl = {"If", "For"}; 
+  boolean onOff1, onOff2, onOff3, onOff4, onOff5;
   
   public DropDownMenu(ControlP5 cp5) {
     this.cp5 = cp5; 
-    onOff = false;
-    d1 = cp5.addDropdownList("myList-d1")
-          .setPosition(0, 100)
+    onOff1 = false;
+    onOff2 = false;
+    onOff3 = false;
+    onOff4 = false;
+    onOff5 = false;
+    d1 = cp5.addDropdownList("Math")
+          .setPosition(100, 0)
           .setFont(new ControlFont(createFont("Times",12)))
           .onClick(new CallbackListener(){
            public void controlEvent(CallbackEvent event) {
-             if (!onOff) {
-               onOff = true;
-             } else if (onOff) {
+             if (!onOff1) {
+               onOff1 = true;
+             } else if (onOff1) {
                addControl(event.getController().getLabel());
-               onOff = false; 
+               onOff1 = false; 
              }
            }
      });
           ;   
-    customize(d1);
-
+          
+     d2 = cp5.addDropdownList("Movement")
+           .setPosition(300, 0)
+           .setFont(new ControlFont(createFont("Times",12)))
+           .onClick(new CallbackListener(){
+            public void controlEvent(CallbackEvent event) {
+              if (!onOff2) {
+                onOff2 = true;
+              } else if (onOff2) {
+                addControl(event.getController().getLabel());
+                onOff2 = false; 
+              }
+           }
+     });
+          ;   
+          
+    d3 = cp5.addDropdownList("Combat")
+          .setPosition(500, 0)
+          .setFont(new ControlFont(createFont("Times",12)))
+          .onClick(new CallbackListener(){
+           public void controlEvent(CallbackEvent event) {
+             if (!onOff3) {
+               onOff3 = true;
+             } else if (onOff3) {
+               addControl(event.getController().getLabel());
+               onOff3 = false; 
+             }
+           }
+     });
+          ;   
+          
+    d4 = cp5.addDropdownList("Get")
+          .setPosition(700, 0)
+          .setFont(new ControlFont(createFont("Times",12)))
+          .onClick(new CallbackListener(){
+           public void controlEvent(CallbackEvent event) {
+             if (!onOff4) {
+               onOff4 = true;
+             } else if (onOff4) {
+               addControl(event.getController().getLabel());
+               onOff4 = false; 
+             }
+           }
+     });
+          ;   
+          
+    d5 = cp5.addDropdownList("Control")
+          .setPosition(900, 0)
+          .setFont(new ControlFont(createFont("Times",12)))
+          .onClick(new CallbackListener(){
+           public void controlEvent(CallbackEvent event) {
+             if (!onOff4) {
+               onOff4 = true;
+             } else if (onOff4) {
+               addControl(event.getController().getLabel());
+               onOff4 = false; 
+             }
+           }
+     });
+          ;   
+          
+    customize(d1, math);
+    customize(d2, movement);
+    customize(d3, combat);
+    customize(d4, get);
+    customize(d5, ctrl);
   }
   
-  void customize(DropdownList ddl) {
+  void customize(DropdownList ddl, String[] options) {
     ddl.setBackgroundColor(color(190));
     ddl.setItemHeight(60);
     ddl.setBarHeight(40);
@@ -44,6 +116,10 @@ class DropDownMenu {
   
   void setVisible(boolean isVisible) {
     d1.setVisible(isVisible);
+    d2.setVisible(isVisible);
+    d3.setVisible(isVisible);
+    d4.setVisible(isVisible);
+    d5.setVisible(isVisible);
   }
   
   void addControl(String label) {
