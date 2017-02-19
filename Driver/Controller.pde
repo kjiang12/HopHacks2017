@@ -31,6 +31,43 @@ public class CommandController{
              }); 
   }
   
+  void delete(CommandBlock cb) {
+    if (cb == start) {
+      return; 
+    }
+    
+    cb.deleteConnection();
+    
+    for (int key : commandTable.keySet()) {
+      if (commandTable.get(key) == cb) {        
+        if (commandTable.get(key).next != null) {
+          commandTable.get(key).next.prev = null; 
+        }
+        
+        if (commandTable.get(key).prev != null) {
+          commandTable.get(key).prev.deleteConnection();
+          commandTable.get(key).prev = null; 
+        }
+        
+        commandTable.remove(key); 
+        cb.next = null;
+        cb.prev = null;
+      }
+    }
+    
+    CommandBlock curr = start, prev = null;
+    while (curr != null && curr != cb) {
+      prev = curr;
+      curr = curr.next; 
+    }
+    
+    if (curr != null) {
+       prev.next = curr.next;
+    }
+    
+    cp5.remove(cb.g.getName());
+  }
+  
   DropDownMenu getDDM() {
     return ddm; 
   }

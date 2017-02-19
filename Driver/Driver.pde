@@ -19,8 +19,8 @@
   PImage code;
   
  void setup (){
-    size(1260, 720);
-   // fullScreen();
+   // size(1260, 720);
+    fullScreen();
     noStroke();
     rectMode(CORNER);
     cf = new ControlFont(createFont("Times",16));
@@ -40,9 +40,9 @@
     
     Toggle tog = cp5.addToggle("Show\nCode")
      .setFont(new ControlFont(createFont("Times", 20)))
-     .setPosition(0,0)
-     .setSize(100,100)
-     .setCaptionLabel("Code")
+     .setPosition(10,10)
+     .setSize(100,50)
+     .setImage(loadImage("../Code.png"))
      .onChange(new CallbackListener(){
        public void controlEvent(CallbackEvent event) {
          if(event.getController().getValue() == 0){
@@ -59,7 +59,7 @@
     
     cp5.addToggle("Start")
      .setFont(cf)
-     .setPosition(1100,0)
+     .setPosition(1100,10)
      .setSize(100,50)
      .setImages(loadImage("../StartButton.png"),loadImage("../PauseButton.png"))
      .onChange(new CallbackListener(){
@@ -75,11 +75,11 @@
       }
      });
      
-     cp5.addToggle("Reset")
+     cp5.addToggle("Restart")
      .setFont(cf)
-     .setPosition(0,640)
+     .setPosition(10,660)
      .setSize(100,50)
-     
+     .setImage(loadImage("../RestartButton.png"))
      .onChange(new CallbackListener(){
        public void controlEvent(CallbackEvent event) {
         reset();
@@ -109,6 +109,10 @@ boolean brake = false;
           }
         } else {
           selectedObject = control.getCommand((ControlGroup) cp5.getWindow().getMouseOverList().get(0).bringToFront());
+          if (delete) {
+             delete = false;
+             control.delete(selectedObject);
+           }
           initX = mouseX;
           initY = mouseY;
           if(selectedObject instanceof LogicBlock){
@@ -132,13 +136,17 @@ void mouseDragged(){
   }
 }
 
+boolean delete = false;
 void keyPressed() {
   if (key == CODED && keyCode == CONTROL) {
     selected = true;
-  } 
+  } else if (keyCode == DELETE) {
+    delete = true;
+  }
 }
 
 void keyReleased() {
   selected = false;
+  delete = false;
   selections = null;
 }  
