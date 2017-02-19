@@ -5,7 +5,7 @@ class DropDownMenu {
   DropdownList d1, d2, d3, d4, d5;
   String choice;
   String[] conditional = {"1 Var", "2 Var"};
-  String[] movement = {"Move Forward", "Brake", "Turn Left", "Turn Right", "Stop Turning"};
+  String[] movement = {"Move Forward", "Brake", "Turn Left", "Turn Right", "Stop Turning", "Move to Nearest Enemy"};
   String[] combat = {"Turn Turret Left", "Turn Turret Right", "Stop Turning Turret", "Fire", "Aim at Nearest Enemy"};
   String[] get = {"Get My Angular Velocity", "Get Enemy Angular Velocity", "Get My Angle", "Get Enemy Angle", "Get My Velocity", "Get Enemy Velocity", "Get My Position", "Get Enemy Position", "Get My Reloading Time",
                   "Get Enemy Reloading Time", "Get My Turret Angular Velocity", "Get Enemy Turret Angular Velocity", "Get My Speed"};
@@ -229,9 +229,10 @@ class DropDownMenu {
       control.add(new TurnLeft(cp5, cf, stageLists.getTankList().get(0))); 
     } else if (label.equals("Aim at Nearest Enemy")) {
       control.add(new aimToNearestEnemy(cp5, cf, stageLists.getTankList().get(0))); 
-    } 
-    else if (label.equals("Turn Right")) {
+    } else if (label.equals("Turn Right")) {
       control.add(new TurnRight(cp5, cf, stageLists.getTankList().get(0))); 
+    } else if (label.equals("Move to Nearest Enemy")) {
+      control.add(new moveToNearestEnemy(cp5, cf, stageLists.getTankList().get(0))); 
     } else if (label.equals("Stop Turning")) {
       control.add(new StopTurning(cp5, cf, stageLists.getTankList().get(0))); 
     } else if (label.equals("Turn Turret Left")) {
