@@ -19,7 +19,7 @@
   
  void setup (){
     size(1260, 720);
-    //fullScreen();
+   // fullScreen();
     noStroke();
     rectMode(CORNER);
     start = false;
