@@ -12,7 +12,7 @@ public abstract class CommandBlock{
   public CommandBlock(ControlP5 cp5, Tank tank){
     this.cp5 = cp5;
     this.g = cp5.addGroup(count + "")
-             .setPosition(100,100)
+             .setPosition(100, height/2)
              .setBackgroundHeight(100)
              .setSize(w,h)
              .setBarHeight(40)
