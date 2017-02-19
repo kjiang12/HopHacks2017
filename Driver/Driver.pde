@@ -19,7 +19,7 @@
   PImage code;
   
  void setup (){
-   // size(1260, 720);
+  //  size(1260, 720);
     fullScreen();
     noStroke();
     rectMode(CORNER);
@@ -65,7 +65,7 @@
     
     cp5.addToggle("Start")
      .setFont(cf)
-     .setPosition(1810,10)
+     .setPosition(width - 150,10)
      .setSize(100,50)
      .setImages(loadImage("../StartButton.png"),loadImage("../PauseButton.png"))
      .onChange(new CallbackListener(){
@@ -83,7 +83,7 @@
      
      cp5.addToggle("Restart")
      .setFont(cf)
-     .setPosition(10,660)
+     .setPosition(10,height - 100)
      .setSize(100,50)
      .setImage(loadImage("../RestartButton.png"))
      .onChange(new CallbackListener(){
