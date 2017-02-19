@@ -30,6 +30,10 @@ public class CommandController{
              }); 
   }
   
+  DropDownMenu getDDM() {
+    return ddm; 
+  }
+  
   void add(CommandBlock command){
     command.setGroup(count + "");
     commandList.add(command);
@@ -42,6 +46,7 @@ public class CommandController{
   }
   
   void execute(){
+    print("yes");
     start.execute();
   }
   

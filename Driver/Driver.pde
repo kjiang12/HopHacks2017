@@ -15,11 +15,11 @@
   Boolean selected = false;
   CommandBlock selections;
   DropDownMenu ddm;
-  Boolean displayCode = false;
+  Boolean displayCode = false;  
   
  void setup (){
     size(1260, 720);
-    //fullScreen();
+   // fullScreen();
     noStroke();
     rectMode(CORNER);
     start = false;
@@ -31,7 +31,7 @@
 
     control = new CommandController(new StartBlock(cp5, cf, stageLists.getTankList().get(0)));
     
-    control.add(new Comparison2Var(cp5, cf, stageLists.getTankList().get(0)));
+    control.add(new Comparison1Var(cp5, cf, stageLists.getTankList().get(0)));
     
     
     PImage code = loadImage("../Code.png");
@@ -54,10 +54,8 @@
      
      tog.getCaptionLabel().align(ControlP5.CENTER, ControlP5.TOP).setPaddingX(0);
 
-
-    PImage startButton = loadImage("../StartButton.png");
     
-    Toggle startTog = cp5.addToggle("Start")
+    cp5.addToggle("Start")
      .setFont(cf)
      .setPosition(1100,20)
      .setSize(100,50)
@@ -68,6 +66,9 @@
            start = false;
          } else {
            start = true;
+           control.execute();
+           displayCode = false;
+           control.setVisible(displayCode);
          }
       }
      }); 
@@ -83,7 +84,7 @@ boolean brake = false;
  }
   
   void mousePressed(){
-  
+    control.getDDM().mousePress(mouseX, mouseY);
     if(cp5.getWindow().getMouseOverList().size() > 0){
       try{
         if(selected){

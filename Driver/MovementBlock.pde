@@ -33,6 +33,9 @@ public class MoveBackward extends MovementBlock{
 
   void execute() {
     tank.backward();
+    if(this.next != null){
+      this.next.execute();
+    }
   }
 }
 
@@ -43,7 +46,12 @@ public class MoveForward extends MovementBlock{
   }
 
   void execute() {
+    print("hello");
     tank.forward();
+    print("yo");
+    if(this.next != null){
+      this.next.execute();
+    }
   }
 
 }
@@ -56,6 +64,9 @@ public class TurnLeft extends MovementBlock{
 
   void execute() {
     tank.turnLeft();
+    if(this.next != null){
+      this.next.execute();
+    }
   }
 
 }
@@ -68,6 +79,9 @@ public class TurnRight extends MovementBlock{
 
   void execute() {
     tank.turnRight();
+    if(this.next != null){
+      this.next.execute();
+    }
   }
 
 }
@@ -80,6 +94,9 @@ public class TurnTurretLeft extends MovementBlock{
 
   void execute() {
     tank.turnTurretLeft();
+    if(this.next != null){
+      this.next.execute();
+    }
   }
 
 }
@@ -92,6 +109,9 @@ public class TurnTurretRight extends MovementBlock{
 
   void execute() {
     tank.turnTurretRight();
+    if(this.next != null){
+      this.next.execute();
+    }
   }
 }
   
