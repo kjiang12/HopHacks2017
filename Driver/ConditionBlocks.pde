@@ -190,13 +190,14 @@ public class Comparison1Var extends ConditionBlock{
     this.h = 100;
     this.g.getCaptionLabel().set("Comparision with 1 Variable").setFont(cf);
     this.g.setSize(this.w , this.h);
-  
-    this.var1 = this.add(new LogicBlock(cp5, cf, tank, "Var1", 0, this.g));
+    
+    this.var1 = this.add(new LogicBlock(cp5, cf, tank, "Var", 0, this.g));
+    this.var1.changePosition(200, 65);
     
     operatorList = cp5.addDropdownList("Operators " + this.id)
-                      .setPosition(50, 30)
+                      .setPosition(120, 25)
                       .setSize(60, 1200)
-                      .setBarHeight(50)
+                      .setBarHeight(40)
                       .setItemHeight(50)
                       .setGroup(this.g)
                       .addItems(comparisionOperators)
@@ -206,15 +207,17 @@ public class Comparison1Var extends ConditionBlock{
                       .setFont(new ControlFont(createFont("Times", 30)));
      
      cp5.addTextfield("input")
-     .setPosition(20,100)
-     .setSize(200,40)
+     .setPosition(20,25)
+     .setSize(70,40)
      .setFont(cf)
      .setGroup(this.g)
-     .setFocus(true)
      .setColor(color(255,0,0))
      .onChange(new CallbackListener(){
        public void controlEvent(CallbackEvent event) {
-         value = Float.parseFloat(event.getController().getStringValue());
+         try{
+           value = Float.parseFloat(event.getController().getStringValue());
+         } catch(Exception e){
+         }
       }
      });
      ;

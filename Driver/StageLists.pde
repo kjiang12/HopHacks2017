@@ -12,6 +12,7 @@ public class StageLists{
      this.app = app;
      generateObstacles(2);
      generateBots(10);
+
      this.addItem(new Tank(100, 500, 500, PI / 3, 50, new Sprite(app,"../TankBase.png",0), new Sprite(app,"../TankHead5.png",0),20));
 
   }

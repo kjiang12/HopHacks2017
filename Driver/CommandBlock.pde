@@ -106,7 +106,9 @@ public class StartBlock extends CommandBlock{
   }
   
   void execute(){
+    print("start");
     if(this.next != null){
+      print("nex");
       this.next.execute();
     }
   }
