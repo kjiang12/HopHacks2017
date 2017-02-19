@@ -89,7 +89,7 @@ public class Tank {
     ellipseMode(CENTER);
     noFill();
     stroke(153);
-    ellipse((int) getPos()[0], (int) getPos()[1], 175, 175);
+    ellipse((int) getPos()[0], (int) getPos()[1], 350, 350);
     noStroke();
     }
     rect((int)(this.getPos()[0]) - 20, (int)(this.getPos()[1]) - 20, maxHealth/2, 5);
