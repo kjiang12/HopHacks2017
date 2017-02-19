@@ -149,7 +149,9 @@ public class ForLoop extends LogicCommandBlock{
       start = (int) Float.parseFloat(startField.getText());
       
     if(end != 0 && this.thenGroup.next != null){
-      current.push(this);
+      if(!current.contains(this)){
+        current.push(this);
+      }
       count = start;
       if(count < end * 60){
         println("execute");

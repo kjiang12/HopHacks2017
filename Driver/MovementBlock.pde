@@ -157,3 +157,39 @@ public class Brake extends MovementBlock{
     }
   }
 }
+
+public class Wait extends MovementBlock{
+  int time, curr = 0;
+  
+  TextField timeField;
+  public Wait(ControlP5 cp5, ControlFont cf, Tank tank){
+    super(cp5, cf, tank);
+    this.g.getCaptionLabel().set("Wait").setFont(cf);
+    timeField = cp5.addTextfield("input2 " + this.id)
+     .setPosition(100,10)
+     .setSize(60,40)
+     .setFont(cf)
+     .setGroup(this.g)
+     .setCaptionLabel("Wait Time")
+     .setColor(color(255,0,0));
+  }
+
+  void execute() {
+    try {
+      time = (int) Float.parseFloat(timeField.getText());
+    } catch (Exception e){
+      time = 0;
+    }
+    if(curr >= time){
+      if(!current.contains(this)){
+        current.push(this);
+      }
+      curr++;
+    } else {
+      current.pop(this);
+      if(this.next != null){
+        this.next.execute();
+      }
+    }
+  }
+}

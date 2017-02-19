@@ -44,6 +44,7 @@
 
     control = new CommandController(new StartBlock(cp5, cf, stageLists.getTankList().get(0)));
     
+    control.add(new Wait(cp5, cf, stageLists.getTankList().get(0)));
     Toggle tog = cp5.addToggle("Show\nCode")
      .setFont(new ControlFont(createFont("Times", 20)))
      .setPosition(10,10)
