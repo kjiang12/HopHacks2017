@@ -11,8 +11,10 @@ class DropDownMenu {
                   "Get Enemy Reloading Time", "Get My Turret Angular Velocity", "Get Enemy Turret Angular Velocity", "Get My Speed"};
   String[] ctrl = {"If", "For"}; 
   boolean onOff1, onOff2, onOff3, onOff4, onOff5;
-  
+  float spacing = width/4 - 200;
+
   public DropDownMenu(ControlP5 cp5) {
+
     this.cp5 = cp5; 
     onOff1 = false;
     onOff2 = false;
@@ -44,7 +46,7 @@ class DropDownMenu {
           ;   
           
      d2 = cp5.addDropdownList("Movement")
-           .setPosition(510, 0)
+           .setPosition(210 + spacing * 1, 0)
            .setFont(new ControlFont(createFont("Times",12)))
            .onClick(new CallbackListener(){
             public void controlEvent(CallbackEvent event) {
@@ -68,7 +70,7 @@ class DropDownMenu {
           ;   
           
     d3 = cp5.addDropdownList("Combat")
-          .setPosition(810, 0)
+          .setPosition(210 + spacing * 2, 0)
           .setFont(new ControlFont(createFont("Times",12)))
           .onClick(new CallbackListener(){
            public void controlEvent(CallbackEvent event) {
@@ -92,7 +94,7 @@ class DropDownMenu {
           ;   
           
     d4 = cp5.addDropdownList("Get")
-          .setPosition(1110, 0)
+          .setPosition(210 + spacing * 3, 0)
           .setFont(new ControlFont(createFont("Times",12)))
           .onClick(new CallbackListener(){
            public void controlEvent(CallbackEvent event) {
@@ -116,7 +118,7 @@ class DropDownMenu {
           ;   
           
     d5 = cp5.addDropdownList("Control")
-          .setPosition(1410, 0)
+          .setPosition(210 + spacing * 4, 0)
           .setFont(new ControlFont(createFont("Times",12)))
           .onClick(new CallbackListener(){
            public void controlEvent(CallbackEvent event) {
@@ -153,7 +155,7 @@ class DropDownMenu {
     ddl.setItemHeight(60);
     ddl.setBarHeight(40);
     ddl.setHeight(400);
-    ddl.setWidth(300);
+    ddl.setWidth((int)spacing);
     ddl.addItems(options);
     ddl.setColorBackground(color(60));
     ddl.setColorActive(color(255, 128));
