@@ -22,14 +22,18 @@ public abstract class LogicCommandBlock extends CommandBlock{
   
   void setVisible(Boolean bol){
     super.setVisible(bol);
-    this.conditionGroup.setVisible(bol);
+    if(this.conditionGroup != null){
+      this.conditionGroup.setVisible(bol);
+    }
     this.thenGroup.setVisible(bol);
     this.elseGroup.setVisible(bol);
   }
   
   void move(float x, float y){
     super.move(x, y);
-    this.conditionGroup.connectionUpdate();
+    if(this.conditionGroup != null){
+      this.conditionGroup.connectionUpdate();
+    }
     this.thenGroup.connectionUpdate();
     this.elseGroup.connectionUpdate();
   }
@@ -89,38 +93,53 @@ public class ForLoop extends LogicCommandBlock{
   
   public ForLoop(ControlP5 cp5, ControlFont cf, Tank tank){
     super(cp5, cf, tank);
+    this.conditionGroup.g.remove();
+    this.conditionGroup = null;
+    
     this.g.getCaptionLabel().set("For").setFont(cf);
     this.thenGroup.setLabel("Do");
     this.elseGroup.setLabel("Next");
     
-    
-    cp5.addTextfield("input")
-     .setPosition(20,100)
-     .setSize(200,40)
+    cp5.addTextlabel("label " + this.id)
+                    .setText("From ")
+                    .setPosition(20,15)
+                    .setFont(new ControlFont(createFont("Times", 20)))
+                    .setGroup(this.g)
+                    ;
+                    
+    cp5.addTextfield("input1 " + this.id)
+     .setPosition(100,10)
+     .setSize(60,40)
      .setFont(cf)
-     .setGroup(this.conditionGroup.g)
-     .setFocus(true)
+     .setGroup(this.g)
      .setColor(color(255,0,0))
+     .setCaptionLabel("")
      .onChange(new CallbackListener(){
        public void controlEvent(CallbackEvent event) {
          start = (int) Float.parseFloat(event.getController().getStringValue());
       }
      });
-     ;
-     
-    cp5.addTextfield("input")
-     .setPosition(20,100)
-     .setSize(200,40)
+
+     cp5.addTextlabel("label2 " + this.id)
+                    .setText(" To ")
+                    .setPosition(170, 15)
+                    .setFont(new ControlFont(createFont("Times", 20)))
+                    .setGroup(this.g)
+                    ;
+                    
+    cp5.addTextfield("input2 " + this.id)
+     .setPosition(220,10)
+     .setSize(60,40)
      .setFont(cf)
-     .setGroup(this.conditionGroup.g)
-     .setFocus(true)
+     .setGroup(this.g)
+     .setCaptionLabel("")
      .setColor(color(255,0,0))
      .onChange(new CallbackListener(){
        public void controlEvent(CallbackEvent event) {
          end = (int) Float.parseFloat(event.getController().getStringValue());
       }
      });
-     ;
+
   }
 
   void execute() {

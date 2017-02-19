@@ -31,7 +31,7 @@
 
     control = new CommandController(new StartBlock(cp5, cf, stageLists.getTankList().get(0)));
     
-    control.add(new Comparison1Var(cp5, cf, stageLists.getTankList().get(0)));
+    control.add(new ForLoop(cp5, cf, stageLists.getTankList().get(0)));
     
     
     PImage code = loadImage("../Code.png");
