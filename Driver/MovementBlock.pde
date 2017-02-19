@@ -45,7 +45,7 @@ public class aimToNearestEnemy extends MovementBlock{
     this.g.getCaptionLabel().set("Aim To").setFont(cf);
   }
   void execute(){
-    tank.aimTo();
+    tank.aimTo(tank.getPos());
     if(this.next != null){
       this.next.execute();
     }
