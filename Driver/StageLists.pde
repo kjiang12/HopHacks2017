@@ -15,7 +15,7 @@ public class StageLists{
      generateObstacles(2);
      generateBots(50);
 
-     this.addItem(new Tank(100, 500, 500, PI / 3, 50, new Sprite(app,"../TankBase1.png",0), new Sprite(app,"../TankHead5.png",0),20));
+     this.addItem(new Tank(10000, 500, 500, PI / 3, 50, new Sprite(app,"../TankBase1.png",0), new Sprite(app,"../TankHead5.png",0),20));
 
   }
   public ArrayList<Bullet> getBulletList(){
@@ -104,6 +104,7 @@ public class StageLists{
     if (doUpdate){
       checkBullet();
       collisionCheck();
+      findPlayer();
     }
   }
   
@@ -144,9 +145,9 @@ public class StageLists{
           if(i!=j && tanks.get(i).getBaseSprite().bb_collision(tanks.get(j).getBaseSprite()))
           {
               tanks.get(i).stop();
-              tanks.get(i).lowerHealth(1);
+              tanks.get(i).lowerHealth((int) (Math.random()));
               tanks.get(j).stop();
-              tanks.get(j).lowerHealth(1);
+              tanks.get(j).lowerHealth((int) (Math.random()));
           }
        }
    }
@@ -177,7 +178,7 @@ public void generateBots(int numberOfBots){
     boolean overlap = false;
     int i = 0;
     while (i < numberOfBots){
-      Bot bot = new Bot(100, ((int) (Math.random() * (width - 50)) + 20),((int) (Math.random() * (height - 50)) + 20), (PI / 12) * ((int) (Math.random() * 12)), (PI / 12) * ((int) (Math.random() * 12)), new Sprite(app,"../TankBase" + (((int) (Math.random() * 2)) + 1) + ".png",0), new Sprite(app,"../TankHead" + (((int) (Math.random() * 4)) + 1) + ".png",0),50);
+      Bot bot = new Bot(100, ((int) (Math.random() * (width - 50)) + 20),((int) (Math.random() * (height - 50)) + 20), (PI / 12) * ((int) (Math.random() * 12)), (PI / 12) * ((int) (Math.random() * 12)), new Sprite(app,"../TankBase" + (((int) (Math.random() * 2)) + 1) + ".png",0), new Sprite(app,"../TankHead" + (((int) (Math.random() * 4)) + 1) + ".png",0),75);
       for (Obstacle obstacle: obstacles){
        if(obstacle.getSprite().pp_collision(bot.getBaseSprite())){
          overlap = true;
@@ -265,6 +266,11 @@ public void generateBots(int numberOfBots){
          overlap = false; 
       }
     }
+  }
+  
+  public boolean findPlayer(){
+     return false;
+    
   }
 
 }

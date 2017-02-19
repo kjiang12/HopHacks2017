@@ -82,19 +82,19 @@ public class Tank {
     
     
     rectMode(CORNER);
-    fill(0,255,0);
-  
-    rect((int)(this.getPos()[0]) - 20, (int)(this.getPos()[1]) - 20, health / 2, 5);
+
     if(Math.abs(base_sprite.getX() - mouseX) <=15 && Math.abs(base_sprite.getY() - mouseY) <=15){
-    ellipseMode(CENTER);
-    noFill();
-    stroke(153);
-    ellipse((int) getPos()[0], (int) getPos()[1], 350, 350);
-    noStroke();
+      ellipseMode(CENTER);
+      noFill();
+      stroke(153);
+      ellipse((int) getPos()[0], (int) getPos()[1], 350, 350);
+      noStroke();
     }
-    rect((int)(this.getPos()[0]) - 20, (int)(this.getPos()[1]) - 20, maxHealth/2, 5);
-    fill(255,0,0);
-    rect((int)(this.getPos()[0]) - 20 + (health / 2), (int)(this.getPos()[1]) - 20, (maxHealth / 2) - (health / 2), 5);
+    
+    fill(255,0,0);  
+    rect((int)(this.getPos()[0]) - 20, (int)(this.getPos()[1]) - 20, 50, 5);
+    fill(0,255,0);
+    rect((int)(this.getPos()[0]) - 20, (int)(this.getPos()[1]) - 20, (50 * ((double) health / maxHealth)), 5);
     
     fill(0, 0, 0);
     text(health + "/" + maxHealth, (int)(this.getPos()[0]) - 20, (int)(this.getPos()[1]) - 30);
