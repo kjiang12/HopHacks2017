@@ -18,8 +18,8 @@
   Boolean displayCode = false;  
   
  void setup (){
-    size(1260, 720);
-   // fullScreen();
+   // size(1260, 720);
+    fullScreen();
     noStroke();
     rectMode(CORNER);
     start = false;
@@ -31,13 +31,11 @@
 
     control = new CommandController(new StartBlock(cp5, cf, stageLists.getTankList().get(0)));
     
-    PImage code = loadImage("../Code.png");
-    code.resize(100,100);
     Toggle tog = cp5.addToggle("Show\nCode")
      .setFont(new ControlFont(createFont("Times", 20)))
-     .setPosition(0,0)
-     .setSize(100,100)
-     .setCaptionLabel("Code")
+     .setPosition(10,10)
+     .setSize(100,50)
+     .setImage(loadImage("../Code.png"))
      .onChange(new CallbackListener(){
        public void controlEvent(CallbackEvent event) {
          if(event.getController().getValue() == 0){
@@ -54,7 +52,7 @@
     
     cp5.addToggle("Start")
      .setFont(cf)
-     .setPosition(1100,0)
+     .setPosition(1100,10)
      .setSize(100,50)
      .setImages(loadImage("../StartButton.png"),loadImage("../PauseButton.png"))
      .onChange(new CallbackListener(){
@@ -70,11 +68,11 @@
       }
      });
      
-     cp5.addToggle("Reset")
+     cp5.addToggle("Restart")
      .setFont(cf)
-     .setPosition(0,640)
+     .setPosition(10,660)
      .setSize(100,50)
-     .setImages(loadImage("../StartButton.png"),loadImage("../PauseButton.png"))
+     .setImage(loadImage("../RestartButton.png"))
      .onChange(new CallbackListener(){
        public void controlEvent(CallbackEvent event) {
         setup();

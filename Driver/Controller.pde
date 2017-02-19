@@ -5,6 +5,7 @@ public class CommandController{
   CommandBlock start;
   Range range;
   DropDownMenu ddm;
+  CommandBlock current;
   
   public CommandController(StartBlock start){
     this.commandList = new LinkedList<CommandBlock>();
@@ -83,7 +84,6 @@ public class CommandController{
   }
   
   void execute(){
-    print("yes");
     start.execute();
   }
   
