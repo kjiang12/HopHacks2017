@@ -11,8 +11,8 @@ class DropDownMenu {
                   "Get Enemy Reloading Time", "Get My Turret Angular Velocity", "Get Enemy Turret Angular Velocity", "Get My Speed"};
   String[] ctrl = {"If", "For"}; 
   boolean onOff1, onOff2, onOff3, onOff4, onOff5;
-  float spacing = width/4 - 200;
-
+  float spacing = width/5 - 70;
+  float start = 150;
   public DropDownMenu(ControlP5 cp5) {
 
     this.cp5 = cp5; 
@@ -22,7 +22,7 @@ class DropDownMenu {
     onOff4 = false;
     onOff5 = false;
     d1 = cp5.addDropdownList("Conditional")
-          .setPosition(210, 0)
+          .setPosition(start, 0)
           .setFont(new ControlFont(createFont("Times",12)))
           .onClick(new CallbackListener(){
            public void controlEvent(CallbackEvent event) {
@@ -46,7 +46,7 @@ class DropDownMenu {
           ;   
           
      d2 = cp5.addDropdownList("Movement")
-           .setPosition(210 + spacing * 1, 0)
+           .setPosition(start + spacing * 1, 0)
            .setFont(new ControlFont(createFont("Times",12)))
            .onClick(new CallbackListener(){
             public void controlEvent(CallbackEvent event) {
@@ -70,7 +70,7 @@ class DropDownMenu {
           ;   
           
     d3 = cp5.addDropdownList("Combat")
-          .setPosition(210 + spacing * 2, 0)
+          .setPosition(start + spacing * 2, 0)
           .setFont(new ControlFont(createFont("Times",12)))
           .onClick(new CallbackListener(){
            public void controlEvent(CallbackEvent event) {
@@ -94,7 +94,7 @@ class DropDownMenu {
           ;   
           
     d4 = cp5.addDropdownList("Get")
-          .setPosition(210 + spacing * 3, 0)
+          .setPosition(start + spacing * 3, 0)
           .setFont(new ControlFont(createFont("Times",12)))
           .onClick(new CallbackListener(){
            public void controlEvent(CallbackEvent event) {
@@ -118,7 +118,7 @@ class DropDownMenu {
           ;   
           
     d5 = cp5.addDropdownList("Control")
-          .setPosition(210 + spacing * 4, 0)
+          .setPosition(start + spacing * 4, 0)
           .setFont(new ControlFont(createFont("Times",12)))
           .onClick(new CallbackListener(){
            public void controlEvent(CallbackEvent event) {
@@ -172,11 +172,11 @@ class DropDownMenu {
   }
   
   void mousePress(int x, int y) {
-    onOff1 = (x > 210 && x < 510) && (y < 220); 
-    onOff2 = (x > 510 && x < 810) && (y < 340); 
-    onOff3 = (x > 810 && x < 1110) && (y < 280); 
-    onOff4 = (x > 1110 && x < 1410) && (y < 400); 
-    onOff5 = (x > 1410 && x < 1710) && (y < 160);
+    onOff1 = (x > start && x < start + spacing * 1) && (y < 220); 
+    onOff2 = (x > start + spacing * 1 && x < start + spacing * 2) && (y < 340); 
+    onOff3 = (x > start + spacing * 2 && x < start + spacing * 3) && (y < 280); 
+    onOff4 = (x > start + spacing * 4 && x < start + spacing * 5) && (y < 400); 
+    onOff5 = (x > start + spacing * 5 && x < start + spacing * 6) && (y < 160);
     
     if (!onOff1) {
       d1.setOpen(onOff1);

@@ -19,7 +19,7 @@
   PImage code;
   
  void setup (){
-  //  size(1260, 720);
+    //size(1260, 720);
     fullScreen();
     noStroke();
     rectMode(CORNER);
