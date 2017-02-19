@@ -43,17 +43,21 @@ public class Bot extends Tank{
      randomTime = ((int) (Math.random() * 200));
     }
     
-    if (super.getPos()[0] > width - 10){
-         super.moveTo(new int {width - 50, (int) super.getPos()[1]});
+    if (super.getPos()[0] > width - 20){
+        double [] location = {width - 50, super.getPos()[1]};
+         super.moveTo(location);
      }
-     else if (super.getPos()[0] < 10){
-         super.moveTo(new int {50, (int) super.getPos()[1]});
+     else if (super.getPos()[0] < 20){
+       double [] location = {50,  super.getPos()[1]};
+         super.moveTo(location);
      }    
-     else if (super.getPos()[1] > height - 10){
-         super.moveTo(new int {(int) super.getPos()[0], height - 50});
+     else if (super.getPos()[1] > height - 20){
+       double [] location = {super.getPos()[0], height - 50};
+         super.moveTo(location);
      }
-     else if (super.getPos()[1] < 10){
-         super.moveTo(new int {(int) super.getPos()[0], 50});
+     else if (super.getPos()[1] < 20){
+       double [] location = { super.getPos()[0], 50};
+         super.moveTo(location);
      }
     timer++;
   }
