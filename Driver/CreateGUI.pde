@@ -171,6 +171,13 @@ class DropDownMenu {
     d5.setVisible(isVisible);
   }
   
+  void close(){
+    d1.setOpen(false);
+    d2.setOpen(false);
+    d3.setOpen(false);
+    d4.setOpen(false);
+    d5.setOpen(false);
+  }
   void mousePress(int x, int y) {
     onOff1 = (x > start && x < start + spacing * 1) && (y < 220); 
     onOff2 = (x > start + spacing * 1 && x < start + spacing * 2) && (y < 340); 

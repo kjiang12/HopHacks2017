@@ -31,7 +31,7 @@
   
   void reset(){
     start = false;
-    displayCode = false;  
+    displayCode = false;   //<>//
     selected = false;
     if(cp5 != null){
       for(ControllerInterface control : cp5.getAll()){
@@ -100,7 +100,10 @@ boolean brake = false;
  }
   
   void mousePressed(){
-    control.getDDM().mousePress(mouseX, mouseY);
+   // control.getDDM().mousePress(mouseX, mouseY);
+    if(cp5.getWindow().getMouseOverList().size() == 0){
+      control.getDDM().close();
+    }
     if(cp5.getWindow().getMouseOverList().size() > 0){
       try{
         if(selected){
