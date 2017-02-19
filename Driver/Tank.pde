@@ -16,8 +16,9 @@ public class Tank {
   private Sprite base_sprite;
   private Sprite head_sprite;
   private boolean fired;
+  private ArrayList<Tank> enemies;
 
-  public Tank(int health, double x, double y, float tankAngle, float turrAngle, Sprite base_sprite, Sprite head_sprite,int reloadTime) {
+  public Tank(int health, double x, double y, float tankAngle, float turrAngle, Sprite base_sprite, Sprite head_sprite,int reloadTime, ArrayList<Tank> enemies) {
     this.health = health;
     this.maxHealth = health;
     this.tankAngle = tankAngle;
@@ -33,6 +34,7 @@ public class Tank {
     this.reloadTime = reloadTime;
     reloadDecrementer = reloadTime;
     fired = false;
+    this.enemies = enemies;
   }
   
   public void update() {
@@ -124,6 +126,30 @@ public class Tank {
    base_sprite.setVelXY(0,0); 
    head_sprite.setVelXY(0,0);  
    tankAngVel = 0;
+  }
+  
+  public ArrayList<Tank> sortBy() {
+    TreeMap<Double, Tank> tankAndDistance = new TreeMap<Double, Tank>();
+    
+    for (Tank tank : tanks) {
+      if (tank instanceof Player) {
+        continue; 
+      }
+      
+      tankAndDistance.put(getDistance(getPos()[0], getPos()[1], tank.getPos()[0], tank.getPos()[1]), tank);
+    }
+    
+    ArrayList<Tank> sortedList = new ArrayList<Tank>();
+    
+    for (double key : tankAndDistance.keySet()) {
+      sortedList.add(tankAndDistance.get(key)); 
+    }
+    
+    return sortedList;
+  }
+  
+  private double getDistance(double x0, double y0, double x1, double y1) {
+    return sqrt(pow(x1 - x0, 2) + pow(y1 - y0, 2)); 
   }
                   
   public float getTankAngVel() {          

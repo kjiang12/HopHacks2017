@@ -13,7 +13,7 @@ public class StageLists{
   public StageLists(PApplet app){
      this.app = app;
      generateObstacles(25);
-     this.addItem(new Player(100, 500, 500, PI / 3, 50, new Sprite(app,"../TankBase1.png",0), new Sprite(app,"../TankHead5.png",0),20));
+     this.addItem(new Player(100, 500, 500, PI / 3, 50, new Sprite(app,"../TankBase1.png",0), new Sprite(app,"../TankHead5.png",0),20, tanks));
      generateBots(2);
   }
   public ArrayList<Bullet> getBulletList(){
