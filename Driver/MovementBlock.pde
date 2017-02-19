@@ -122,7 +122,10 @@ public class StopTurning extends MovementBlock{
   }
 
   void execute() {
-    println("IMPLEMENT STOPTURNING");
+    tank.stopTurn();
+    if(this.next != null){
+      this.next.execute();
+    }
   }
 }
 
@@ -133,7 +136,10 @@ public class StopTurningTurret extends MovementBlock{
   }
 
   void execute() {
-    println("IMPLEMENT STOPTURNINGTURRET");
+    tank.stopTurretTurn();
+    if(this.next != null){
+      this.next.execute();
+    }
   }
 }
 
@@ -145,6 +151,9 @@ public class Brake extends MovementBlock{
   }
 
   void execute() {
-    println("IMPLEMENT BRAKE");
+    tank.brake();
+    if(this.next != null){
+      this.next.execute();
+    }
   }
 }
