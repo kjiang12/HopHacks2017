@@ -42,9 +42,10 @@ public class MoveBackward extends MovementBlock{
 public class aimToNearestEnemy extends MovementBlock{
   public aimToNearestEnemy(ControlP5 cp5, ControlFont cf, Tank tank){
     super(cp5, cf, tank);
-    this.g.getCaptionLabel().set("Aim To").setFont(cf);
+    this.g.getCaptionLabel().set("Aim at Nearest Enemey").setFont(cf);
   }
   void execute(){
+    this.selected();
     tank.aimTo(tank.getPos());
     if(this.next != null){
       this.next.execute();

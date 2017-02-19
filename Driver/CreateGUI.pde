@@ -4,12 +4,12 @@ class DropDownMenu {
   ControlP5 cp5;
   DropdownList d1, d2, d3, d4, d5;
   String choice;
-  String[] conditional = {"1 Var", "2 Var", "Pause Block"};
+  String[] conditional = {"1 Var", "2 Var"};
   String[] movement = {"Move Forward", "Brake", "Turn Left", "Turn Right", "Stop Turning"};
-  String[] combat = {"Turn Turret Left", "Turn Turret Right", "Stop Turning Turret", "Fire"};
+  String[] combat = {"Turn Turret Left", "Turn Turret Right", "Stop Turning Turret", "Fire", "Aim at Nearest Enemy"};
   String[] get = {"Get My Angular Velocity", "Get Enemy Angular Velocity", "Get My Angle", "Get Enemy Angle", "Get My Velocity", "Get Enemy Velocity", "Get My Position", "Get Enemy Position", "Get My Reloading Time",
                   "Get Enemy Reloading Time", "Get My Turret Angular Velocity", "Get Enemy Turret Angular Velocity", "Get My Speed"};
-  String[] ctrl = {"If", "For"}; 
+  String[] ctrl = {"If", "For", "Pause Block"}; 
   boolean onOff1, onOff2, onOff3, onOff4, onOff5;
   float spacing = width/5 - 70;
   float start = 150;
@@ -227,7 +227,10 @@ class DropDownMenu {
       control.add(new Brake(cp5, cf, stageLists.getTankList().get(0))); 
     } else if (label.equals("Turn Left")) {
       control.add(new TurnLeft(cp5, cf, stageLists.getTankList().get(0))); 
-    } else if (label.equals("Turn Right")) {
+    } else if (label.equals("Aim at Nearest Enemy")) {
+      control.add(new aimToNearestEnemy(cp5, cf, stageLists.getTankList().get(0))); 
+    } 
+    else if (label.equals("Turn Right")) {
       control.add(new TurnRight(cp5, cf, stageLists.getTankList().get(0))); 
     } else if (label.equals("Stop Turning")) {
       control.add(new StopTurning(cp5, cf, stageLists.getTankList().get(0))); 
