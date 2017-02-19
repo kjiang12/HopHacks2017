@@ -74,9 +74,6 @@
            start = false;
          } else {
            start = true;
-           control.execute();
-           //displayCode = false;
-           //control.setVisible(displayCode);
          }
       }
      });
@@ -99,7 +96,7 @@ boolean brake = false;
    stageLists.drawObjects(start);
    noStroke();
    control.draw();
-
+   control.execute(start);
  }
   
   void mousePressed(){
