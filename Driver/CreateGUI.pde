@@ -36,6 +36,7 @@ class DropDownMenu {
                d5.setOpen(false);
              } else if (onOff1) {
                addControl(event.getController().getLabel());
+               d1.setCaptionLabel("Math");
                onOff1 = false; 
              }
            }
@@ -59,6 +60,7 @@ class DropDownMenu {
                 d5.setOpen(false);
               } else if (onOff2) {
                 addControl(event.getController().getLabel());
+                d2.setCaptionLabel("Movement");
                 onOff2 = false; 
               }
            }
@@ -82,6 +84,7 @@ class DropDownMenu {
                d5.setOpen(false);
              } else if (onOff3) {
                addControl(event.getController().getLabel());
+               d3.setCaptionLabel("Combat");
                onOff3 = false; 
              }
            }
@@ -105,6 +108,7 @@ class DropDownMenu {
                d5.setOpen(false);
              } else if (onOff4) {
                addControl(event.getController().getLabel());
+               d4.setCaptionLabel("Get");
                onOff4 = false; 
              }
            }
@@ -128,6 +132,7 @@ class DropDownMenu {
                d4.setOpen(false);
              } else if (onOff5) {
                addControl(event.getController().getLabel());
+               d5.setCaptionLabel("Control");
                onOff5 = false; 
              }
            }
@@ -171,22 +176,27 @@ class DropDownMenu {
     
     if (!onOff1) {
       d1.setOpen(onOff1);
+      d1.setCaptionLabel("Math");
     }
     
     if (!onOff2) {
       d2.setOpen(onOff2);
+      d2.setCaptionLabel("Movement");
     }
     
     if (!onOff3) {
       d3.setOpen(onOff3);
+      d3.setCaptionLabel("Combat");
     }
     
     if (!onOff4) {
       d4.setOpen(onOff4);
+      d4.setCaptionLabel("Get");
     }
     
     if (!onOff5) {
       d5.setOpen(onOff5);
+      d5.setCaptionLabel("Control");
     }
   }
   
