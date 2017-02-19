@@ -32,12 +32,12 @@
     control = new CommandController(new StartBlock(cp5, cf, stageLists.getTankList().get(0)));
     
     PImage code = loadImage("../Code.png");
-    
+    code.resize(100,100);
     Toggle tog = cp5.addToggle("Show\nCode")
-     .setFont(cf)
-     .setPosition(20,20)
-     .setSize(70,50)
-     .setImage(code)
+     .setFont(new ControlFont(createFont("Times", 20)))
+     .setPosition(0,0)
+     .setSize(100,100)
+     .setCaptionLabel("Code")
      .onChange(new CallbackListener(){
        public void controlEvent(CallbackEvent event) {
          if(event.getController().getValue() == 0){
@@ -54,7 +54,7 @@
     
     cp5.addToggle("Start")
      .setFont(cf)
-     .setPosition(1100,20)
+     .setPosition(1100,0)
      .setSize(100,50)
      .setImages(loadImage("../StartButton.png"),loadImage("../PauseButton.png"))
      .onChange(new CallbackListener(){

@@ -145,7 +145,7 @@ public class ForLoop extends LogicCommandBlock{
   void execute() {
     if(end != 0 && this.thenGroup.next != null){
       count = start;
-      if(count < end){
+      if(count < end * 60){
         thenGroup.next.execute();
         count++;
       } else {
