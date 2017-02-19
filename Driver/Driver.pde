@@ -104,6 +104,10 @@ boolean brake = false;
           }
         } else {
           selectedObject = control.getCommand((ControlGroup) cp5.getWindow().getMouseOverList().get(0).bringToFront());
+          if (delete) {
+             delete = false;
+             control.delete(selectedObject);
+           }
           initX = mouseX;
           initY = mouseY;
           if(selectedObject instanceof LogicBlock){
@@ -127,13 +131,17 @@ void mouseDragged(){
   }
 }
 
+boolean delete = false;
 void keyPressed() {
   if (key == CODED && keyCode == CONTROL) {
     selected = true;
-  } 
+  } else if (keyCode == DELETE) {
+    delete = true;
+  }
 }
 
 void keyReleased() {
   selected = false;
+  delete = false;
   selections = null;
 }  
