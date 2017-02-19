@@ -1,5 +1,6 @@
 import sprites.Sprite;
 import sprites.maths.Vector2D;
+import java.util.TreeMap;
 
 public class Tank {
   private int health;
@@ -131,7 +132,7 @@ public class Tank {
   public ArrayList<Tank> sortBy() {
     TreeMap<Double, Tank> tankAndDistance = new TreeMap<Double, Tank>();
     
-    for (Tank tank : tanks) {
+    for (Tank tank : enemies) {
       if (tank instanceof Player) {
         continue; 
       }
@@ -149,7 +150,7 @@ public class Tank {
   }
   
   private double getDistance(double x0, double y0, double x1, double y1) {
-    return sqrt(pow(x1 - x0, 2) + pow(y1 - y0, 2)); 
+    return sqrt(pow((float)(x1 - x0), 2.0) + pow((float)(y1 - y0), 2.0)); 
   }
                   
   public float getTankAngVel() {          

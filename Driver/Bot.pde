@@ -5,7 +5,7 @@ public class Bot extends Tank{
   ArrayList<Tank> tanks;
   final int DETECTION_RANGE = 150;
   public Bot(int health, double x, double y, float tankAngle, float turrAngle, Sprite base_sprite, Sprite head_sprite,int reloadTime, ArrayList<Tank> tanks){
-    super(health, x, y, tankAngle, turrAngle, base_sprite, head_sprite, reloadTime);
+    super(health, x, y, tankAngle, turrAngle, base_sprite, head_sprite, reloadTime, tanks);
     timer = 0;
     randomTime = ((int) (Math.random() * 200));
     this.tanks = tanks;
