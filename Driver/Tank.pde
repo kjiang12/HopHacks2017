@@ -142,7 +142,29 @@ public class Tank {
      
      forward();
   }
-  
+
+  public void aimTo(double[] pos) {
+     double[] vector = new double[2];
+
+     vector[0] = pos[0] - getPos()[0];
+     vector[1] = pos[1] - getPos()[1];
+     
+     double[] heading = new double[2];
+     heading[0] = cos((float)head_sprite.getRot());
+     heading[1] = sin((float)head_sprite.getRot());
+     
+     double cross = vector[0] * heading[1] - vector[1] * heading[0];
+     
+     if(cross > 0.0f) {
+       turnTurretLeft(); 
+     }
+
+     if(cross < 0.0f) {
+       turnTurretRight(); 
+     }
+     
+
+  }
   public boolean faceAngle(double angle) {
     if (abs((float)((angle - base_sprite.getRot()) % (2 * PI))) < 0.2) {
       stopTurn();
