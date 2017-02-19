@@ -32,7 +32,7 @@ public class Tank {
     this.head_sprite.setPos(new Vector2D(x, y));
     this.reloadTime = reloadTime;
     reloadDecrementer = reloadTime;
-    fired = true;
+    fired = false;
   }
   
   public void update() {
