@@ -153,7 +153,7 @@ class DropDownMenu {
   void customize(DropdownList ddl, String[] options) {
     ddl.setBackgroundColor(color(190));
     ddl.setItemHeight(60);
-    ddl.setBarHeight(40);
+    ddl.setBarHeight(50);
     ddl.setHeight(400);
     ddl.setWidth((int)spacing);
     ddl.addItems(options);
