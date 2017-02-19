@@ -39,7 +39,18 @@ public class MoveBackward extends MovementBlock{
     }
   }
 }
-
+public class aimToNearestEnemy extends MovementBlock{
+  public aimToNearestEnemy(ControlP5 cp5, ControlFont cf, Tank tank){
+    super(cp5, cf, tank);
+    this.g.getCaptionLabel().set("Aim To").setFont(cf);
+  }
+  void execute(){
+    tank.aimTo();
+    if(this.next != null){
+      this.next.execute();
+    }
+  }
+}
 public class MoveForward extends MovementBlock{
   public MoveForward(ControlP5 cp5, ControlFont cf, Tank tank){
     super(cp5, cf, tank);
