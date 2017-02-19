@@ -68,6 +68,17 @@
            control.setVisible(displayCode);
          }
       }
+     });
+     
+     cp5.addToggle("Reset")
+     .setFont(cf)
+     .setPosition(0,640)
+     .setSize(100,50)
+     .setImages(loadImage("../StartButton.png"),loadImage("../PauseButton.png"))
+     .onChange(new CallbackListener(){
+       public void controlEvent(CallbackEvent event) {
+        setup();
+      }
      }); 
   }
 
